@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<concrete5-cif version="1.0">
+    <trees>
+    <tree type="topic" name="Thèmes">
+        <topic name="Gestion RH"/>
+        <topic name="Publication sur Internet"/>
+        <topic name="Transparence"/>
+        <topic name="Géolocalisation"/>
+        <topic name="Utilisation de la vidéosurveillance"/>
+        <topic name="Courriels professionnels"/>
+        <topic name="Biométrie"/>
+        <topic name="Accès aux données"/>
+        <topic name="Dossier personnel"/>
+        <topic name="Surveillance (sens large)"/>
+        <topic name="Environnement scolaire"/>
+        <topic name="Application RGPD"/>
+        <topic name="Objets connectés"/>
+    </tree>
+    <tree type="topic" name="Metiers">
+        <topic name="Direction des ressources humaines (DRH)"/>
+        <topic name="Employé-e"/>
+        <topic name="Cadre"/>
+        <topic name="Direction des systèmes d’information"/>
+        <topic name="Citoyen-ne"/>
+        <topic name="Etudiant-e"/>
+        <topic name="Assuré-e"/>
+    </tree>
+    <tree type="topic" name="Données">
+        <topic name="Bancaires, Financières"/>
+        <topic name="Localisation"/>
+        <topic name="Biométriques"/>
+        <topic name="Images"/>
+        <topic name="Médicales"/>
+        <topic name="Privées"/>
+        <topic name="Professionnelles"/>
+        <topic name="Publiques/non publiques"/>
+        <topic name="Scolaires"/>
+        <topic name="Profilage"/>
+    </tree>
+    </trees>
+</concrete5-cif>

@@ -1,0 +1,95 @@
+{
+    "pages":[
+        {
+            "informations":[
+                {
+                    "type":"page_type",
+                    "values":"scenario_page_type"
+                }
+            ],
+            "translations":[
+                {
+                    "language":"fr",
+                    "page_path":"/fr/scenarios",
+                    "titre":"Comment puis-je contrôler le rendement de mes collaborateurs sans violer leurs droits ? ",
+                    "ts_pattr_topic_theme":{
+                        "type":"topic",
+                        "values":[
+                            "Surveillance (sens large)",
+                            "Transparence"
+                        ]
+                    },
+                    "ts_pattr_topic_metier":{
+                        "type":"topic",
+                        "values":[
+                            "Cadre",
+                            "Employée"
+                        ]
+                    },
+                    "ts_pattr_topic_type_donne":{
+                        "type":"topic",
+                        "values":[
+                            "Professionnelles"
+                        ]
+                    },
+                    "ts_pattr_timbre":{
+                        "type": "timbre",
+                        "values": {
+                            "valid":true,
+                            "customLabel":"none"
+                        }
+                    },
+                    "ts_pattr_introduction":"<h1>X travaille depuis peu dans un centre d’appel.</h1>",
+                    "ts_pattr_declencheur":"L’entreprise traite tous les appels entrants pour une cinquantaine de sociétés de la région, et chaque collaborateur reçoit la gestion de cinq entreprises. En fonction de l’efficacité du collaborateur et du nombre d’appels qu’il traite par jour des bonus sont à la clé.",
+                    "ts_pattr_peripetie":"X voit tout de suite où est son intérêt, et comme il sait aller rapidement à l’essentiel il se fait fort d’être mis au bénéfice d’un bonus dans sa première année d’activité. Lors du bilan de compétences de la mi-année, il est fort surpris lorsqu’on lui annonce qu’il est certes rapide mais froid voire désagréable avec les appelants, ce que les enregistrements vocaux démontrent, selon sa hiérarchie.",
+                    "ts_pattr_resolution":"Rien dans le contrat de travail ni le règlement d’entreprise - fort court au demeurant - n’indique que tous les appels seraient enregistrés, et X plaide sa cause en expliquant que s’il en avait été informé il aurait sans doute agi autrement. Il se demande si le fait d’enregistrer tous les appels de cette manière est légal.",
+                    "ts_pattr_conclusion":"Une permanence juridique qu’il sollicite l’informe des conditions à une telle surveillance. Sous l’angle de la protection des données, on relève que l’absence d’information relative à ce système viole le principe de la transparence, et qu’un système moins intrusif permettrait d’atteindre l’objectif annoncé, qui est de compter le nombre des appels traités. Sous l’angle des droits de la personnalité du travailleur, le système est également jugé trop intrusif en l’occurrence. Si l’objectif de la surveillance est également la qualité du traitement de l’appel, le système est admissible à certaines conditions.",
+                    "ts_pattr_principes_de_base":"Art. 4 LPD, Licéité, transparence de la collecte et proportionnalité. Art. 26 de l’OLTr 3, protection de la personnalité des travailleurs.",
+                    "ts_pattr_ressources":"Voir la fiche du Secrétariat à l’économie (SECO) sur la surveillance technique au poste de travail. https://www.seco.admin.ch/seco/fr/home/Publikationen_Dienstleistungen/Publikationen_und_Formulare/Arbeit/Arbeitsbedingungen/Broschuren/technische-ueberwachung-am-arbeitsplatz.html",
+                    "ts_pattr_recommendations":"Aux termes de la loi fédérale sur la protection des données (LPD), les données personnelles doivent être traitées conformément aux principes de licéité, finalité, proportionnalité, bonne foi et transparence de la collecte, exactitude et sécurité. Par ailleurs, la loi sur le travail et son ordonnance interdisent de surveiller le comportement des travailleurs, mais rend possible la surveillance du rendement. Pour respecter ces principes, il faut opter pour un système qui permet d’atteindre l’objectif sans être trop intrusif. Si l’objectif est de comparer le nombre d’appels traités par les collaborateurs, l’enregistrement des conversations n’est pas nécessaire, et donc disproportionnée. Si l’objectif est également d’améliorer la qualité et de former les collaborateurs, le système est admissible pour autant qu’il soit annoncé préalablement dans les documents contractuels, et que les données soient traitées de manière sécurisée et conservées pour un temps limité."
+                },
+                {
+                    "language":"de",
+                    "page_path":"/de/szenarien",
+                    "titre":"Wie kann ich die Leistung meiner Mitarbeiter überwachen, ohne deren Rechte zu verletzen? ",
+                    "ts_pattr_topic_theme":{
+                        "type":"topic",
+                        "values":[
+                            "Surveillance (sens large)",
+                            "Transparence"
+                        ]
+                    },
+                    "ts_pattr_topic_metier":{
+                        "type":"topic",
+                        "values":[
+                            "Cadre",
+                            "Employée"
+                        ]
+                    },
+                    "ts_pattr_topic_type_donne":{
+                        "type":"topic",
+                        "values":[
+                            "Professionnelles"
+                        ]
+                    },
+                    "ts_pattr_timbre":{
+                        "type": "timbre",
+                        "values": {
+                            "valid":true,
+                            "customLabel":"none"
+                        }
+                    },
+                    "ts_pattr_introduction":"X arbeitet seit kurzem in einem Callcenter.",
+                    "ts_pattr_declencheur":"Das Unternehmen wickelt alle eingehenden Anrufe für rund fünfzig Unternehmen in der Region ab, und jeder Mitarbeiter erhält das Management von fünf Unternehmen. Abhängig von der Effizienz des Mitarbeiters und der Anzahl der erledigten Anrufe pro Tag werden Boni zugeteilt.",
+                    "ts_pattr_peripetie":"X sieht sofort, wo sein Interesse ist, und da er weiß, wie man schnell zum Wesentlichen kommt, macht er sich stark, um im ersten Jahr seiner Tätigkeit von einem Bonus profitieren zu können. In der Mitte des Jahres ist er sehr überrascht, als man ihm mitteilt, dass er sicher schnell, aber kalt und sogar unangenehm mit den Anrufern ist, was die Sprachaufzeichnungen belegen, teilt ihm sein Chef mit.",
+                    "ts_pattr_resolution":"Weder im Arbeitsvertrag noch im Betriebsreglement, das im Übrigen sehr kurz gehalten ist, gibt es einen Hinweis darauf, dass (zur Qualitätssicherung) alle Anrufe aufgezeichnet würden. X verteidigt sich und erklärt, dass er zweifellos anders gehandelt hätte, wenn er dies gewusst hätte. Er fragte sich, ob es legal sei, alle Anrufe auf diese Weise aufzuzeichnen.",
+                    "ts_pattr_conclusion":"Une permanence juridique qu’il sollicite l’informe des conditions à une telle surveillance. Sous l’angle de la protection des données, on relève que l’absence d’information relative à ce système viole le principe de la transparence, et qu’un système moins intrusif permettrait d’atteindre l’objectif annoncé, qui est de compter le nombre des appels traités. Sous l’angle des droits de la personnalité du travailleur, le système est également jugé trop intrusif en l’occurrence. Si l’objectif de la surveillance est également la qualité du traitement de l’appel, le système est admissible à certaines conditions.",
+                    "ts_pattr_principes_de_base":"Art. 4 DSG, Rechtmässigkeit, Bearbeitung nach Treu und Glauben (Erkennbarkeit bzw. Transparenz) und Verhältnismässigkeit. Art. 26 der Verordnung 3 zum Arbeitsgesetz (ArGV 3), Schutz der Persönlichkeit des Arbeitnehmers.",
+                    "ts_pattr_ressources":"s. Broschüre des SECO „Technische Überwachung am Arbeitsplatz“. https://www.seco.admin.ch/seco/de/home/Publikationen_Dienstleistungen/Publikationen_und_Formulare/Arbeit/Arbeitsbedingungen/Broschuren/technische-ueberwachung-am-arbeitsplatz.html",
+                    "ts_pattr_recommendations":"Nach dem Datenschutzgesetz (DSG) müssen personenbezogene Daten nach den Grundsätzen der Rechtmäßigkeit, Zweckmäßigkeit, Verhältnismäßigkeit, Treu und Glauben sowie Transparenz der Erhebung, Richtigkeit und Sicherheit verarbeitet werden. Darüber hinaus verbieten das Arbeitsgesetz und seine Verordnung die Überwachung des Verhaltens der Arbeitnehmer, ermöglichen aber eine Leistungskontrolle. Um diese Grundsätze zu respektieren, muss man sich für ein System entscheiden, das es ermöglicht, das Ziel zu erreichen, ohne die Persönlichkeit des Arbeitnehmers zu stark zu beeinträchtigen. Wenn es darum geht, die Anzahl der Anrufe von Mitarbeitern zu vergleichen, ist die Aufzeichnung von Gesprächen nicht notwendig und daher unverhältnismäßig. Wenn es auch darum geht, die Qualität zu verbessern und die Mitarbeiter zu schulen, ist das System zulässig, sofern es in den Vertragsunterlagen vorab angekündigt wird und die Daten sicher bearbeitet und nur für eine begrenzte Zeit gespeichert werden."
+                }
+            ]
+            
+        }
+    ]
+}

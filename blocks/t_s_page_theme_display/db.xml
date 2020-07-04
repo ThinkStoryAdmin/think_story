@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+  xmlns="http://www.concrete5.org/doctrine-xml/0.5"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.concrete5.org/doctrine-xml/0.5 http://concrete5.github.io/doctrine-xml/doctrine-xml-0.5.xsd">
+
+    <table name="btTSPageThemeDisplay">
+        <field name="bID" type="integer">
+            <unsigned/>
+            <key/>
+        </field>
+        <field name="topic" type="text" comment="Holds the topic"/>
+        <field name="expressColors" type="text" comment="Holds the express object name that holds the category colors"/>
+        <field name="expressColorsTopicsAttribute" type="text" comment="HOlds the express object attribute handle that holds the topic"/>
+        <field name="expressColorsColorsAttribute" type="text" comment="HOlds the express object attribute handle that holds the color"/>
+    </table>
+</schema>

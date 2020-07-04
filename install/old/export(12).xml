@@ -1,0 +1,1228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concrete5-cif version="1.0">
+	<attributekeys>
+		<attributekey handle="ts_pattr_topic_theme" name="Thème" package="think_story" searchable="1" indexed="1" type="topics" category="collection">
+			<tree name="Thèmes" path="/" allow-multiple-values="1" />
+		</attributekey>
+		<attributekey handle="ts_pattr_topic_metier" name="Metiers" package="think_story" searchable="1" indexed="1" type="topics" category="collection">
+			<tree name="Metiers" path="/" allow-multiple-values="1" />
+		</attributekey>
+		<attributekey handle="ts_pattr_topic_type_donne" name="Type de Données" package="think_story" searchable="1" indexed="1" type="topics" category="collection">
+			<tree name="Données" path="/" allow-multiple-values="1" />
+		</attributekey>
+		<attributekey handle="ts_pattr_number_views" name="TS View Count" package="think_story" searchable="1" indexed="1" type="number" category="collection" />
+		<attributekey handle="ts_pattr_timbre" name="TS Scenario Timbre de Validation" package="think_story" searchable="1" indexed="1" type="timbre" category="collection" />
+		<attributekey handle="ts_pattr_introduction" name="Introduction" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text" />
+		</attributekey>
+		<attributekey handle="ts_pattr_declencheur" name="Déclencheur" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text" />
+		</attributekey>
+		<attributekey handle="ts_pattr_peripetie" name="Péripétie" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text" />
+		</attributekey>
+		<attributekey handle="ts_pattr_resolution" name="Résolution" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text" />
+		</attributekey>
+		<attributekey handle="ts_pattr_conclusion" name="Conclusion" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text" />
+		</attributekey>
+		<attributekey handle="ts_pattr_recommendations" name="Recommendations" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text" />
+		</attributekey>
+		<attributekey handle="ts_pattr_principes_de_base" name="Principes de base" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text" />
+		</attributekey>
+		<attributekey handle="ts_pattr_ressources" name="Ressources" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text" />
+		</attributekey>
+	</attributekeys>
+	<attributesets>
+		<attributeset name="Think Story Attribute Set" package="think_story" handle="think_story_attribute_set" category="collection">
+			<attributekey handle="ts_pattr_topic_theme" />
+			<attributekey handle="ts_pattr_topic_metier" />
+			<attributekey handle="ts_pattr_topic_type_donne" />
+			<attributekey handle="ts_pattr_number_views" />
+			<attributekey handle="ts_pattr_timbre" />
+			<attributekey handle="ts_pattr_introduction" />
+			<attributekey handle="ts_pattr_declencheur" />
+			<attributekey handle="ts_pattr_peripetie" />
+			<attributekey handle="ts_pattr_resolution" />
+			<attributekey handle="ts_pattr_conclusion" />
+			<attributekey handle="ts_pattr_recommendations" />
+			<attributekey handle="ts_pattr_principes_de_base" />
+			<attributekey handle="ts_pattr_ressources" />
+		</attributeset>
+	</attributesets>
+	<pages>
+		<page name="Accueil" path="/fr" public-date="2020-05-08 02:07:50" filename="" pagetype="" template="page_home" user="admin" description="" package="think_story" root="true">
+			<area name="Main">
+				<blocks>
+					<block type="t_s_page_slider" name="">
+						<data table="btTSPageSlider">
+							<record>
+								<pageListTitle />
+								<orderBy><![CDATA[display_most_popular]]></orderBy>
+								<cParentID>{ccm:export:page:}</cParentID>
+								<ptID>{ccm:export:pagetype:scenario_page_type}</ptID>
+								<speed><![CDATA[5]]></speed>
+								<num><![CDATA[5]]></num>
+								<viewCountAttribute><![CDATA[ts_pattr_number_views]]></viewCountAttribute>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+		<page name="Scénarios" path="/fr/scenarios" public-date="2020-05-08 04:54:21" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<area name="Main">
+				<blocks>
+					<block type="t_s_page_list2" name="">
+						<data table="btTSPageList2">
+							<record>
+								<pageListTitle />
+								<orderBy><![CDATA[display_most_popular]]></orderBy>
+								<cParentID>{ccm:export:page:}</cParentID>
+								<ptID>{ccm:export:pagetype:scenario_page_type}</ptID>
+								<topics><![CDATA[a:3:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"6";}]]></topics>
+								<expressColors><![CDATA[tstopiccolor]]></expressColors>
+								<expressColorsTopicsAttribute><![CDATA[ts_topic_color_color]]></expressColorsTopicsAttribute>
+								<expressColorsColorsAttribute><![CDATA[ts_topic_color_topic]]></expressColorsColorsAttribute>
+								<pageTopicColors><![CDATA[ts_pattr_topic_theme]]></pageTopicColors>
+								<viewCountAttribute><![CDATA[ts_pattr_number_views]]></viewCountAttribute>
+							</record>
+						</data>
+					</block>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content />
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+		<page name="EXTRAS" path="/fr/extras" public-date="2020-05-21 01:48:00" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<attributes>
+				<attributekey handle="exclude_nav">
+					<value>1</value>
+				</attributekey>
+			</attributes>
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content />
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</page>
+		<page name="scenariowork1" path="/fr/scenarios/scenariowork1" public-date="2020-05-15 09:23:00" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="WWWwaa" package="think_story">
+			<attributes>
+				<attributekey handle="ts_pattr_topic_theme">
+					<topics>
+						<topic><![CDATA[/Gestion RH]]></topic>
+						<topic><![CDATA[/Publication sur Internet]]></topic>
+						<topic><![CDATA[/Transparence]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_metier">
+					<topics>
+						<topic><![CDATA[/Direction des ressources humaines (DRH)]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_type_donne">
+					<topics>
+						<topic><![CDATA[/Bancaires, Financières]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_number_views">
+					<value><![CDATA[1]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_introduction">
+					<value><![CDATA[<p>Intro</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_declencheur">
+					<value><![CDATA[<p>Dec</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_peripetie">
+					<value><![CDATA[<p>Per</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_resolution">
+					<value><![CDATA[<p>REs</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_conclusion">
+					<value><![CDATA[<p>Conc</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_recommendations">
+					<value><![CDATA[<p>Rec</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_principes_de_base">
+					<value><![CDATA[<p>Pri</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_ressources">
+					<value><![CDATA[<p>Res</p>]]></value>
+				</attributekey>
+			</attributes>
+			<area name="Introduction">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Declencheur">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Peripetie">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Resolution">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Conclusion">
+				<blocks>
+					<block mc-block-id="" />
+					<block type="file" name="">
+						<data table="btContentFile">
+							<record>
+								<fID>{ccm:export:file:921588938556:tamponValidation.jpg}</fID>
+								<fileLinkText><![CDATA[qq]]></fileLinkText>
+								<filePassword />
+								<forceDownload><![CDATA[0]]></forceDownload>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Recommendations">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Principes de base">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Ressources">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Theme Print">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Nav Next and Back">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Back Button">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Print to PDF">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+		</page>
+		<page name="Comment puis-je controler le rendement de mes collaborateurs sans violer leurs droits ?" path="/fr/scenarios/comment-puis-je-controler-le-rendement-de-mes-collaborateurs-sans-violer-leurs-droits-3" public-date="2020-05-22 11:55:31" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="" package="think_story">
+			<attributes>
+				<attributekey handle="ts_pattr_topic_theme">
+					<topics>
+						<topic><![CDATA[/Transparence]]></topic>
+						<topic><![CDATA[/Surveillance (sens large)]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_metier">
+					<topics>
+						<topic><![CDATA[/Cadre]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_type_donne">
+					<topics>
+						<topic><![CDATA[/Professionnelles]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_number_views">
+					<value />
+				</attributekey>
+				<attributekey handle="ts_pattr_introduction">
+					<value><![CDATA[<h1>X travaille depuis peu dans un centre d’appel.</h1>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_declencheur">
+					<value><![CDATA[L’entreprise traite tous les appels entrants pour une cinquantaine de sociétés de la région, et chaque collaborateur reçoit la gestion de cinq entreprises. En fonction de l’efficacité du collaborateur et du nombre d’appels qu’il traite par jour des bonus sont à la clé.]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_peripetie">
+					<value><![CDATA[X voit tout de suite où est son intérêt, et comme il sait aller rapidement à l’essentiel il se fait fort d’être mis au bénéfice d’un bonus dans sa première année d’activité. Lors du bilan de compétences de la mi-année, il est fort surpris lorsqu’on lui annonce qu’il est certes rapide mais froid voire désagréable avec les appelants, ce que les enregistrements vocaux démontrent, selon sa hiérarchie.]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_resolution">
+					<value><![CDATA[Rien dans le contrat de travail ni le règlement d’entreprise - fort court au demeurant - n’indique que tous les appels seraient enregistrés, et X plaide sa cause en expliquant que s’il en avait été informé il aurait sans doute agi autrement. Il se demande si le fait d’enregistrer tous les appels de cette manière est légal.]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_conclusion">
+					<value><![CDATA[Une permanence juridique qu’il sollicite l’informe des conditions à une telle surveillance. Sous l’angle de la protection des données, on relève que l’absence d’information relative à ce système viole le principe de la transparence, et qu’un système moins intrusif permettrait d’atteindre l’objectif annoncé, qui est de compter le nombre des appels traités. Sous l’angle des droits de la personnalité du travailleur, le système est également jugé trop intrusif en l’occurrence. Si l’objectif de la surveillance est également la qualité du traitement de l’appel, le système est admissible à certaines conditions.]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_recommendations">
+					<value><![CDATA[Aux termes de la loi fédérale sur la protection des données (LPD), les données personnelles doivent être traitées conformément aux principes de licéité, finalité, proportionnalité, bonne foi et transparence de la collecte, exactitude et sécurité. Par ailleurs, la loi sur le travail et son ordonnance interdisent de surveiller le comportement des travailleurs, mais rend possible la surveillance du rendement. Pour respecter ces principes, il faut opter pour un système qui permet d’atteindre l’objectif sans être trop intrusif. Si l’objectif est de comparer le nombre d’appels traités par les collaborateurs, l’enregistrement des conversations n’est pas nécessaire, et donc disproportionnée. Si l’objectif est également d’améliorer la qualité et de former les collaborateurs, le système est admissible pour autant qu’il soit annoncé préalablement dans les documents contractuels, et que les données soient traitées de manière sécurisée et conservées pour un temps limité.]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_principes_de_base">
+					<value><![CDATA[Art. 4 LPD, Licéité, transparence de la collecte et proportionnalité. Art. 26 de l’OLTr 3, protection de la personnalité des travailleurs.]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_ressources">
+					<value><![CDATA[Voir la fiche du Secrétariat à l’économie (SECO) sur la surveillance technique au poste de travail. https://www.seco.admin.ch/seco/fr/home/Publikationen_Dienstleistungen/Publikationen_und_Formulare/Arbeit/Arbeitsbedingungen/Broschuren/technische-ueberwachung-am-arbeitsplatz.html]]></value>
+				</attributekey>
+			</attributes>
+			<area name="Theme Print">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Nav Next and Back">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Back Button">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Print to PDF">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Introduction">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Declencheur">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Peripetie">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Resolution">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Conclusion">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Timbre">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Recommendations">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Principes de base">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+			<area name="Ressources">
+				<blocks>
+					<block mc-block-id="" />
+				</blocks>
+			</area>
+		</page>
+		<page name="A Propos" path="/fr/extras/a-propos" public-date="2020-05-21 01:55:32" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content><![CDATA[<div id="content_page">
+<h1>&Agrave; propos</h1>
+
+<p><strong>ThinkData </strong>est un service interactif de sensibilisation &agrave; la protection des donn&eacute;es et &agrave; la transparence dans le cadre organisationnel.</p>
+
+<p>Issu d&rsquo;une r&eacute;flexion men&eacute;e par un groupe de travail interdisciplinaire, dans le cadre d&rsquo;un laboratoire d&rsquo;id&eacute;es sur la science des services et l&rsquo;innovation (ThinkServices <a href="http://www.thinkservices.ch/">http://www.thinkservices.ch/</a> ), ThinkData permet de se familiariser avec les concepts de protection des donn&eacute;es et de transparence au travers d&rsquo;histoires courtes, mettant en situation des employ&eacute;s, des cadres, des responsables des ressources humaines et des syst&egrave;mes d&rsquo;information.</p>
+
+<p>Jusqu&#39;ici en main successivement de thinkservices puis du Pr&eacute;pos&eacute; f&eacute;d&eacute;ral &agrave; la protection des donn&eacute;es et &agrave; la transparence, la gestion et le d&eacute;veloppement de cette plate-forme de sensibilisation est reprise, depuis le mois de juillet 2016, par le CLUSIS, association suisse de la s&eacute;curit&eacute; de l&#39;information, soit pour elle Isabelle Dubois, membre de l&#39;association et 1&egrave;re pr&eacute;pos&eacute;e genevoise &agrave; la protection des donn&eacute;es et &agrave; la transparence (2010-2013).</p>
+
+<p>Les questions trait&eacute;es concernent par exemple la biom&eacute;trie, la gestion du courriel, la g&eacute;olocalisation, la vid&eacute;osurveillance, le vol des donn&eacute;es, mais aussi depuis 2017 l&#39;environnement scolaire et depuis 2018 le RGPD et les objets connect&eacute;s. Sous chaque sc&eacute;nario, se trouvent les principes de base qui s&rsquo;appliquent, des recommandations, ainsi que des exemples r&eacute;els et diverses ressources illustrant les cas.</p>
+
+<p>L&#39;&eacute;quipe de thinkdata signale &agrave; l&#39;attention de ses usagers le jeu cr&eacute;&eacute; par la RTS, qui est dans le m&ecirc;me esprit de sensibilisation, <a href="https://www.datak.ch/"><cite class="algo-display-url">https://www.datak.ch/</cite></a></p>
+
+<h2><strong>Fondateurs et Contributeurs</strong></h2>
+
+<ul>
+	<li>Giovanna Di Marzo Serugendo, <em>professeure, ISS, Universit&eacute; de Gen&egrave;ve</em></li>
+	<li>Claudia Saviaux Druliolle<em>, <em>alors</em> <em>directrice, ressources humaines du Pouvoir judiciaire, Gen&egrave;ve</em></em></li>
+	<li>Nicolas Ducret<em>, designer, Gen&egrave;ve</em></li>
+	<li>Isabelle Dubois, <em>alors</em> <em>pr&eacute;pos&eacute;e &agrave; la protection des donn&eacute;es et &agrave; la transparence (PPDT 2010-2013), Gen&egrave;ve</em></li>
+	<li>Patrick Genoud, <em>alors conseiller en technologie et prospective</em>, <em>Observatoire technologique, Etat de Gen&egrave;ve</em></li>
+	<li>Olivier Glassey, <em>professeur, IDHEAP, Lausanne</em></li>
+	<li>Catherine Lennman<em>, collaboratrice Pr&eacute;pos&eacute; f&eacute;d&eacute;ral &agrave; la protection des donn&eacute;es et &agrave; la transparence (PFPDT), Berne</em></li>
+	<li>Jean-Henry Morin, <em>professeur, ISS, Universit&eacute; de Gen&egrave;ve</em></li>
+	<li>Giorgio Pauletto, <em>alors</em> <em>conseiller en technologie et prospective</em>,<em> Etat de Gen&egrave;ve</em></li>
+	<li>Catherine Pugin, <em>alors</em> <em>Sp&eacute;cialiste syst&egrave;me et s&eacute;curit&eacute; informatique, (PFPDT), Berne</em></li>
+	<li>Anne Catherine Salberg, alors <em>pr&eacute;pos&eacute;e suppl&eacute;ante &agrave; la protection des donn&eacute;es et &agrave; la transparence (PPDT), Gen&egrave;ve</em></li>
+	<li>Enrico Vigano, <em>Conseiller en s&eacute;curit&eacute; de l&#39;information, Direction g&eacute;n&eacute;rale des syst&egrave;mes d&#39;information, Etat de Gen&egrave;ve</em></li>
+	<li>Jean-Philippe Walter, <em>pr&eacute;pos&eacute; f&eacute;d&eacute;ral suppl&eacute;ant &agrave; la protection des donn&eacute;es et &agrave; la transparence jusqu&#39;&agrave; fin janvier 2019 (PFPDT), Berne</em></li>
+</ul>
+
+<p><em>&nbsp;</em></p>
+
+<ul>
+	<li>Antonio Campagnuolo<em><em>, traducteur en 2018 pour l&#39;italien, Lugano_Aldesago, </em></em><a href="mailto:anton.campagnuolo@gmail.com" target="_blank">anton.campagnuolo@gmail.com</a></li>
+	<li>Aur&eacute;lia von Zeerleder, <em>traductrice en 2018 pour l&#39;allemand,</em> <a href="Aurelia%20von%20Zeerleder%20&lt;a.vonzeerleder@gmail.com&gt;">a.vonzeerleder@gmail.com</a>&nbsp; &nbsp; &nbsp;</li>
+	<li>Jessica Sailen, <em>&eacute;tudiante</em>, <em>traductrice en 2018 pour</em> l&#39;anglais,&nbsp; <a href="Jessica%20Saillen%20&lt;jsaillen@hotmail.com&gt;">jsaillen@hotmail.com</a>&nbsp;</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h2><strong>Avec le soutien&nbsp;de</strong></h2>
+
+<p><a href="https://clusis.ch/" title="https://clusis.ch/"><strong><img alt="" src="data:image/png;base64,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" /></strong></a></p>
+
+<p><strong>&nbsp;</strong></p>
+
+<p><strong>&nbsp;</strong></p>
+
+<table border="0" cellpadding="4" style="width: 402px; height: 502px;">
+	<tbody>
+		<tr>
+			<td valign="top">&nbsp;<a href="https://www.ge.ch/blog/geneve-lab" title="https://www.ge.ch/blog/geneve-lab"><img alt="" height="68" src="../useruploads/images/soutien/dcti.gif" width="90" /></a></td>
+			<td valign="top">&nbsp;</td>
+			<td valign="top">
+			<p>Gen&egrave;ve Lab (anc. Observatoire technologique de l&rsquo;Etat de Gen&egrave;ve), Direction g&eacute;n&eacute;rale des syst&egrave;mes<br />
+			&nbsp;d&#39;information</p>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td valign="top">&nbsp;<a href="http://www.edoeb.admin.ch/index.html?lang=fr" target="_blank"><img alt="" height="60" src="../useruploads/images/soutien/pfpdt.gif" width="135" /></a></td>
+			<td valign="top">&nbsp;</td>
+			<td valign="top">
+			<p>Pr&eacute;pos&eacute; f&eacute;d&eacute;ral &agrave; la protection des donn&eacute;es et &agrave; la transparence (PFPDT), Berne</p>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td valign="top"><a href="http://www.ge.ch/ppdt/" target="_blank"><img alt="" height="30" src="../useruploads/images/soutien/ppdt.gif" width="165" /></a></td>
+			<td valign="top">&nbsp;</td>
+			<td valign="top">Bureau des pr&eacute;pos&eacute;-es &agrave; la protection des donn&eacute;es et &agrave; la transparence (PPDT), Canton de Gen&egrave;ve</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td valign="top">&nbsp;<a href="http://www.idheap.ch/idheap.nsf/vwBaseDocuments/IdActHomepage?OpenDocument&amp;lng=fr" target="_blank"><img alt="" height="45" src="../useruploads/images/soutien/idheap.gif" width="139" /></a></td>
+			<td valign="top">&nbsp;</td>
+			<td valign="top">Institut de Hautes Etudes en Administration Publique (IDHEAP), Lausanne</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td valign="top">&nbsp;<a href="http://www.unige.ch/ses/index.html" target="_blank"><img alt="" height="50" src="../useruploads/images/soutien/uni_geneve.gif" width="105" /></a></td>
+			<td valign="top">&nbsp;</td>
+			<td valign="top">
+			<p>Facult&eacute; des Sciences Economiques et Sociales, Universit&eacute; de Gen&egrave;ve</p>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td valign="top">&nbsp;<a href="http://cui.unige.ch/LeCUI.html" target="_blank"><img alt="" height="31" src="../useruploads/images/soutien/cui.gif" width="60" /></a></td>
+			<td valign="top">&nbsp;</td>
+			<td valign="top">Centre Universitaire d&rsquo;Informatique, Universit&eacute; de Gen&egrave;ve</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td valign="top">&nbsp;<a href="http://iss.unige.ch/" target="_blank"><img alt="" height="54" src="../useruploads/images/soutien/iss.gif" width="120" /></a></td>
+			<td valign="top">&nbsp;</td>
+			<td valign="top">Institut de Science des Services (ISS), Universit&eacute; de Gen&egrave;ve</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td valign="top"><a href="http://www.thinkservices.ch/" target="_blank"><img alt="" height="17" src="../useruploads/images/soutien/think_services.gif" width="150" /></a></td>
+			<td valign="top">&nbsp;</td>
+			<td valign="top">ThinkServices, think tank sur la science des services et l&rsquo;innovation, Gen&egrave;ve</td>
+		</tr>
+	</tbody>
+</table>
+</div>]]></content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+		<page name="News" path="/fr/extras/news" public-date="2020-05-21 02:02:51" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content />
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+		<page name="FAQ" path="/fr/extras/faq" public-date="2020-05-21 02:04:51" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content><![CDATA[<div id="content_page">
+<h1>FAQ</h1>
+<table style="width: 100%;" border="0">
+<tbody>
+<tr>
+<td class="tab_anchor">
+<p><a href="#comment1">Comment contribuer ?</a></p>
+<p><a href="#contenu">Que doit contenir le descriptif du scénario ?</a></p>
+<p><a href="#qui">Qui a développé les scénarios ?</a></p>
+<p><a href="#puis-je">Puis-je utiliser ces informations&nbsp;?</a></p>
+<p><a href="#IDRPC">Que signifient les lettres I D P R C&nbsp;?</a></p>
+<p><a href="#traitement_donnee">Comment est-ce que ThinkData traite les données des visiteurs du site&nbsp;?</a></p>
+<p><a href="#sceau">Que signifie le sceau ThinkData ?</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<h2><em><a name="comment1"></a>Comment contribuer ?</em></h2>
+<p>Chacun peut contribuer au site ThinkData.ch. Si vous connaissez une problématique, une histoire ou une anecdote qui pourrait rejoindre les scénarios déjà existants,&nbsp; vous pouvez utiliser le formulaire «&nbsp;Mon scénario&nbsp;» pour envoyer le descriptif de votre scénario .</p>
+<p>ThinkData.ch examinera votre descriptif et l’adaptera le cas échéant pour en faire un nouveau scénario sur ThinkData.ch</p>
+<h2><em><a name="contenu"></a>Que doit contenir le descriptif du scénario ?</em></h2>
+<p>Le descriptif doit résumer la problématique. Le type de données concerné mais également les personnes impliquées doivent être clairement définies. Si votre problématique est liée à un exemple réel, il est intéressant, dans la mesure du possible, de joindre un lien vers un article de journal ou autre qui relate le cas.</p>
+<h2><em><a name="qui"></a>Qui a développé les scénarios ?</em></h2>
+<p>Les scénarios ont été élaborés par l’ensemble du groupe ThinkData.ch. Les aspects juridiques des scénarios ont été validés par les services du Préposé fédéral à la protection des données et à la transparence et le Bureau des préposé-es à la protection des données et à la transparence du Canton de Genève</p>
+<h2><em><a name="puis-je"></a>Puis-je utiliser ces informations&nbsp;?</em></h2>
+<p>Les informations fournies par ThinkData.ch sont mises à disposition selon les termes de la <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Partage à l'Identique 3.0 non transposé</a>.</p>
+<h2><em><a name="IDRPC"></a>Que signifient les lettres I D P R C&nbsp;?</em></h2>
+<p>Ces 5 lettres représentent le découpage suivant&nbsp;:</p>
+<ul>
+<li>I – Introduction</li>
+<li>D – Déclencheur</li>
+<li>P – Péripétie</li>
+<li>R – Résolution</li>
+<li>C – Conclusion</li>
+</ul>
+<p>&nbsp;</p>
+<p>Ce découpage en 5 phases a permis de structurer l’ensemble des scénarios de manière cohérente afin de garantir une unité de conception pour le contenu du site ThinkData.ch.</p>
+<p>Exemple: Le petit chaperon rouge<br> <br> <em>Introduction</em>: La mère donne la mission au petit chaperon rouge d’aller porter la galette et le pot de beurre à la grand-mère<br> <em>Déclencheur</em>: Le petit chaperon rouge rencontre le loup et change de chemin<br> <em>Péripétie</em>: Le loup prend la place de la grand-mère et mange le petit chaperon rouge<br> <em>Résolution</em>: Le chasseur tue le loup<br> <em>Conclusion</em>: Il ne faut pas s’écarter du droit chemin</p>
+<h2><em><a name="traitement_donnee"></a>Comment est-ce que ThinkData traite les données des visiteurs du site&nbsp;?</em></h2>
+<p>ThinkData utilise un outil d’analyse Web qui respecte la protection des données des personnes qui consultent le site. Pour les détails voir sous : <a href="http://piwik.org/faq/new-to-piwik/#faq_130" target="_blank">http://piwik.org/faq/new-to-piwik/#faq_130</a></p>
+<h2><em><a name="sceau"></a>Que signifie le sceau ThinkData ?<br></em></h2>
+<p>Le sceau ThinkData siginifie qu'une autorité officielle de protection des données a validé le scénario.</p>
+</div>]]></content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+		<page name="Protection des Donnees" path="/fr/extras/protection-des-donnees" public-date="2020-05-21 02:05:24" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content><![CDATA[<div id="content_page">
+<h1 id="internal-source-marker_0.22576962274189488" dir="ltr">Protection des données</h1>
+<p><br>Ce site ne collecte aucune donnée personnelle à votre insu. ThinkData utilise un outil d’analyse Web qui respecte la protection des données des personnes qui consultent le site. Pour les détails voir sous :<a href="http://piwik.org/faq/new-to-piwik/#faq_130"> http://piwik.org/faq/new-to-piwik/#faq_130</a><br><br>Lorsque vous proposez un nouveau scénario, vos nom, prénom et courriel sont requis afin de pouvoir vous authentifier et prendre contact avec vous si nécessaire. Ces données sont conservées jusqu’à ce que le scénario soit mis en ligne.<br><br>Si des données personnelles vous concernant ou concernant une personne tierce apparaissent dans votre scénario, elles ne seront ni traitées ni conservées. Les scénarios sont toujours conservés et publiés de façon anonyme.<br><br><br>Si vous contactez ThinkData, vos nom, prénom et courriel sont utilisés uniquement pour répondre à votre message. Ce dernier est conservé pour que ThinkData puisse garder une trace des commentaires et remarques qui lui ont été soumis et améliorer la qualité du service proposé.&nbsp;&nbsp;</p>
+</div>]]></content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+		<page name="Contact" path="/fr/extras/contact" public-date="2020-05-21 02:05:44" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content><![CDATA[<p>&nbsp;</p>
+
+<div id="content_page">&nbsp;
+<h1>Contact</h1>
+&nbsp;
+
+<p>Contactez-nous &agrave; l&#39;addresse suivante: <a href="mailto:contact@thinkdata.ch">contact@thinkdata.ch</a></p>
+&nbsp;
+
+<p>Suivez-nous sur Twitter : <a href="https://twitter.com/#!/search/users/ThinkData101" target="_blank">@ThinkData101</a> et &eacute;galement sur Facebook : <a href="http://www.facebook.com/pages/ThinkData/355403051138312" target="_blank">ThinkData</a></p>
+&nbsp;
+
+<p>N&#39;h&eacute;sitez pas &agrave; nous t&eacute;moigner comment vous utilisez ThinkData.ch dans votre environnement et votre quotidien &agrave; l&#39;adresse : <a href="mailto:usages@thinkdata.ch">usages@thinkdata.ch</a> . Cela nous aidera &agrave; mieux comprendre les situations d&#39;usages ce service pour son &eacute;volution.</p>
+</div>
+
+<p>&nbsp;</p>]]></content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+		<page name="Glossaire" path="/fr/glossaire" public-date="2020-05-21 02:11:10" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content><![CDATA[<table border="0" id="glossaire" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td class="tab_anchor" valign="top">
+			<p class="Texte"><a href="#application_informatique">Application informatique</a></p>
+
+			<p class="Texte"><a href="#Biometrie">Biom&eacute;trie</a></p>
+
+			<p class="Texte"><a href="#Destruction_donnee">Destruction de donn&eacute;es</a></p>
+
+			<p class="Texte"><a href="#Document_officiel">Document officiel</a></p>
+
+			<p class="Texte"><a href="#Donnée">Donn&eacute;e</a></p>
+
+			<p class="Texte"><a href="#Donnée_personnelle">Donn&eacute;e personnelle</a></p>
+
+			<p class="Texte"><a href="#Donnée_personnelle_sensible">Donn&eacute;e personnelle sensible</a></p>
+			</td>
+			<td class="tab_anchor" valign="top">
+			<p class="Texte"><a href="#Fichier">Fichier</a></p>
+
+			<p class="Texte"><a href="#Géolocalisation">G&eacute;olocalisation</a></p>
+
+			<p class="Texte"><a href="#Information">Information</a></p>
+
+			<p class="Texte"><a href="#Maitre_du_fichier">Ma&icirc;tre du fichier</a></p>
+
+			<p class="Texte"><a href="#Préposé_fédéral_à_la_protection_des_données_et_à_la_transparence">Pr&eacute;pos&eacute; f&eacute;d&eacute;ral &agrave; la protection des donn&eacute;es et &agrave; la transparence</a></p>
+
+			<p class="Texte"><a href="#Préposé_cantonal_à_la_protection_des_données_et_à_la_transparence">Pr&eacute;pos&eacute; cantonal &agrave; la protection des donn&eacute;es et &agrave; la transparence</a></p>
+
+			<p class="Texte"><a href="#Principes_en_matière_de_protection_des_données">Principes en mati&egrave;re de protection des donn&eacute;es</a></p>
+			</td>
+			<td class="tab_anchor" valign="top">
+			<p class="Texte"><a href="#recommandation">Recommandation</a></p>
+
+			<p class="Texte"><a href="#systeme_info">Syst&egrave;me d&#39;information</a></p>
+
+			<p class="Texte"><a href="#systeme_informatique">Syst&egrave;me informatique</a></p>
+
+			<p><a href="#traitement">Traitement de donn&eacute;es personnelles</a></p>
+
+			<p><a href="#transaparence">Transparence de l&rsquo;administration</a></p>
+
+			<p><a href="#vidéosurveillance">Vid&eacute;osurveillance</a></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2 class="Default">&nbsp;</h2>
+
+<h2 class="Default"><strong><a name="Biometrie"></a>Biom&eacute;trie</strong></h2>
+
+<p class="Default">Analyse des caract&eacute;ristiques physiologiques et comportementales d&rsquo;une personne telles que la voix, la forme du visage, l&rsquo;iris, les empreintes digitales, la signature&hellip;, en principe unique et infalsifiable&nbsp; (&eacute;tymologie grecque&nbsp;: bios -&laquo;la vie&raquo;) et&nbsp; metron -&laquo;mesure&raquo;). Se d&eacute;cline en diff&eacute;rents idiomes selon le contexte, dont les plus fr&eacute;quents sont d&eacute;finis ci-dessous<a href="#1">[1]</a></p>
+
+<ul>
+	<li><strong>Caract&eacute;ristiques biom&eacute;triques</strong>, les caract&eacute;ristiques physiologiquesou comportementalesmesurables d&rsquo;un individu.</li>
+	<li><strong>Donn&eacute;es biom&eacute;triques</strong>, donn&eacute;es biom&eacute;triques brutes ou d&eacute;riv&eacute;es.</li>
+	<li><strong>Donn&eacute;e biom&eacute;trique brute ou &eacute;chantillon biom&eacute;trique<em>, </em></strong><br />
+	repr&eacute;sentation physique ou num&eacute;rique d&rsquo;une caract&eacute;ristique biom&eacute;trique, obtenue lors de l&rsquo;enr&ocirc;lement biom&eacute;trique.</li>
+	<li><strong>Donn&eacute;e biom&eacute;trique d&eacute;riv&eacute;e ou gabarit biom&eacute;trique </strong>(biometric template), une r&eacute;f&eacute;rence num&eacute;rique compos&eacute;e de diff&eacute;rentes caract&eacute;ristiques extraites d&rsquo;une donn&eacute;e biom&eacute;trique brute, utilisable par les syst&egrave;mes de reconnaissance biom&eacute;trique</li>
+	<li><strong>Enr&ocirc;lement biom&eacute;trique</strong>, processus initial de collecte d&rsquo;une donn&eacute;e biom&eacute;trique d&rsquo;un individu et de sauvegarde de celle-ci en tant que donn&eacute;e biom&eacute;trique de r&eacute;f&eacute;rence.</li>
+	<li><strong>Identification biom&eacute;trique</strong>, le processus de comparaison (1:n) d&rsquo;une donn&eacute;e biom&eacute;trique d&rsquo;&eacute;preuve avec un ensemble de donn&eacute;es biom&eacute;triques de r&eacute;f&eacute;rence stock&eacute;es dans une base de donn&eacute;es, dans le but de d&eacute;terminer qui est la personne concern&eacute;e.</li>
+	<li><strong>Syst&egrave;me de reconnaissance biom&eacute;trique</strong>, syst&egrave;me qui permet de proc&eacute;der &agrave; la reconnaissance automatis&eacute;e (v&eacute;rification ou identification) des individus sur la base de leurs caract&eacute;ristiques biom&eacute;triques.</li>
+	<li><strong>Technologies de reconnaissance biom&eacute;trique</strong>&nbsp;: technologies utilis&eacute;es pour identifier ou v&eacute;rifier une identit&eacute; pr&eacute;tendue, elles reposent sur l&rsquo;analyse de <strong>caract&eacute;ristiques physiologiques </strong>(<em>something you are; passive biometrics</em>) ou <strong>caract&eacute;ristiques comportementales </strong>(<em>something you do; active biometrics</em>) d&rsquo;un individu, notamment&nbsp;la forme du visage, la signature autographe, les empreintes digitales, l&rsquo;empreinte vocale, la forme de la main, la d&eacute;marche, l&rsquo;iris, la dactylographie (keystroke), le r&eacute;seau veineux de la main ou du doigt.</li>
+</ul>
+
+<ul>
+	<li><strong>V&eacute;rification biom&eacute;trique (authentification)</strong>, le processus de comparaison (1:1) d&rsquo;une donn&eacute;e biom&eacute;trique d&rsquo;&eacute;preuve avec une donn&eacute;e biom&eacute;trique de r&eacute;f&eacute;rence dans le but de v&eacute;rifier si la personne concern&eacute;e est bien celle qu&rsquo;elle pr&eacute;tend &ecirc;tre.</li>
+</ul>
+
+<p class="Texte">&nbsp;</p>
+
+<h2 class="Texte"><strong><a name="Destruction_donnee"></a>Destruction de donn&eacute;es </strong></h2>
+
+<p class="Texte">Pour les donn&eacute;es saisies ou captur&eacute;es (voir vid&eacute;osurveillance) et enregistr&eacute;es dans un syst&egrave;me informatique, toute action technique permettant concr&egrave;tement de rendre les donn&eacute;es totalement et d&eacute;finitivement inaccessibles (effacement, &eacute;crasement, &hellip;). La destruction physique des donn&eacute;es supprime les donn&eacute;es du disque dur o&ugrave; elles se trouvent tandis que la destruction logique les rend inaccessibles.</p>
+
+<h2 class="Texte"><strong><a name="Document_officiel"></a>Document officiel</strong></h2>
+
+<p class="Texte">Tout support d&#39;information d&eacute;tenu par une autorit&eacute; publique contenant des renseignements relatifs &agrave; l&#39;accomplissement d&#39;une t&acirc;che publique. En font partie, notamment, les messages (pour les courriels, leur impression), rapports, &eacute;tudes, proc&egrave;s-verbaux approuv&eacute;s, statistiques, registres, correspondances, directives, pr&eacute;avis, d&eacute;cisions. En sont exclus les notes &agrave; usage personnel, les brouillons et autres textes inachev&eacute;s, et les proc&egrave;s-verbaux non approuv&eacute;s<a href="#2">[2]</a>.</p>
+
+<h2 class="Texte"><strong><a name="Donnée"></a>Donn&eacute;e</strong></h2>
+
+<p>Repr&eacute;sentation conventionnelle d&rsquo;une information (fait, notion, ordre d&rsquo;ex&eacute;cution) sous une forme (analogique ou digitale) permettant d&rsquo;en faire le traitement automatique<a href="#3">[3]</a>. &Eacute;l&eacute;ment de base qui, ajout&eacute; &agrave; d&rsquo;autres ou par le traitement qui lui est appliqu&eacute;, permet d&rsquo;obtenir une information<a href="#4">[4]</a>; donn&eacute;e biom&eacute;trique, voir biom&eacute;trie</p>
+
+<h2 class="Texte"><strong><a name="Donnée_personnelle"></a>Donn&eacute;e personnelle</strong></h2>
+
+<p class="CM2">Toutes les informations se rapportant &agrave; une personne physique ou morale, identifi&eacute;e ou identifiable<sup>2</sup>.</p>
+
+<h2 class="Texte"><strong><a name="Donnée_personnelle_sensible"></a>Donn&eacute;e personnelle sensible</strong></h2>
+
+<p class="CM2">Donn&eacute;e personnelle sur les opinions ou activit&eacute;s religieuses, philosophiques, politiques, syndicales ou culturelles, sur la sant&eacute;, la sph&egrave;re intime, sur l&#39;appartenance ethnique ou &agrave; une race, sur les mesures d&#39;aide sociale, sur les poursuites ou sanctions p&eacute;nales ou administratives<sup>2</sup>.</p>
+
+<h2 class="Texte"><strong><a name="Fichier"></a>Fichier</strong></h2>
+
+<p class="Texte">Tout syst&egrave;me destin&eacute; &agrave; r&eacute;unir, sur quelque support que ce soit, des donn&eacute;es personnelles, et structur&eacute; de mani&egrave;re &agrave; rechercher les donn&eacute;es par personnes concern&eacute;es<sup>2</sup>. Voir aussi&nbsp; ma&icirc;tre de fichier.</p>
+
+<h2 class="Texte"><strong><a name="Géolocalisation"></a>G&eacute;olocalisation</strong></h2>
+
+<p class="Texte">Localisation &agrave; partir de l&rsquo;espace d&rsquo;objets situ&eacute;s &agrave; la surface de la Terre. GPS&nbsp;: Syst&egrave;me de localisation qui permet de conna&icirc;tre la position d&rsquo;un mobile gr&acirc;ce &agrave; un r&eacute;cepteur des signaux &eacute;mis par un r&eacute;seau de satellites&nbsp;; aussi ce r&eacute;cepteur<a href="#5">[5]</a>.</p>
+
+<h2 class="Texte"><strong><a name="Information"></a>Information</strong></h2>
+
+<p>Renseignements sur quelque chose ou quelqu&rsquo;un <a href="#5">[5]</a>. R&eacute;sultat d&rsquo;une requ&ecirc;te &agrave; un ou plusieurs syst&egrave;mes d&rsquo;information qui est intelligible, coh&eacute;rent et utilisable par des tiers<a href="#6">[6]</a>.</p>
+
+<h2 class="Texte"><strong><a name="Maitre_du_fichier"></a>Ma&icirc;tre du fichier</strong></h2>
+
+<p>La personne priv&eacute;e ou l&rsquo;organe f&eacute;d&eacute;ral ou cantonal qui d&eacute;cide du but et du contenu du fichier, et qui en est responsable <a href="#7">[7]</a>.</p>
+
+<h2 class="Texte"><strong><a name="Préposé_fédéral_à_la_protection_des_données_et_à_la_transparence"></a>Pr&eacute;pos&eacute; f&eacute;d&eacute;ral &agrave; la protection des donn&eacute;es et &agrave; la transparence</strong></h2>
+
+<p class="CM3">Charg&eacute; de la surveillance de l&rsquo;application par les personnes priv&eacute;es et les organes f&eacute;d&eacute;raux de la loi f&eacute;d&eacute;rale sur la protection des donn&eacute;es (LPD) et des autres dispositions f&eacute;d&eacute;rales relatives &agrave; la protection des donn&eacute;es <sup>7</sup>.</p>
+
+<h2 class="Texte"><strong><a name="Préposé_cantonal_à_la_protection_des_données_et_à_la_transparence"></a>Pr&eacute;pos&eacute; genevois &agrave; la protection des donn&eacute;es et &agrave; la transparence</strong></h2>
+
+<p class="Texte">Charg&eacute; de la surveillance de l&rsquo;application de la loi genevoise sur l&rsquo;information du public, l&rsquo;acc&egrave;s aux documents et la protection des donn&eacute;es personnelles (LIPAD) &agrave; laquelle sont soumises les institutions publiques et parapubliques cantonales et communales, ainsi que les organismes priv&eacute;s li&eacute;s par un contrat de prestation &agrave; l&rsquo;une ou l&rsquo;autre de celles-ci<sup>7</sup>.</p>
+
+<h2 class="Texte"><strong><a name="Principes_en_matière_de_protection_des_données"></a>Principes en mati&egrave;re de protection des donn&eacute;es</strong><sup>7</sup></h2>
+
+<ul>
+	<li>Lic&eacute;it&eacute; (ou l&eacute;galit&eacute;)&nbsp;: le traitement de donn&eacute;es personnelles ne doit pas enfreindre de lois&nbsp;; il doit reposer sur une base l&eacute;gale, sur le consentement ou sur un int&eacute;r&ecirc;t pr&eacute;pond&eacute;rant public ou priv&eacute;.</li>
+	<li>Bonne foi&nbsp;: les donn&eacute;es ne doivent en principe pas &ecirc;tre collect&eacute;es et trait&eacute;es &agrave; l&rsquo;insu de la personne concern&eacute;e ou contre sa volont&eacute;. Elles ne doivent pas non plus &ecirc;tre collect&eacute;es par tromperie intentionnelle<a href="#8">[8]</a>&nbsp;;</li>
+	<li>Proportionnalit&eacute;&nbsp;: le traitement des donn&eacute;es personnelles doit &ecirc;tre n&eacute;cessaire, ad&eacute;quat et le moins intrusif possible&nbsp;;</li>
+	<li>Finalit&eacute;&nbsp;: les donn&eacute;es personnelles ne doivent &ecirc;tre trait&eacute;es que dans le but indiqu&eacute; lors de leur collecte, qui est pr&eacute;vu par la loi ou qui ressort des circonstances&nbsp;;</li>
+	<li>Exactitude&nbsp;: celui qui traite des donn&eacute;es personnelles doit s&rsquo;assurer qu&rsquo;elles sont correctes et prendre toute mesure appropri&eacute;e pour les mettre &agrave; jour cas &eacute;ch&eacute;ant, en particulier permettant d&rsquo;effacer ou de rectifier les donn&eacute;es inexactes ou incompl&egrave;tes&nbsp;;</li>
+	<li>S&eacute;curit&eacute;&nbsp;: les donn&eacute;es personnelles doivent &ecirc;tre prot&eacute;g&eacute;es contre tout traitement non autoris&eacute;, par des mesures organisationnelles et techniques appropri&eacute;es&nbsp;;</li>
+	<li>Transparence de la collecte&nbsp;: la collecte de donn&eacute;es personnelles et sa finalit&eacute; doivent &ecirc;tre reconnaissables pour la personne concern&eacute;e.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h2 class="Texte"><strong><a name="recommandation"></a>Recommandation</strong></h2>
+
+<p class="Texte">Dans le pr&eacute;sent outil, les recommandations figurant au bas des sc&eacute;narios sont des conseils&nbsp; sur le type de mesures &agrave; prendre, ou le comportement &agrave; adopter pour &ecirc;tre en conformit&eacute; avec les r&egrave;gles en mati&egrave;re de protection des donn&eacute;es et de transparence.</p>
+
+<h2 class="Texte"><strong><a name="systeme_info"></a>Syst&egrave;me d&#39;information</strong></h2>
+
+<p class="Texte">Ensemble organis&eacute; de ressources (humaines, informations, donn&eacute;es, proc&eacute;dures, outils) permettant d&#39;acqu&eacute;rir, de stocker, de structurer et de communiquer des informations d&#39;un domaine d&#39;action publique sous forme de donn&eacute;es num&eacute;riques ou textuelles, d&#39;images et de sons<a href="#9">[9].</a></p>
+
+<h2 class="Texte"><strong><a name="systeme_informatique"></a>Syst&egrave;me informatique</strong></h2>
+
+<p>Ensemble de moyens informatiques et de t&eacute;l&eacute;communication qui permet le stockage, le traitement, le transport et la destruction des donn&eacute;es.</p>
+
+<h2 class="Texte"><strong><a name="application_informatique"></a>Application informatique</strong></h2>
+
+<p>Outil informatique qui permet d&rsquo;ex&eacute;cuter un certain nombre de t&acirc;ches sur les donn&eacute;es.</p>
+
+<h2 class="Texte"><strong><a name="traitement"></a>Traitement de donn&eacute;es personnelles</strong></h2>
+
+<p>Toute op&eacute;ration relative &agrave; des donn&eacute;es personnelles, quels que soient les moyens et proc&eacute;d&eacute;s utilis&eacute;s, notamment la collecte, la conservation, l&rsquo;exploitation, la modification, la communication, l&rsquo;archivage ou la destruction de donn&eacute;es<a href="#10">[10]</a> .</p>
+
+<h2 class="Texte"><strong><a name="transaparence"></a>Transparence de l&rsquo;administration</strong></h2>
+
+<p>Information du public sur la mission, l&rsquo;organisation et l&rsquo;activit&eacute; de l&rsquo;administration, garantie par un acc&egrave;s aux documents officiels<sup>9</sup>. Voir aussi document officiel.</p>
+
+<h2><strong><a name="vidéosurveillance"></a>Vid&eacute;osurveillance</strong></h2>
+
+<p>collecte ouverte ou non au moyen de cam&eacute;ras d&rsquo;images et d&rsquo;informations sur des personnes<a href="#11">[11]</a>, sous la forme d&rsquo;enregistrements vid&eacute;o.</p>
+
+<p>&nbsp;</p>
+
+<hr size="1" />
+<div id="note_page">
+<p>&nbsp;</p>
+
+<p><a name="1"></a>[1] D&eacute;finitions tir&eacute;es du guide relatif aux syst&egrave;mes de reconnaissance biom&eacute;trique du pr&eacute;pos&eacute; f&eacute;d&eacute;ral</p>
+
+<p><a name="2"></a>[2] Correspond aux notions des lois f&eacute;d&eacute;rales sur la protection des donn&eacute;es et sur la transparence ainsi que de la loi genevoise sur l&rsquo;information du public, l&rsquo;acc&egrave;s aux documents et la protection des donn&eacute;es personnelles</p>
+
+<p><a name="3"></a>[3] Le Petit Robert 2012</p>
+
+<p><a name="4"></a>[4] RSG B 4 23.03&nbsp;: R&egrave;glement sur l&rsquo;organisation de la gestion des syst&egrave;mes d&rsquo;information (ROGSI)</p>
+
+<p><a name="5"></a>[5] Le Petit Robert 2012</p>
+
+<p><a name="6"></a>[6] RSG B 4 23.03&nbsp;: R&egrave;glement sur l&rsquo;organisation de la gestion des syst&egrave;mes d&rsquo;information (ROGSI)</p>
+
+<p><a name="7"></a>[7] Correspond aux notions des lois f&eacute;d&eacute;rales sur la protection des donn&eacute;es et sur la transparence ainsi que de la loi genevoise sur l&rsquo;information du public, l&rsquo;acc&egrave;s aux documents et la protection des donn&eacute;es personnelles</p>
+
+<p><a name="8"></a>[8] Message du Conseil f&eacute;d&eacute;ral&nbsp; concernant la loi f&eacute;d&eacute;rale sur la protection des donn&eacute;es (LPD), du 23 mars 1988, FF 1988 II 421 (463)</p>
+
+<p><a name="9"></a>[9] RSG B 4 23.03&nbsp;: R&egrave;glement sur l&rsquo;organisation de la gestion des syst&egrave;mes d&rsquo;information (ROGSI)</p>
+
+<p><a name="10"></a>[10] Correspond aux notions des lois f&eacute;d&eacute;rales sur la protection des donn&eacute;es et sur la transparence ainsi que de la loi genevoise sur l&rsquo;information du public, l&rsquo;acc&egrave;s aux documents et la protection des donn&eacute;es personnelles</p>
+
+<p><a name="11"></a>[11] Conseil de l&#39;Europe, Commission de Venise lors de sa 71e session pl&eacute;ni&egrave;re (Venise, 1er - 2 juin 2007)</p>
+</div>]]></content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+		<page name="Mon scénario" path="/fr/mon-scenario" public-date="2020-05-21 02:11:34" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content />
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+		<page name="Don" path="/fr/don" public-date="2020-05-21 02:11:45" filename="" pagetype="page" template="full" user="admin" description="" package="think_story">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content><![CDATA[<div id="content_page">
+<p>Depuis janvier 2012, ThinkData offre un service simple et convivial de sensibilisation à la protection des données et à la transparence reposant sur des courtes histoires. Ce service se veut ouvert et gratuit pour la socitété dans son ensemble.<br><br>Aidez nous à le maintenir dans cette philosophie afin qu'il puisse continuer à servir une communauté grandissante de personnes concernées directement ou indirectement par la protection des données et la transparence.<br><br>Faites un don, aussi modeste soit-il, soit à travers PayPal, soit directement sur le CCP de ThinkServices : 12-323082-8 (#IBAN CH14 0900 0000 1232 3082 8 ) avec la mention : "Don ThinkData". <br><br>Bientôt, nous lancerons des campagnes spécifiques visant à récolter des fonds pour réaliser des objectifs ciblés.</p>
+<p>&nbsp;</p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_s-xclick"> <input type="hidden" name="hosted_button_id" value="Z4Y57GK468UMQ"> <input class="donate" type="image" name="submit" src="https://www.paypalobjects.com/fr_FR/CH/i/btn/btn_donate_SM.gif" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !"> <img src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" alt="" width="1" height="1" border="0"></form>
+</div>]]></content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks />
+			</area>
+		</page>
+	</pages>
+	<pagetypes>
+		<pagetype name="Scenario" handle="scenario_page_type" package="think_story" launch-in-composer="1" is-frequently-added="1">
+			<pagetemplates type="custom" default="page_scenario">
+				<pagetemplate handle="page_scenario" />
+			</pagetemplates>
+			<target handle="all" package="think_story" form-factor="" />
+			<composer>
+				<formlayout>
+					<set name="Details" description="Ce set contient les détails de votre scénario.">
+						<control custom-template="" required="1" custom-label="" description="" type="core_page_property" handle="name" />
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="description" />
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="url_slug" />
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="page_template" />
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="publish_target" />
+					</set>
+					<set name="Scenario Form Set Content" description="Ce set contient le contenu de votre scénario.">
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_introduction" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_declencheur" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_peripetie" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_resolution" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_conclusion" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_recommendations" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_principes_de_base" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_ressources" />
+					</set>
+					<set name="Scenario Form Set Details" description="Ce set contient les détails spécifique à ThinkStory de votre scénario.">
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_number_views" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_timbre" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_topic_theme" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_topic_metier" />
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_topic_type_donne" />
+					</set>
+				</formlayout>
+				<output>
+					<pagetemplate handle="page_scenario">
+						<page name="" path="" public-date="2020-05-15 06:42:16" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="" package="think_story" root="true">
+							<area name="Recommendations">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_top_bar" mc-block-id="27ef87b8">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_recommendations]]></attributeHandle>
+												<attributeTitleText />
+												<displayTag />
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter />
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Principes de base">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_top_bar" mc-block-id="c926e7fb">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_principes_de_base]]></attributeHandle>
+												<attributeTitleText />
+												<displayTag />
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter />
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Ressources">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_top_bar" mc-block-id="f526f161">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_ressources]]></attributeHandle>
+												<attributeTitleText />
+												<displayTag />
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter />
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Introduction">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="d433fbcc">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_introduction]]></attributeHandle>
+												<attributeTitleText />
+												<displayTag />
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter />
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Declencheur">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="1ea87d5b">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_declencheur]]></attributeHandle>
+												<attributeTitleText />
+												<displayTag />
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter />
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Peripetie">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="a1a393c8">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_peripetie]]></attributeHandle>
+												<attributeTitleText />
+												<displayTag />
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter />
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Resolution">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="c217f991">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_resolution]]></attributeHandle>
+												<attributeTitleText />
+												<displayTag />
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter />
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Conclusion">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="2c9a734c">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_conclusion]]></attributeHandle>
+												<attributeTitleText />
+												<displayTag />
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter />
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Timbre">
+								<blocks>
+									<block type="page_attribute_display" name="" mc-block-id="5d616ab8">
+										<style>
+											<backgroundColor />
+											<backgroundRepeat>no-repeat</backgroundRepeat>
+											<backgroundSize>auto</backgroundSize>
+											<backgroundPosition>0% 0%</backgroundPosition>
+											<borderWidth />
+											<borderColor />
+											<borderStyle />
+											<borderRadius />
+											<baseFontSize />
+											<alignment>center</alignment>
+											<textColor />
+											<linkColor />
+											<paddingTop />
+											<paddingBottom />
+											<paddingLeft />
+											<paddingRight />
+											<marginTop />
+											<marginBottom />
+											<marginLeft />
+											<marginRight />
+											<rotate />
+											<boxShadowHorizontal />
+											<boxShadowVertical />
+											<boxShadowBlur />
+											<boxShadowSpread />
+											<boxShadowColor />
+											<customClass />
+											<customID />
+											<customElementAttribute />
+											<hideOnExtraSmallDevice />
+											<hideOnSmallDevice />
+											<hideOnMediumDevice />
+											<hideOnLargeDevice />
+										</style>
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_timbre]]></attributeHandle>
+												<attributeTitleText />
+												<displayTag />
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter />
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Theme Print">
+								<blocks>
+									<block type="t_s_page_theme_display" name="" mc-block-id="fbf5ba1c">
+										<data table="btTSPageThemeDisplay">
+											<record>
+												<topic><![CDATA[ts_pattr_topic_theme]]></topic>
+												<expressColors><![CDATA[tstopiccolor]]></expressColors>
+												<expressColorsTopicsAttribute><![CDATA[ts_topic_color_topic]]></expressColorsTopicsAttribute>
+												<expressColorsColorsAttribute><![CDATA[ts_topic_color_color]]></expressColorsColorsAttribute>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Nav Next and Back">
+								<blocks>
+									<block type="next_previous" name="" custom-template="think_story_np_template" mc-block-id="609bcc2e">
+										<data table="btNextPrevious">
+											<record>
+												<nextLabel><![CDATA[Next]]></nextLabel>
+												<previousLabel><![CDATA[Previous]]></previousLabel>
+												<parentLabel><![CDATA[Up]]></parentLabel>
+												<loopSequence><![CDATA[1]]></loopSequence>
+												<orderBy><![CDATA[display_asc]]></orderBy>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Back Button">
+								<blocks>
+									<block type="t_s_back_button" name="" mc-block-id="02e16235">
+										<data table="btTSBackButton">
+											<record />
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Print to PDF">
+								<blocks>
+									<block type="t_s_print_page_to_pdf" name="" mc-block-id="766e19de">
+										<data table="btTSPrintPageToPdf">
+											<record>
+												<attributesToPrint><![CDATA[N;]]></attributesToPrint>
+												<attributeTimbre><![CDATA[ts_pattr_timbre]]></attributeTimbre>
+												<attributesTopics><![CDATA[a:3:{i:0;s:20:"ts_pattr_topic_theme";i:1;s:21:"ts_pattr_topic_metier";i:2;s:25:"ts_pattr_topic_type_donne";}]]></attributesTopics>
+												<attributesContent><![CDATA[a:27:{i:0;s:12:"rpv_pageName";i:1;s:19:"rpv_pageDescription";i:2;s:19:"rpv_pageDateCreated";i:3;s:18:"rpv_pageDatePublic";i:4;s:24:"rpv_pageDateLastModified";i:5;s:10:"meta_title";i:6;s:16:"meta_description";i:7;s:13:"meta_keywords";i:8;s:11:"exclude_nav";i:9;s:17:"exclude_page_list";i:10;s:20:"header_extra_content";i:11;s:4:"tags";i:12;s:11:"is_featured";i:13;s:20:"exclude_search_index";i:14;s:18:"exclude_sitemapxml";i:15;s:20:"ts_pattr_topic_theme";i:16;s:21:"ts_pattr_topic_metier";i:17;s:25:"ts_pattr_topic_type_donne";i:18;s:21:"ts_pattr_number_views";i:19;s:21:"ts_pattr_introduction";i:20;s:20:"ts_pattr_declencheur";i:21;s:18:"ts_pattr_peripetie";i:22;s:19:"ts_pattr_resolution";i:23;s:19:"ts_pattr_conclusion";i:24;s:24:"ts_pattr_recommendations";i:25;s:26:"ts_pattr_principes_de_base";i:26;s:19:"ts_pattr_ressources";}]]></attributesContent>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+						</page>
+					</pagetemplate>
+				</output>
+			</composer>
+		</pagetype>
+	</pagetypes>
+	<pagetemplates>
+		<pagetemplate icon="full.png" name="Page Scenario" handle="page_scenario" package="think_story" internal="" />
+	<!--</pagetemplates>
+	<pagetemplates>-->
+		<pagetemplate icon="blank.png" name="Blank" handle="blank" package="think_story" internal=""/>
+		<pagetemplate icon="full.png" name="Full" handle="full" package="" internal=""/>
+		<pagetemplate icon="full.png" name="Page Home" handle="page_home" package="think_story" internal=""/>
+		<pagetemplate icon="full.png" name="Page Mon Scenario" handle="page_mon_scenario" package="think_story" internal=""/>
+		<!--<pagetemplate icon="full.png" name="Page Scenario" handle="page_scenario" package="think_story" internal=""/>-->
+	</pagetemplates>
+	<!-- remove "activated" key so that when installing the package the theme isn't automatically set to the site-wide one-->
+	<themes>
+		<theme handle="t_s_theme_elemental" package="think_story" activated="1" />
+	</themes>
+	<expressentities>
+		<entity id="dfa3cff9-9122-11ea-b285-000c29c61046" handle="tstopiccolor" plural_handle="" name="Topic Color" supports_custom_display_order="" include_in_public_list="1" description="" default_view_form="f1751715-9762-11ea-ad00-000c29c61046" default_edit_form="f1751715-9762-11ea-ad00-000c29c61046" results-folder="/">
+			<attributekeys>
+				<attributekey handle="ts_topic_color_topic" name="Topic Color Topic" package="think_story" searchable="1" indexed="1" type="topics" category="">
+					<tree name="Thèmes" path="/" allow-multiple-values="1" />
+				</attributekey>
+				<attributekey handle="ts_topic_color_color" name="Topic Color Color" package="think_story" searchable="1" indexed="1" type="t_s_color" category="">
+					<type placeholder="" />
+				</attributekey>
+			</attributekeys>
+			<forms>
+				<form id="dfa3e38c-9122-11ea-b285-000c29c61046" name="Form" />
+				<form id="f1751715-9762-11ea-ad00-000c29c61046" name="t_s_topic_color_form">
+					<fieldsets>
+						<fieldset title="Details" description="">
+							<controls>
+								<control id="f837d1a3-9762-11ea-ad00-000c29c61046" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_topic_color_topic" />
+								</control>
+								<control id="f9e49f65-9762-11ea-ad00-000c29c61046" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_topic_color_color" />
+								</control>
+							</controls>
+						</fieldset>
+					</fieldsets>
+				</form>
+			</forms>
+		</entity>
+	</expressentities>
+	<expressentries>
+		<entry id="21a5a1b6f320" label="" entity="tstopiccolor" display-order="0">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Gestion RH]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#273fc1]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="5c173ea72497" label="" entity="tstopiccolor" display-order="0">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Surveillance (sens large)]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#bbca32]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+	</expressentries>
+</concrete5-cif>
+

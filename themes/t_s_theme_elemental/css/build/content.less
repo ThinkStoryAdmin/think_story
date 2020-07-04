@@ -1,0 +1,375 @@
+div.ccm-page {
+  font-family: @body-type-font-family !important; 
+  font-weight: @body-type-font-weight !important;
+  font-size: @body-type-font-size !important;
+  line-height: @line-height-base !important;
+  -webkit-font-smoothing:antialiased !important;
+
+  blockquote {
+    padding-left: @blockquote-left-padding-size;
+    font-size: @blockquote-type-font-size;
+    font-weight: @blockquote-type-font-weight;
+    border-color: @blockquote-border-color;
+    color: @blockquote-type-color;
+    line-height: @line-height-base;
+  }
+
+  h1 {.make-heading(@h1-type-font-family, @h1-type-font-size, @h1-type-font-weight, @h1-type-color);}
+  h2 {.make-heading(@h2-type-font-family, @h2-type-font-size, @h2-type-font-weight, @h2-type-color);}
+  h3 {.make-heading(@h3-type-font-family, @h3-type-font-size, @h3-type-font-weight, @h3-type-color);}
+  h4 {.make-heading(@h4-type-font-family, @h4-type-font-size, @h4-type-font-weight, @h4-type-color);}
+  h5 {.make-heading(@h5-type-font-family, @h5-type-font-size, @h5-type-font-weight, @h5-type-color, @h5-type-text-transform);}
+  h6 {.make-heading(@h6-type-font-family, @h6-type-font-size, @h6-type-font-weight, @h6-type-color, @h6-type-text-transform);}
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  hr {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    border-top: 1px solid @content-section-divider-color;
+  }
+//Think Story Styles (to split into seperate less files)
+  //Page List 2 stuff
+  .ts-pl2-grid-item {
+    height:200px;
+    box-shadow: 0 4px 2px -2px lighten(@plist-background-color-color, -30%);
+    background-color: @plist-background-color-color;
+
+    .ts-pl2-header {
+      padding: 5px;
+      text-align: left;
+      /*font-size: 10px;
+      text-transform: uppercase;
+      font-family:Arial, Helvetica, sans-serif;
+      color:white;*/
+      font-family: @plist-header-style-type-font-family;
+      font-size: @plist-header-style-type-font-size;
+      font-weight: @plist-header-style-type-font-weight;
+      color: @plist-header-style-type-color;
+      text-transform: @plist-header-style-type-text-transform;
+    }
+  
+    .ts-pl2-details{
+      padding: 18px;
+      
+      .ts-pl2-details-content{
+        font-family: @plist-content-style-type-font-family;
+        font-size: @plist-content-style-type-font-size;
+        color: @plist-content-style-type-color;
+
+        &:hover{
+          color:lighten(@plist-content-style-type-color, 10%);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  //Page Theme Display
+  .cts-theme-block-ptheme-display-style{
+    font-family: @ptheme-display-style-type-font-family;
+    font-size: @ptheme-display-style-type-font-size;
+    font-weight: @ptheme-display-style-type-font-weight;
+    color: @ptheme-display-style-type-color;
+    text-transform: @ptheme-display-style-type-text-transform;
+  }
+  
+  //Page Slider Classes
+  .cts-theme-pslider{
+    background-color: @pslider-background-color-color;
+    margin-bottom:15px;
+  }
+
+  .cts-theme-pslider-style{
+    font-family: @pslider-style-type-font-family;
+    font-size: @pslider-style-type-font-size;
+    font-weight: @pslider-style-type-font-weight;
+    color: @pslider-style-type-color;
+    text-transform: @pslider-style-type-text-transform;
+    &:hover{
+      color:lighten(@pslider-style-type-color, 30%);
+      text-decoration: none;
+    }
+  }
+/*
+  .cts-theme-block-pslider-buttonbcgrnd{
+    background: radial-gradient(#73ab1c, lighten(#73ab1c, -10%));
+  }*/
+
+  //Page Attribute Display Title
+  //TODO make modifiable in the theme
+  .cts-pad-tmpl-title-content{
+    /*color:#313131;
+    font-size:24px;*/
+    color:@pattribute-display-title-style-type-color;
+    font-size:@pattribute-display-title-style-type-font-size;
+    font-family: @pattribute-display-header-style-type-font-family;
+    padding-bottom: 18px;
+    padding-left: 15px;
+  }
+
+  //Page Attribute Display Left
+  .cts-theme-block-pad-lb-icon-text-color{
+    //color:white;
+    color:@page-background-color;
+  }
+
+  //Page Attribute Display Top
+  .cts-pad-tmpl-tb-title{
+    /*font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #9a9b96;*/
+    font-family: @pattribute-display-header-style-type-font-family;
+    font-size: @pattribute-display-header-style-type-font-size;
+    color: @pattribute-display-header-style-type-color;
+    text-transform: @pattribute-display-header-style-type-text-transform;
+    padding-bottom: 1.2em;
+  }
+
+  .cts-pad-tmpl-tb-content{
+    /*font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #9a9b96;*/
+    font-family: @pattribute-display-content-style-type-font-family;
+    font-size: @pattribute-display-content-style-type-font-size;
+    color: @pattribute-display-content-style-type-color;
+    text-transform: @pattribute-display-content-style-type-text-transform;
+    padding-bottom: 1.2em;
+  }
+
+  .cts-pad-tmpl-tb-idprc{
+    font-family: @pattribute-display-idprc-style-type-font-family;
+    font-size: @pattribute-display-idprc-style-type-font-size;
+    color: @pattribute-display-idprc-style-type-color;
+    text-transform: @pattribute-display-idprc-style-type-text-transform;
+    padding-bottom: 1.2em;
+  }
+
+  .cts-primary-nav{
+    background-image: linear-gradient(@header-toolbar-color-color, lighten(@header-toolbar-color-color, -5%));
+  }
+  
+/*
+  .cts-theme-block-nav-prim{
+
+  }
+  */
+/*
+  .cts-nav-tmpl-prim-vertical-line {
+    border-right: 2px dotted white;
+    padding-right: 20px;
+    margin-right: 20px;
+  }
+
+  .cts-nav-tmpl-prim-vertical-line-left{
+      border-left: 2px dotted white;
+      padding-left: 20px;
+  }*/
+
+  .cts-nav-tmpl-prim-nav-selected {
+      color:black;
+  }
+
+  .cts-nav-tmpl-prim-nav-unselected {
+      color:@header-toolbar-primary-type-color;;
+  }
+
+  //End of block & block-specific classes
+
+  //Scenario page classes
+  .cts-theme-page-scenario-toolbar{
+    font-size:10px;
+  }
+
+  .cts-theme-pscen-attr-1{
+    border-bottom:1px dotted @icons-all-color-color;
+    margin-bottom:1em;
+  }
+
+  .cts-theme-pscen-attr-2{
+    border-right:1px dotted @icons-all-color-color;
+  }
+
+  .cts-theme-pscen-attr-3{
+    border-left:1px dotted @icons-all-color-color;
+  }
+  //end scenario page specific classes
+  
+  .cts-text-breaker{
+    word-wrap: break-word;
+  }
+
+  .cts-theme-radial-bckgrnd{
+    background: radial-gradient(@icons-all-color-color, lighten(@icons-all-color-color, -10%));
+  }
+
+  .cts-theme-icons{
+    color:@icons-all-color-color;
+  }
+
+  .cts-tlist-chevron{
+    color:@tlist-icon-color-color;
+  }
+
+  
+///Toolbar classes
+  //Primary Toolbar classes
+  .cts-theme-primary-bar{
+    font-family: @header-toolbar-primary-type-font-family;
+    font-size: @header-toolbar-primary-type-font-size;
+    font-weight: @header-toolbar-primary-type-font-weight;
+    line-height: @line-height-base;
+  }
+  .cts-theme-primary-bar:hover{
+    color:@header-toolbar-primary-hover-color;
+    text-decoration: none; //Makes sure there is no underline on hover
+  }
+
+  .cts-theme-primary-bar-line{
+    border-right: 2px dotted @header-toolbar-primary-type-color;
+    padding-right: 20px;
+    margin-right: 20px;
+  }
+  .cts-theme-primary-bar-line-left{
+    border-left: 2px dotted @header-toolbar-primary-type-color;
+    padding-left: 20px;
+  }
+
+  //Secondary Toolbar classes
+  .cts-theme-secondary-bar{
+    font-family: @header-toolbar-secondary-type-font-family;
+    font-size: @header-toolbar-secondary-type-font-size;
+    font-weight: @header-toolbar-secondary-type-font-weight;
+    color: @header-toolbar-secondary-type-color;
+    line-height: @line-height-base;
+    text-transform: @header-toolbar-secondary-type-text-transform;
+  }
+  .cts-theme-secondary-bar:hover{
+    color:@header-toolbar-secondary-hover-color;
+    text-decoration: none; //Makes sure there is no underline on hover
+  }
+
+  .cts-nav-tmpl-secn-vertical-line {
+    border-right: 1px dotted @header-toolbar-secondary-type-color;
+    height: 100%;
+    padding-right: 5px;
+  }
+
+  .cts-nav-tmpl-secn-vertical-line-left{
+      border-left: 1px dotted @header-toolbar-secondary-type-color;
+      padding-left: 5px;
+  }
+
+  .cts-nav-tmpl-secn-nav-selected {
+      color:@header-toolbar-secondary-hover-color;
+  }
+
+  .cts-nav-tmpl-secn-nav-unselected {
+      color:@header-toolbar-secondary-type-color;
+  }
+  //Tertiary Toolbar classes
+  .cts-theme-tertiary-bar{
+    font-family: @tertiary-toolbar-type-font-family;
+    font-size: @tertiary-toolbar-type-font-size;
+    font-weight: @tertiary-toolbar-type-font-weight;
+    color:@tertiary-toolbar-type-color;
+    line-height: @line-height-base;
+    text-transform: @tertiary-toolbar-type-transform;
+
+    &:hover{
+      color:@tertiary-toolbar-hover-color;
+      text-decoration: none;
+    }
+  }
+
+  .cts-theme-tertiary-bar-background{
+    background-color:@tertiary-toolbar-color-color;
+  }
+
+  .cts-theme-tertiary-bar-line{
+    border-left: 1px dotted @tertiary-toolbar-type-color;
+      padding-left: 5px;
+  }
+
+  .cts-npn-tmpl-prim-vertical-line {
+    border-right: 1px solid @icons-all-color-color;
+    height: 80%;
+    padding-right: 5px;
+    margin-right:5px;
+  }
+
+  
+  .cts-nav-tmpl-footer-vertical-line-left{
+    border-left: 1px solid @footer-toolbar-type-color;
+    padding-left: 5px;
+  }
+
+  .cts-nav-tmpl-footer-nav-selected {
+    color:@footer-toolbar-hover-color;
+  }
+
+  .cts-nav-tmpl-footer-nav-unselected {
+    color: @footer-toolbar-type-color;
+  }
+  
+
+  .footer-all{
+    background-color: @footer-toolbar-color-color;
+    //position:absolute;
+    //bottom:0;
+    font-family: @footer-toolbar-type-font-family;
+    font-size: @footer-toolbar-type-font-size;
+    font-weight: @footer-toolbar-type-font-weight;
+    line-height: @line-height-base;
+  }
+  .footer-all:hover{
+    color:@footer-toolbar-hover-color;
+    text-decoration: none; //Makes sure there is no underline on hover
+  }
+  
+  main {
+    background-color: @page-background-color;
+    padding-bottom: 80px;
+
+    /*
+    div.container:last-child {
+      padding-bottom: 80px;
+    }
+    */
+  }
+
+  
+  main {
+    a:not(.fa):not(.btn):not(.ts-pl2-details-content):not(.cts-theme-tertiary-bar):not(.cts-theme-pslider-style) {
+      color: @body-link-color !important;
+
+      &:hover {
+        color: @body-link-hover-color !important;
+        text-decoration: none !important;
+      }
+    }
+  }
+
+  div[data-container=block] {
+    div.container:last-child {
+      padding-bottom: 0px;
+    }
+  }
+
+  // Special styles for blog entry page type, making sure the sidebar contents get pushed down
+  &.page-type-blog-entry {
+    div.col-sidebar {
+      padding-top: 40px;
+    }
+  }
+
+  div.col-sidebar {
+    hr {
+      margin-top: @line-height-computed;
+      margin-bottom: @line-height-computed;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+  xmlns="http://www.concrete5.org/doctrine-xml/0.5"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.concrete5.org/doctrine-xml/0.5 http://concrete5.github.io/doctrine-xml/doctrine-xml-0.5.xsd">
+
+    <table name="btTSPageList2">
+        <field name="bID" type="integer">
+            <unsigned/>
+            <key/>
+        </field>
+        <field name="pageListTitle" type="string" size="255"/>
+        <field name="orderBy" type="string" size="32" comment="Was enum, display_asc','display_desc','chrono_asc','chrono_desc','alpha_asc','alpha_desc','score_asc','score_desc'"/>
+        <field name="sortType" type="boolean" comment="Holds the filter by type; 0 for Sort and 1 for Filter"/>
+        <field name="bPostToAnotherPage" type="boolean">
+        </field>
+        <field name="cParentID" type="integer">
+            <unsigned/>
+            <default value="1"/>
+            <notnull/>
+        </field>
+        <field name="ptID" type="smallint">
+            <unsigned/>
+        </field>
+        <field name="defaultColor" type="text" comment="Default color for the page list topic header"/>
+        <field name="viewCountAttribute" type="text" comment="Page View Count Page Attribute Handle"/>
+        <field name="topics" type="text" comment="For simplicity, holds an array of topic ids / names"/>
+        <field name="pageTopicColors" type="text" comment="Holds the page attribute handle that is the color attribute"/>
+        <field name="expressColors" type="text" comment="Holds the express object name that holds the category colors"/>
+        <field name="expressColorsTopicsAttribute" type="text" comment="HOlds the express object attribute handle that holds the topic"/>
+        <field name="expressColorsColorsAttribute" type="text" comment="HOlds the express object attribute handle that holds the color"/>
+    </table>
+</schema>

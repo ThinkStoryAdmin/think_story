@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+  xmlns="http://www.concrete5.org/doctrine-xml/0.5"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.concrete5.org/doctrine-xml/0.5 http://concrete5.github.io/doctrine-xml/doctrine-xml-0.5.xsd">
+
+    <table name="btTSPageSlider">
+        <field name="bID" type="integer">
+            <unsigned/>
+            <key/>
+        </field>
+        <field name="pageListTitle" type="string" size="255"/>
+        <field name="num" type="smallint">
+            <unsigned/>
+            <default value="10" />
+            <notnull/>
+        </field>
+        <field name="orderBy" type="string" size="32" comment="Was enum, display_asc','display_desc','chrono_asc','chrono_desc','alpha_asc','alpha_desc','score_asc','score_desc'"/>
+        <field name="cParentID" type="integer">
+            <unsigned/>
+            <default value="1"/>
+            <notnull/>
+        </field>
+        <field name="ptID" type="smallint">
+            <unsigned/>
+        </field>
+        <field name="speed" type="smallint">
+            <unsigned/>
+            <default value="10" />
+            <notnull/>
+        </field>
+        <field name="viewCountAttribute" type="text" comment="Page View Count Page Attribute Handle"/>
+    </table>
+</schema>

@@ -1,0 +1,9 @@
+.cts-npn-spaced{
+    padding-right : 5px;
+}
+
+.cts-npn-tmpl-icon{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+}

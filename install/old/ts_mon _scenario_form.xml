@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concrete5-cif version="1.0">
+    <expressentities>
+        <entity id="97aff95e-89f1-11ea-8f4a-000c29c61046" handle="mon_scenario" plural_handle="" name="Mon Scenario" supports_custom_display_order="" include_in_public_list="" description="" default_view_form="97b06f1b-89f1-11ea-8f4a-000c29c61046" default_edit_form="97b06f1b-89f1-11ea-8f4a-000c29c61046" results-folder="/Forms">
+        <attributekeys>
+            <attributekey handle="email_3" name="Email" package="think_story" searchable="1" indexed="1" type="email" category=""/>
+            <attributekey handle="commentaire_2" name="Commentaire" package="think_story" searchable="1" indexed="1" type="text" category="">
+                <type placeholder=""/>
+            </attributekey>
+            <attributekey handle="introduction" name="Introduction" package="think_story" searchable="1" indexed="1" type="text" category="">
+                <type placeholder="Ecrivez ici l'introduction de votre scénario"/>
+            </attributekey>
+            <attributekey handle="declencheur" name="Déclencheur" package="think_story" searchable="1" indexed="1" type="text" category="">
+                <type placeholder="Ecrivez ici le déclencheur de votre scénario"/>
+            </attributekey>
+            <attributekey handle="peripetie" name="Péripétie" package="think_story" searchable="1" indexed="1" type="text" category="">
+                <type placeholder="Ecrivez ici le péripétie de votre scénario"/>
+            </attributekey>
+            <attributekey handle="resolution" name="Résolution" package="think_story" searchable="1" indexed="1" type="text" category="">
+                <type placeholder="Ecrivez ici la résolution de votre scénario"/>
+            </attributekey>
+            <attributekey handle="conclusion" name="Conclusion" package="think_story" searchable="1" indexed="1" type="text" category="">
+                <type placeholder="Ecrivez ici la conclusion de votre scénario"/>
+            </attributekey>
+            <attributekey handle="recommendations" name="Recommendations" package="think_story" searchable="1" indexed="1" type="text" category="">
+                <type placeholder="Ecrivez ici les recommendations de votre scénario"/>
+            </attributekey>
+            <attributekey handle="pricipes_de_base" name="Pricipes de base" package="think_story" searchable="1" indexed="1" type="text" category="">
+                <type placeholder="Ecrivez ici les principes de base de votre scénario"/>
+            </attributekey>
+            <attributekey handle="ressources" name="Ressources" package="think_story" searchable="1" indexed="1" type="text" category="">
+                <type placeholder="Ecrivez ici les ressources de votre scénario"/>
+            </attributekey>
+        </attributekeys>
+        <forms>
+            <form id="97b06f1b-89f1-11ea-8f4a-000c29c61046" name="t_s_mon_scenario_form">
+                <fieldsets>
+                    <fieldset title="" description="">
+                        <controls>
+                            <control id="8333f184-89f1-11ea-8f4a-000c29c61046" type="attribute_key" required="1" custom-label="">
+                                <attributekey handle="email_3"/></control>
+                            <control id="88ac282a-89f1-11ea-8f4a-000c29c61046" type="attribute_key" required="1" custom-label="">
+                                <attributekey handle="commentaire_2"/></control>
+                            <control id="76e8b8ed-8d34-11ea-8f4a-000c29c61046" type="entity_property" required="" custom-label="" type-id="text">
+                                <headline><![CDATA[Votre Scénario (optionel)]]></headline>
+                                <body><![CDATA[<p>Vous pouvez &eacute;crire le contenu de votre sc&eacute;nario si vous le souhaitez.</p>]]></body>
+                            </control>
+                            <control id="908bcc0c-89f1-11ea-8f4a-000c29c61046" type="attribute_key" required="" custom-label="">
+                                <attributekey handle="introduction"/>
+                            </control>
+                            <control id="9dfa61df-8d33-11ea-8f4a-000c29c61046" type="attribute_key" required="" custom-label="">
+                                <attributekey handle="declencheur"/>
+                            </control>
+                            <control id="a998f9b1-8d33-11ea-8f4a-000c29c61046" type="attribute_key" required="" custom-label="">
+                                <attributekey handle="peripetie"/>
+                            </control>
+                            <control id="b01ecc25-8d33-11ea-8f4a-000c29c61046" type="attribute_key" required="" custom-label="">
+                                <attributekey handle="resolution"/>
+                            </control>
+                            <control id="b6c9ac46-8d33-11ea-8f4a-000c29c61046" type="attribute_key" required="" custom-label="">
+                                <attributekey handle="conclusion"/>
+                            </control>
+                            <control id="bfc32f10-8d33-11ea-8f4a-000c29c61046" type="attribute_key" required="" custom-label="">
+                                <attributekey handle="recommendations"/>
+                            </control>
+                            <control id="c52c3d8b-8d33-11ea-8f4a-000c29c61046" type="attribute_key" required="" custom-label="">
+                                <attributekey handle="pricipes_de_base"/>
+                            </control>
+                            <control id="c9864e03-8d33-11ea-8f4a-000c29c61046" type="attribute_key" required="" custom-label="">
+                                <attributekey handle="ressources"/>
+                            </control>
+                        </controls>
+                    </fieldset>
+                </fieldsets>
+            </form>
+        </forms>
+        </entity>
+    </expressentities>
+</concrete5-cif>

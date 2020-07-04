@@ -1,0 +1,15 @@
+.cts-nav-tmpl-prim-primary {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    height:50px;
+}
+.cts-nav-tmpl-prim-menu-primary{
+    /*padding-left: 5px;*/
+    padding: 5px;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    height:50%;
+}
+

@@ -1,0 +1,132 @@
+.ts-image-slider {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.ts-image-slider li {
+  -webkit-backface-visibility: hidden;
+  backface-visibility:hidden;
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.ts-image-slider li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+}
+
+.ts-image-slider-container-slider{
+  height: 352px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ts-image-slider-mySlides {display:none}
+* {
+box-sizing: border-box;
+}
+
+.ts-image-slider-page-slide{
+  color: #313131;
+  font-size: 48px;
+  
+}
+
+/* Create two unequal columns that floats next to each other */
+.ts-image-slider-column {
+float: left;
+padding: 10px;
+}
+
+.ts-image-slider-left {
+  padding-left: 10%;
+  width: 75%;
+}
+
+.ts-image-slider-right {
+  width: 15%;
+  
+}
+
+.ts-image-slider-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ts-image-slider-child{
+    margin:auto;
+}
+
+.ts-image-slider-column-left{
+height: 300px;
+margin: 20px;
+width: 800px;
+position: relative;
+padding: 20px;
+display: table;
+}
+.ts-image-slider-column-right{
+height: 300px;
+margin: 20px;
+width: 300px;
+position: relative;
+padding: 20px;
+display:flex;
+justify-content: flex-start;
+align-items: center;
+}
+
+.ts-image-slider-normal {
+font-weight: normal;
+quotes: "“" "”" "‘" "’";
+}
+.ts-image-slider-normal:before {
+content: open-quote;
+font-weight: 900;
+font-size:1em;
+font-family: 'Aguafina Script';
+color:#c9c9c9;
+}
+
+.ts-image-slider-normal:after {
+content: close-quote;
+font-weight: 900;
+font-size:1em;
+font-family: 'Aguafina Script';
+color:#c9c9c9;
+}
+.ts-image-slider-padding{
+padding: 20px;
+display: table-cell;
+vertical-align: middle;
+}
+/* Clear floats after the columns */
+.ts-image-slider-row:after {
+content: "";
+display: table;
+clear: both;
+}
+.ts-image-slider-buttons{
+padding:20px;
+display:flex;
+justify-content: flex-start;
+align-items: center;
+}
+.ts-image-slider-circle {
+  width: 50px;
+  border-radius: 50%;
+  font-size: 25px;
+  color: white;
+  line-height: 50px;
+  text-align: center;
+  display: inline-block;
+  margin:5px;
+}

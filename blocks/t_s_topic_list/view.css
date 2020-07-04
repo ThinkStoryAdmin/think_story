@@ -1,0 +1,10 @@
+.cts-block-tlist-wrapper .list-unstyled {
+    padding-left: 0;
+    list-style: none;
+    list-style-type: none;
+    
+}
+
+.cts-block-tlist-selected {
+    font-weight: bold;
+}
