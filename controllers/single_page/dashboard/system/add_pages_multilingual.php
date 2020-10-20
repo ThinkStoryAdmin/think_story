@@ -380,11 +380,13 @@ class AddPagesMultilingual extends DashboardSitePageController
             $currPageToMap = Page::getByID($pageIdToMap);
             $this->assign($home,$pageIdToMap);
         }
+        $control=$pagesToMap;
 
         $r = new \stdClass();
         $r->messages = $messages;
         $r->errors   = $errors;
         return new JsonResponse($r);
+        \Core::make('app')->shutdown();
     }
 
     //Taken from Core

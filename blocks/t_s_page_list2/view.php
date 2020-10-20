@@ -5,6 +5,8 @@
     let sendToAnotherPage = '<?= $bPostToAnotherPage?>'
     let sendToAnotherPageID = '<?= $cParentID?>'
     let sendToAnotherPageIDURL = '<?= $cParentIDURL?>'
+    let testHelpFixFilt = '<?= $testHelpFixFilt?>'
+	console.log("testHelpFixFilt : " + testHelpFixFilt)
     console.log("URL filter action: " + urlFilterAction)
     console.log("URL for this page: " + urlForThisPage)
     console.log('sendToAnotherPage' + sendToAnotherPage)
@@ -27,11 +29,10 @@
                                         //Cannot reset select
                                         //Select params are not registered
                                         //Select changes are not registered
-                                    $selectWidth = intval(1/count($topictrees) * 100)-10;
                                     ?>
                                     <select 
                                         class="pagelist2 ts-pl2-topic-dropdown" 
-                                        style="width:<?= $selectWidth ?>%;margin-right:5px;" 
+                                        style="width:<?php echo intval(1/count($topictrees) * 100)-10?>%;margin-right:5px;" 
                                         
                                         id="think-story-drop-down3-<?php echo $bID?>-<?php echo $topictree->getTreeId()?>" 
                                         data-action="topic-select2">

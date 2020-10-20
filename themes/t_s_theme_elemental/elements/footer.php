@@ -33,7 +33,7 @@ $displayFirstSection = $footerSiteTitleBlocks > 0 || $footerSocialBlocks > 0 || 
                 </div>
             </div>
         </div>
-        <div>
+        <div style="margin-top:25px;">
             <?php
                 $a = new GlobalArea('Souteneurs');
                 $a->display();

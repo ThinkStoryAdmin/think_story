@@ -20,7 +20,9 @@ function getPages(formdata){
         data        : formdata,
         url         : urlFilterAction,
         encode      : true,
-        beforeSend: function(){
+        beforeSend: function(jqXHR, settings){
+            jqXHR.url = settings.url;
+            jqXHR.dataTA = formdata;
             $("#loader").show();
             $('#tspages').empty();
         },
@@ -28,11 +30,14 @@ function getPages(formdata){
         complete:function(data){
             setTimeout(() => {  $("#loader").hide(); }, 1000);
         },
-        error:function(error){
-            console.log(error)
+        error:function(jqXHR, exception){
+            console.log(exception);
+			console.log(jqXHR.url);
+			console.log(jqXHR.dataTA);
+			console.log(jqXHR.responseText);
             $("#tspages").empty().append(`
                 <div>
-                    Could not load any pages
+                     
                 </div>
             `)
         }
@@ -60,7 +65,7 @@ function fillPageGrid(response, paramsToAddToURL){
         if(response.result.pagedata.length < 1){
             appendingPages += `
                 <div>
-                    Could not find any pages!
+                     
                 </div>
             `
         } else {
@@ -79,7 +84,7 @@ function fillPageGrid(response, paramsToAddToURL){
                     <div class="ts-pl2-details"><a
                         class="ts-pl2-details-content"
                         href="${urlGridItem}"
-                        target="_blank"
+                        target="_self"
                     >
                         ${response.result.pagedata[counter].title}
                     </a></div>
@@ -196,20 +201,110 @@ $(function() {
 
         filteredURL += "?"
 
+        let topicsListToRedirect = []
         for(var q=0; q<values.length; q++){
             let localVal = -1
             if((!(typeof values[q] == 'null')) && (!(typeof values[q] == 'undefined')) && (!(values[q] == null))){
                 localVal = values[q]
+                topicsListToRedirect.push(localVal)
                 filteredURL += "topics[]=" + localVal +"&"
             }
         }
         filteredURL = filteredURL.substring(0, filteredURL.length - 1)
         console.log(filteredURL)
-        window.history.pushState("object or string", "Page Title", filteredURL);
+				
+        //window.history.pushState("object or string", "Page Title", filteredURL);
+		//Need to get parameters that were set
+        const urlParams = new URLSearchParams(/*queryString*/);
+        topicsListToRedirect.forEach(element => {
+            urlParams.append('topics[]', element)
+        })
+
+        if(sendToAnotherPage == 1){
+            window.location.href = sendToAnotherPageIDURL + '?' + urlParams.toString()
+		  	//window.location.href = filteredURL
+        } else {
+            window.history.pushState("object or string", "Page Title", filteredURL);
+            
+            /*getPages(formData)
+            .then(function(result,status,xhr){
+                pageresponse = {result,status,xhr}
+                fillPageGrid(pageresponse, urlParams)
+            })
+            
+            return false;*/
+        }
     })
 
     //If any of the topic selects change, update the URL and request the pages
 	$('.pagelist2[data-action=topic-select2]').change(function() {
+        /*if(sendToAnotherPage){
+            //Need to get parameters that were set
+            const urlParams = new URLSearchParams(queryString);
+            let urlTopics = urlParams.getAll('topics[]');
+
+            //Go to specified target window
+            window.location.href = ''
+        } else {
+            var action = $(this).attr('data-action').replace('--topic--', $(this).val());
+            console.log($(this));
+            console.log("Link: " + window.location.href);
+            console.log("Action: " + action);
+            let parts = action.split('/');
+            console.log(parts)
+
+            var selectedCountry = $(this). children("option:selected"). val();
+            console.log('Event firing selected: ' + selectedCountry)
+
+            var block = $(this).closest('.topic_select_parent');
+            
+            var blocks = block.find(':input')
+            console.log('Num o blocks: ' + blocks.length)
+            let values = []
+            for(var i=0; i<blocks.length; i++){
+                var val = $('#'+blocks[i].id).val()
+                values.push(val)
+                console.log(val)
+            }
+
+            let formData = {
+                topics: values
+            }
+
+            //Update URL
+            console.log("URL for this page: ")
+            console.log(urlForThisPage)
+            var filteredURL = urlForThisPage.replace(/(^\w+:|^)\/\//, '');
+            filteredURL = filteredURL.substring(filteredURL.indexOf("/"), filteredURL.length)
+            filteredURL = filteredURL.split("?")[0]
+
+            filteredURL += "?"
+
+            for(var q=0; q<values.length; q++){
+                let localVal = -1
+                if((!(typeof values[q] == 'null')) && (!(typeof values[q] == 'undefined')) && (!(values[q] == null))){
+                    localVal = values[q]
+                    filteredURL += "topics[]=" + localVal +"&"
+                }
+            }
+
+
+        
+            filteredURL = filteredURL.substring(0, filteredURL.length - 1)
+            console.log(filteredURL)
+            window.history.pushState("object or string", "Page Title", filteredURL);
+            
+            getPages(formData)
+            .then(function(result,status,xhr){
+                pageresponse = {result,status,xhr}
+                fillPageGrid(pageresponse)
+            })
+            
+            return false;
+        }*/
+
+        
+
         var action = $(this).attr('data-action').replace('--topic--', $(this).val());
         console.log($(this));
         console.log("Link: " + window.location.href);
@@ -259,7 +354,7 @@ $(function() {
         console.log(filteredURL)
 
         //Need to get parameters that were set
-        const urlParams = new URLSearchParams(queryString);
+        const urlParams = new URLSearchParams(/*queryString*/);
         topicsListToRedirect.forEach(element => {
             urlParams.append('topics[]', element)
         })

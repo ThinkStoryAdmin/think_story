@@ -137,6 +137,8 @@ class Controller extends Package
         $this->addBlockType('t_s_back_button', $pkg);
         $this->addBlockType('t_s_page_theme_display', $pkg);
         $this->addBlockType('t_s_page_list_result', $pkg);
+        //$this->addBlockType('t_s_page_attribute_display', $pkg);
+        //$this->addBlockType('t_s_next_previous', $pkg);
 
         if ($r->request->get('installTopics')) {
             $ci = new ContentImporter();

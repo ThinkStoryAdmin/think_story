@@ -153,7 +153,7 @@ class Controller extends BlockController
         $mpdf->defaultheaderfontstyle='Arial';
         $mpdf->defaultheaderline=1;
         $mpdf->defaultfooterfontsize=7;
-        
+
         $footerUrl = is_null($this->attributesFooterURL) ? '' : $this->attributesFooterURL;
         $footerStyle = '';
         if(!is_null($c->getAttributeValue($this->attributeTimbre)) && $c->getAttributeValue($this->attributeTimbre)->getController()->getValidity()){

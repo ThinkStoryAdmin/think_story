@@ -57,6 +57,7 @@ class Controller extends BlockController
     protected $rightcolor;
     protected $themecomp;
     protected $categoryColorsMain;
+  	protected $testHelpFixFilt;
 
     public function getBlockTypeDescription()
     {
@@ -147,6 +148,7 @@ class Controller extends BlockController
         }
 
         $this->set('topictrees', $trees);
+	  	$this->set('testHelpFixFilt', $this->testHelpFixFilt);
     }
 
     public function getTopicLink(\Concrete\Core\Tree\Node\Node $topic = null)
@@ -316,8 +318,10 @@ class Controller extends BlockController
         
         if(ctype_xdigit(str_replace("-", "", $this->expressColors))){
             $entity = Express::getObjectByID($this->expressColors);
+		  	$this->testHelpFixFilt = "ID";
         } else { //Is probably handle
             $entity = Express::getObjectByHandle($this->expressColors);
+		  	$this->testHelpFixFilt = "HANDLE";
         }
         if(!is_null($entity)){
             $listentities = new \Concrete\Core\Express\EntryList($entity);
@@ -382,6 +386,8 @@ class Controller extends BlockController
         $temppages = $templist->getResults();
         $pagedata = [];
         foreach($temppages as $temppage){
+		  	$situation = [];
+		  	
             if ($temppage->getCollectionPointerExternalLink() != '') {
                 $url = $temppage->getCollectionPointerExternalLink();
             } else {
@@ -431,29 +437,62 @@ class Controller extends BlockController
 
                 //Determine if the current page has relevant topics
                 if(array_intersect($nums, $themes) == $nums){
-                    $situation = 'if 1';
+				  	
+				  	$tempcatcolor = $this->categoryColorsMain;
+				  
+				  
+				  	array_push($situation, 'if 1');
+				  	array_push($situation, $this->expressColors);
                     $sortOrder = 1;
                     $theme = $temppage->getAttribute($this->pageTopicColors);
                     if(is_array($theme)){ 
+					  	$gotWhatWasNeeded = false;
                         foreach($theme as $t){
                             if($t->getTreeNodeID() == $topics[0]){
                                 $theme=$t;
+							  	$gotWhatWasNeeded = true;
                                 break;
                             }
                         }
+						if(!$gotWhatWasNeeded){
+						  //$tempcatcolor = null;
+						}
                     }else{
                         if($theme->getTreeNodeID() == $topics[0]){
-                            $theme=$t;
-                            break;
-                        }
+						  	//$theme=$t;
+						  	//break;
+						} else {
+						  //$tempcatcolor = null;
+						}
                     }
+				  
+				  	$testFix = $theme;
+					//if(gettype($testFix) == "Topic"){
+					//How do you check type? Who knows!
+					$class = '\Concrete\Core\Tree\Type\Topic';
+					$class2 = "Concrete\\Core\\Tree\\Node\\Type\\Topic";
+					//if($testFix instanceof $class){
+					if(is_a($testFix, $class2)){
+						array_push($situation, 'if 1.2a1');
+						//$testFix = 12;//$testFix->getTreeNodeID();
+					} else {
+						array_push($situation, 'if 1.2a2');
+						//:(... just :( how could I not notice I wrote testfix...
+						//$testFix = 25;
+					  	//$tempcatcolor = null;
+					}
+				  
 
-                    $tempcatcolor = $this->categoryColorsMain;
+                    
 
                     if((is_null($tempcatcolor)) || (empty($tempcatcolor))){
                         //$rightcolor = "#ff0000";
+					  	array_push($situation, '1.1');
                     } else {
-                        $tempcatcolor->filterByAttribute($this->expressColorsColorsAttribute, $theme);   
+					  	array_push($situation, 'if 1.2');
+					  	
+					  	//$tempcatcolor->filterByAttribute($this->expressColorsColorsAttribute, $testFix);
+					  	$tempcatcolor->filterByAttribute($this->expressColorsColorsAttribute, $theme);   
                         //Check color existance
                         $colortemp = $tempcatcolor->getResults();
                         //if(!is_array($colortemp)){
@@ -472,6 +511,7 @@ class Controller extends BlockController
                             
                         } else {
                             //$rightcolor = "#a8328d";
+						  	array_push($situation, 'if 1.2b');
                         }
                         
                     }
@@ -488,7 +528,7 @@ class Controller extends BlockController
                         $themename = $themecomp->getTreeNodeName();
                     } 
                 } else {
-                    $situation = 'if 2';
+                    array_push($situation, 'if 2');
                     $sortOrder = 2;
                     //$rightcolor = "#b1b1b1";
                     $rightcolor = $this->defaultColor;
@@ -513,7 +553,7 @@ class Controller extends BlockController
                 //If there are no topics defined, or they are all -1, then we just do as normal
                 //(color should be set to that specific grey here)
                 $theme = $temppage->getAttribute($this->pageTopicColors);
-                $situation = 'else';
+                array_push($situation, 'else');
                 $sortOrder = 2;
 
                 if(is_null($theme) || empty($theme) || !(isset($theme))){
@@ -567,6 +607,10 @@ class Controller extends BlockController
             if(!isset($themename) || is_null($themename)){
                 $themename = " ";
             }
+		  
+			if(is_array($situation)){
+			  	$situation = implode('; ', $situation);
+			}
 
             array_push($pagedata, array(
                 "title"=>$temppage->getCollectionName(), 
@@ -586,10 +630,9 @@ class Controller extends BlockController
             //CANNOT USE usort, AS IS NOT OBJECT BUT MULTIDIMENSIONAL ARRAY
             $sortOrders = array_column($pagedata, 'sortOrder');
             array_multisort($sortOrders, SORT_ASC, $pagedata);
-            $crazyShit = 'Fuck MY ASS';
         //}
 
-        echo json_encode(array("shit"=>$shitfuck, "recieved"=>$data, "topics"=>$topics,/* "count"=>count($temppages),*/ "nums"=>$nums, /*"pages"=>$temppages,*/ "pagedata" =>$pagedata));
+        echo json_encode(array("recieved"=>$data, "topics"=>$topics,/* "count"=>count($temppages),*/ "nums"=>$nums, /*"pages"=>$temppages,*/ "pagedata" =>$pagedata));
         exit;
     }
 }
