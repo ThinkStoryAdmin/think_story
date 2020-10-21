@@ -7,9 +7,4 @@
                 echo $pageTopic->getTreeNodeDisplayName();
             }?>
     </div>
-    <div >
-        <?php
-            //echo ($catcolorslist);
-        ?>
-    </div>
 </div>

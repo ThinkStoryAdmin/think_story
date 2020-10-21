@@ -10,6 +10,13 @@
         $localPath = $urlHelper->getBlockTypeAssetsURL($blockType);
         echo $localPath . '/coma_1.gif';
     ?>'>-->
+    <?php
+    if(is_array($BAT)){
+        print_r($BAT);
+    } else {
+        echo $BAT;
+    }
+    ?>
     <div class='cts-theme-pslider'>
         <div class="ts-image-slider-container ts-image-slider-container-slider">
             <div class="ts-image-slider-row">

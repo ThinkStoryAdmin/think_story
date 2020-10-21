@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concrete5-cif version="1.0">
+	<pagetemplates>
+		<pagetemplate icon="full.png" name="Page Home" handle="page_home" package="think_story" internal=""/>
+		<pagetemplate icon="full.png" name="Page Mon Scenario" handle="page_mon_scenario" package="think_story" internal=""/>
+		<pagetemplate icon="full.png" name="Page Scenario" handle="page_scenario" package="think_story" internal=""/>
+		<pagetemplate icon="full.png" name="Page Scenarios" handle="page_scenarios" package="think_story" internal=""/>
+	</pagetemplates>
+	<attributekeys>
+		<attributekey handle="ts_pattr_topic_theme" name="Themes" package="think_story" searchable="1" indexed="1" type="topics" category="collection">
+			<tree name="Subjects" path="/" allow-multiple-values="1"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_topic_metier" name="Jobs" package="think_story" searchable="1" indexed="1" type="topics" category="collection">
+			<tree name="Jobs" path="/" allow-multiple-values="1"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_topic_type_donne" name="Data Types" package="think_story" searchable="1" indexed="1" type="topics" category="collection">
+			<tree name="Data types" path="/" allow-multiple-values="1"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_number_views" name="TS View Count" package="think_story" searchable="1" indexed="1" type="number" category="collection"/>
+		<attributekey handle="ts_pattr_timbre" name="TS Scenario Validation Stamp" package="think_story" searchable="1" indexed="1" type="timbre" category="collection"/>
+		<attributekey handle="ts_pattr_introduction" name="Introduction" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_declencheur" name="Trigger" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_peripetie" name="Incident" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_resolution" name="Resolution" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_conclusion" name="Conclusion" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_recommendations" name="Recommendations" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_principes_de_base" name="Basic Principles" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_ressources" name="Resources" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+	</attributekeys>
+	<attributesets>
+		<attributeset name="Think Story Attribute Set" package="think_story" handle="think_story_attribute_set" category="collection">
+			<attributekey handle="ts_pattr_topic_theme"/>
+			<attributekey handle="ts_pattr_topic_metier"/>
+			<attributekey handle="ts_pattr_topic_type_donne"/>
+			<attributekey handle="ts_pattr_number_views"/>
+			<attributekey handle="ts_pattr_timbre"/>
+			<attributekey handle="ts_pattr_introduction"/>
+			<attributekey handle="ts_pattr_declencheur"/>
+			<attributekey handle="ts_pattr_peripetie"/>
+			<attributekey handle="ts_pattr_resolution"/>
+			<attributekey handle="ts_pattr_conclusion"/>
+			<attributekey handle="ts_pattr_recommendations"/>
+			<attributekey handle="ts_pattr_principes_de_base"/>
+			<attributekey handle="ts_pattr_ressources"/>
+		</attributeset>
+	</attributesets>
+	<expressentities>
+		<entity id="282fbc2b-b404-11ea-913b-de3f9e5efbce" handle="ts_mon_scenario" plural_handle="" name="Mon Scenario" supports_custom_display_order="" include_in_public_list="1" description="" default_view_form="35160245-b404-11ea-913b-de3f9e5efbce" default_edit_form="35160245-b404-11ea-913b-de3f9e5efbce" results-folder="/">
+			<attributekeys>
+				<attributekey handle="ts_ms_email" name="Email" package="" searchable="1" indexed="1" type="email" category=""/>
+				<attributekey handle="ts_ms_nom" name="Name" package="" searchable="1" indexed="1" type="text" category="">
+					<type placeholder=""/>
+				</attributekey>
+				<attributekey handle="ts_ms_votre_scenario" name="Your Scenario" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="rich_text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_intro" name="Introduction" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_decl" name="Trigger" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_peripet" name="Incident" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_resol" name="Resolution" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_concl" name="Conclusion" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+			</attributekeys>
+			<forms>
+				<form id="282fce0b-b404-11ea-913b-de3f9e5efbce" name="Form"/>
+				<form id="35160245-b404-11ea-913b-de3f9e5efbce" name="ts_mon_scenario_user_form">
+					<fieldsets>
+						<fieldset title="Votre Scénario" description="">
+							<controls>
+								<control id="e8e5a97b-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_ms_nom"/>
+								</control>
+								<control id="eb5b9165-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_ms_email"/>
+								</control>
+								<control id="ed5dfb42-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_ms_votre_scenario"/>
+								</control>
+								<control id="ef2fd8e4-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_intro"/>
+								</control>
+								<control id="f120f8cd-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_decl"/>
+								</control>
+								<control id="f33b868d-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_peripet"/>
+								</control>
+								<control id="f580770d-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_resol"/>
+								</control>
+								<control id="f7c3774c-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_concl"/>
+								</control>
+							</controls>
+						</fieldset>
+					</fieldsets>
+				</form>
+			</forms>
+		</entity>
+		<entity id="dfa3cff9-9122-11ea-b285-000c29c61046" handle="tstopiccolor" plural_handle="" name="Topic Color" supports_custom_display_order="1" include_in_public_list="1" description="" default_view_form="f1751715-9762-11ea-ad00-000c29c61046" default_edit_form="f1751715-9762-11ea-ad00-000c29c61046" results-folder="/">
+			<attributekeys>
+				<attributekey handle="ts_topic_color_topic" name="Topic Color Topic" package="" searchable="1" indexed="1" type="topics" category="">
+					<tree name="Subjects" path="/" allow-multiple-values="1"/>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color" name="Topic Color Color" package="" searchable="1" indexed="1" type="t_s_color" category="">
+					<type placeholder=""/>
+				</attributekey>
+			</attributekeys>
+			<forms>
+				<form id="dfa3e38c-9122-11ea-b285-000c29c61046" name="Form"/>
+				<form id="f1751715-9762-11ea-ad00-000c29c61046" name="t_s_topic_color_form">
+					<fieldsets>
+						<fieldset title="Details" description="">
+							<controls>
+								<control id="f837d1a3-9762-11ea-ad00-000c29c61046" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_topic_color_topic"/>
+								</control>
+								<control id="f9e49f65-9762-11ea-ad00-000c29c61046" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_topic_color_color"/>
+								</control>
+							</controls>
+						</fieldset>
+					</fieldsets>
+				</form>
+			</forms>
+		</entity>
+	</expressentities>
+	<expressentries>
+		<entry id="a1bcec002d77" label="" entity="tstopiccolor" display-order="1">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/HR Management]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#1d96b4]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="4644436ac864" label="" entity="tstopiccolor" display-order="2">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Publication of pictures on Internet]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#a8d025]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="28c1fc5ed957" label="" entity="tstopiccolor" display-order="3">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Transparency]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#be8ecd]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="890ec52a4b00" label="" entity="tstopiccolor" display-order="4">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Geolocation]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#786a21]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="ebab25b6c051" label="" entity="tstopiccolor" display-order="5">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Use of video Surveillance]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#e65c21]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="f545c5db3896" label="" entity="tstopiccolor" display-order="6">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Professional emails]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#ffaed5]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1722f0b25ef5" label="" entity="tstopiccolor" display-order="7">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Biometrics]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#b41d2f]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="9dc2852f78e7" label="" entity="tstopiccolor" display-order="8">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Data Access]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#ecc128]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1f64b316b05b" label="" entity="tstopiccolor" display-order="9">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Personal File]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#7673d9]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1c29e1ed7226" label="" entity="tstopiccolor" display-order="10">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Surveillance (extensive)]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#6b1f6b]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="9a45fde789f0" label="" entity="tstopiccolor" display-order="11">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/School Environment]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#1f5e1e]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="f343808c7ed1" label="" entity="tstopiccolor" display-order="12">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/GDPR Application]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#4d484d]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="93873a104ec4" label="" entity="tstopiccolor" display-order="13">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Connected Items]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#1d0d59]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+	</expressentries>
+	<pagetypes>
+		<pagetype name="Scenario" handle="scenario_page_type" package="think_story" launch-in-composer="1" is-frequently-added="1">
+			<pagetemplates type="custom" default="page_scenario">
+				<pagetemplate handle="page_scenario"/>
+			</pagetemplates>
+			<target handle="all" package="" form-factor=""/>
+			<composer>
+				<formlayout>
+					<set name="Details" description="Ce set contient les détails de votre scénario.">
+						<control custom-template="" required="1" custom-label="" description="" type="core_page_property" handle="name"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="url_slug"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="page_template"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="publish_target"/>
+					</set>
+					<set name="Scenario Form Set Content" description="Ce set contient le contenu de votre scénario.">
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_introduction"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_declencheur"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_peripetie"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_resolution"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_conclusion"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_recommendations"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_principes_de_base"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_ressources"/>
+					</set>
+					<set name="Scenario Form Set Details" description="Ce set contient les détails spécifique à ThinkStory de votre scénario.">
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_number_views"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_timbre"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_topic_theme"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_topic_metier"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_topic_type_donne"/>
+					</set>
+				</formlayout>
+				<output>
+					<pagetemplate handle="page_scenario">
+						<page name="" path="" public-date="2020-05-23 15:51:46" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="" package="" root="true">
+							<area name="Recommendations">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_top_bar" mc-block-id="cbde54cb">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_recommendations]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[Recommendations]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Principes de base">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_top_bar" mc-block-id="6547e0c2">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_principes_de_base]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[Principles de base]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Ressources">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_top_bar" mc-block-id="d7c2277e">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_ressources]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[Ressources]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Introduction">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="537c085c">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_introduction]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[Introduction]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Declencheur">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="26fc46a8">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_declencheur]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[Déclencheur]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Peripetie">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="d9061a13">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_peripetie]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[Péripétie]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Resolution">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="01274722">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_resolution]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[Résolution]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Conclusion">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="2942cb02">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_conclusion]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[Conclusion]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Timbre">
+								<blocks>
+									<block type="page_attribute_display" name="" mc-block-id="6b2ef34f">
+										<style>
+											<backgroundColor/>
+											<backgroundRepeat>no-repeat</backgroundRepeat>
+											<backgroundSize>auto</backgroundSize>
+											<backgroundPosition>0% 0%</backgroundPosition>
+											<borderWidth/>
+											<borderColor/>
+											<borderStyle/>
+											<borderRadius/>
+											<baseFontSize/>
+											<alignment>center</alignment>
+											<textColor/>
+											<linkColor/>
+											<paddingTop/>
+											<paddingBottom/>
+											<paddingLeft/>
+											<paddingRight/>
+											<marginTop/>
+											<marginBottom/>
+											<marginLeft/>
+											<marginRight/>
+											<rotate/>
+											<boxShadowHorizontal/>
+											<boxShadowVertical/>
+											<boxShadowBlur/>
+											<boxShadowSpread/>
+											<boxShadowColor/>
+											<customClass/>
+											<customID/>
+											<customElementAttribute/>
+											<hideOnExtraSmallDevice/>
+											<hideOnSmallDevice/>
+											<hideOnMediumDevice/>
+											<hideOnLargeDevice/>
+										</style>
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_timbre]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Theme Print">
+								<blocks>
+									<block type="t_s_page_theme_display" name="" mc-block-id="3fca6853">
+										<data table="btTSPageThemeDisplay">
+											<record>
+												<topic>
+													<![CDATA[ts_pattr_topic_theme]]>
+												</topic>
+												<expressColors>
+													<![CDATA[dfa3cff9-9122-11ea-b285-000c29c61046]]>
+												</expressColors>
+												<expressColorsTopicsAttribute>
+													<![CDATA[ts_topic_color_topic]]>
+												</expressColorsTopicsAttribute>
+												<expressColorsColorsAttribute>
+													<![CDATA[ts_topic_color_color]]>
+												</expressColorsColorsAttribute>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Nav Next and Back">
+								<blocks>
+									<block type="next_previous" name="" custom-template="think_story_np_template" mc-block-id="2978f879">
+										<data table="btNextPrevious">
+											<record>
+												<nextLabel>
+													<![CDATA[NEXT]]>
+												</nextLabel>
+												<previousLabel>
+													<![CDATA[PREVIOUS]]>
+												</previousLabel>
+												<parentLabel>
+													<![CDATA[Up]]>
+												</parentLabel>
+												<loopSequence>
+													<![CDATA[1]]>
+												</loopSequence>
+												<orderBy>
+													<![CDATA[display_asc]]>
+												</orderBy>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Back Button">
+								<blocks>
+									<block type="t_s_back_button" name="" mc-block-id="1a523646">
+										<data table="btTSBackButton">
+											<record>
+												<bLabel>
+													<![CDATA[Back to the results]]>
+												</bLabel>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Print to PDF">
+								<blocks>
+									<block type="t_s_print_page_to_pdf" name="" mc-block-id="a0e824ce">
+										<data table="btTSPrintPageToPdf">
+											<record>
+												<attributesToPrint>
+													<![CDATA[N;]]>
+												</attributesToPrint>
+												<attributeTimbre>
+													<![CDATA[ts_pattr_timbre]]>
+												</attributeTimbre>
+												<attributesTopics>
+													<![CDATA[a:3:{i:0;s:20:"ts_pattr_topic_theme";i:1;s:21:"ts_pattr_topic_metier";i:2;s:25:"ts_pattr_topic_type_donne";}]]>
+												</attributesTopics>
+												<attributesContent>
+													<![CDATA[a:8:{i:0;s:21:"ts_pattr_introduction";i:1;s:20:"ts_pattr_declencheur";i:2;s:18:"ts_pattr_peripetie";i:3;s:19:"ts_pattr_resolution";i:4;s:19:"ts_pattr_conclusion";i:5;s:24:"ts_pattr_recommendations";i:6;s:26:"ts_pattr_principes_de_base";i:7;s:19:"ts_pattr_ressources";}]]>
+												</attributesContent>
+												<attributesFooterURL>
+													<![CDATA[thinkdata.ch]]>
+												</attributesFooterURL>
+												<attributesHeaderIcon>
+													<![CDATA[3]]>
+												</attributesHeaderIcon>
+												<label>
+													<![CDATA[PDF Downloadem]]>
+												</label>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Titre">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_title" mc-block-id="a55631a6">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[rpv_pageName]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Topic Filter">
+								<blocks>
+									<block type="t_s_page_list2" name="" mc-block-id="753fb4c6">
+										<data table="btTSPageList2">
+											<record>
+												<pageListTitle>
+													<![CDATA[]]>
+												</pageListTitle>
+												<orderBy>
+													<![CDATA[display_most_recent]]>
+												</orderBy>
+												<sortType>
+													<![CDATA[1]]>
+												</sortType>
+												<cParentID>{ccm:export:page:/fr/scenarios}</cParentID>
+												<ptID>{ccm:export:pagetype:scenario_page_type}</ptID>
+												<defaultColor>
+													<![CDATA[rgb(130, 130, 130)]]>
+												</defaultColor>
+												<viewCountAttribute>
+													<![CDATA[ts_pattr_number_views]]>
+												</viewCountAttribute>
+												<topics>
+													<![CDATA[a:3:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"6";}]]>
+												</topics>
+												<pageTopicColors>
+													<![CDATA[ts_pattr_topic_theme]]>
+												</pageTopicColors>
+												<expressColors>
+													<![CDATA[dfa3cff9-9122-11ea-b285-000c29c61046]]>
+												</expressColors>
+												<expressColorsTopicsAttribute>
+													<![CDATA[ts_topic_color_color]]>
+												</expressColorsTopicsAttribute>
+												<expressColorsColorsAttribute>
+													<![CDATA[ts_topic_color_topic]]>
+												</expressColorsColorsAttribute>
+												<bPostToAnotherPage>
+													<![CDATA[1]]>
+												</bPostToAnotherPage>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Filter Result">
+								<blocks>
+									<block type="t_s_page_list_result" name="" mc-block-id="35d611e1">
+										<data table="btTSPageListResult">
+											<record/>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Title">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_title" mc-block-id="b593ef1d">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[rpv_pageName]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="IDPRC Content">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="53d30aab">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_introduction]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="953f9a6f">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_declencheur]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="98040f95">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_peripetie]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="d0107bc1">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_resolution]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="1b6ca5bb">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle>
+													<![CDATA[ts_pattr_conclusion]]>
+												</attributeHandle>
+												<attributeTitleText>
+													<![CDATA[]]>
+												</attributeTitleText>
+												<displayTag>
+													<![CDATA[]]>
+												</displayTag>
+												<dateFormat>
+													<![CDATA[n/j/y, g:i A]]>
+												</dateFormat>
+												<thumbnailHeight>
+													<![CDATA[250]]>
+												</thumbnailHeight>
+												<thumbnailWidth>
+													<![CDATA[250]]>
+												</thumbnailWidth>
+												<delimiter>
+													<![CDATA[]]>
+												</delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+						</page>
+					</pagetemplate>
+				</output>
+			</composer>
+		</pagetype>
+	</pagetypes>
+</concrete5-cif>
