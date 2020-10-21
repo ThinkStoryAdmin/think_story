@@ -1,8 +1,10 @@
 <?php
 namespace Concrete\Package\ThinkStory\BlockAttributeTranslator;
 //Gettext to load the files: https://packagist.org/packages/gettext/gettext
+use Gettext\Translations;
 use Gettext\Loader\PoLoader;
-use Gettext\Generator\MoGenerator;
+use Gettext\Generator\PoGenerator;
+
 use Concrete\Core\Localization\Localization;
 
 //THIS WON'T WORK, as the value itself will not be shown unless we use a custom View.php!
@@ -21,23 +23,19 @@ class TSBlockAttributeTranslator {
         /*
             https://www.concrete5.org/community/forums/internationalization/8.4.2-how-to-get-language-of-default-locale/
             https://documentation.concrete5.org/api/8.5.2/Concrete/Core/Localization/Locale/Service.html
-            $locale = LocaleService::getDefaultLocale()->getLocaleID();
+            $locale = Concrete\Core\Localization\Locale\Service::getDefaultLocale()->getLocaleID();
         */
 
-        
-
-        //Load the files...
+        //Load the files & add the place to make a translation
         $translations = scandir(dirname(__FILE__, 6) . '/application/languages/site/');
-
-        $toUpdate = [];
-
+        $loader = new PoLoader();
+        $generator = new PoGenerator();
         foreach($translations as $translation){
             $extension = pathinfo($file, PATHINFO_EXTENSION);
 		    if ($extension == 'po'){
-                array_push($toUpdate, $translation);
-
-                //$loader = new PoLoader();
-                //$translations = $loader->loadFile('locales/gl.po');
+                $tFile = $loader->loadFile($translation);               //Load the file
+                $tFile->add(Translation::create($attributeValue));      //Add the $attributeValue    //Translation::create('comments', 'One comment', '%s comments');
+                $generator->generateFile($tFile, $translation);         //Save the file
             }
         }
         
