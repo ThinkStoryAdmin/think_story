@@ -1,6 +1,5 @@
 {
     "require": {
-        "mpdf/mpdf": "^8.0",
-        "gettext/gettext": "^5.5"
+        "mpdf/mpdf": "^8.0"
     }
 }
