@@ -27,7 +27,7 @@ use Concrete\Core\Tree\Tree;
 use Concrete\Core\Tree\Type\Topic;
 //use Concrete\Package\TSTest\TSPageList\TSPageList;
 use Concrete\Package\ThinkStory\Page\TSPageList;
-use Concrete\Package\ThinkStory\AttributeValidator\TSAttributeValidator;
+use ThinkStory\AttributeValidator\TSAttributeValidator;
 
 //For Express List stuff
 use Concrete\Core\Support\Facade\Facade;

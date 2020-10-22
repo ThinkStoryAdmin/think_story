@@ -142,8 +142,8 @@ class Controller extends BlockController
         //SET AUTO TOP MARGIN DEFAULTS TO FALSE
         //MEANING NO AUTO MARGIN IS APPLIED AFTER THE HEADER
         //NEED TO DEFINE stretch(min) OR pad (max)
-        //$mpdf = new Mpdf(['format' => 'A4', 'setAutoTopMargin' => 'stretch', 'setAutoBottomMargin' => 'pad', 'tempDir' => __DIR__ . '/cache']);
-        $mpdf = new Mpdf(['format' => 'A4', 'setAutoTopMargin' => 'stretch', 'setAutoBottomMargin' => 'pad']);
+        $mpdf = new Mpdf(['format' => 'A4', 'setAutoTopMargin' => 'stretch', 'setAutoBottomMargin' => 'pad', 'tempDir' => __DIR__ . '/cache']);
+        //$mpdf = new Mpdf(['format' => 'A4', 'setAutoTopMargin' => 'stretch', 'setAutoBottomMargin' => 'pad']);
         $documentName = strval($c->getCollectionName());
         $mpdf->setTitle($documentName);
         $mpdf->showImageErrors = true;
