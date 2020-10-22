@@ -16,8 +16,8 @@ use PageType;
 use Concrete\Core\Attribute\Key\CollectionKey;
 use Concrete\Core\Tree\Node\Type\Topic;
 use Concrete\Package\TSTest\TSPageList\TSPageList;
-use Concrete\Package\ThinkStory\AttributeValidator\TSAttributeValidator;
-use Concrete\Package\ThinkStory\BlockAttributeTranslator\TSBlockAttributeTranslator AS BAT;
+use ThinkStory\AttributeValidator\TSAttributeValidator;
+use ThinkStory\BlockAttributeTranslator\TSBlockAttributeTranslator AS BAT;
 
 class Controller extends BlockController
 {
@@ -114,6 +114,7 @@ class Controller extends BlockController
         $pages = $list->getResults();
         $this->set('pages', $pages);
         $this->set('list', $list);
-        $this->set('BAT', BAT::checkDir());
+        $this->set('TRANS', BAT::findTranslation('PDF Download','fr'));
+        BAT::addEntryToTranslate('CRICKETY');
     }
 }

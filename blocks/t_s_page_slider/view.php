@@ -16,6 +16,11 @@
     } else {
         echo $BAT;
     }
+    if(!isset($TRANS)){
+        echo ':(';
+    } else {
+        echo $TRANS;
+    }
     ?>
     <div class='cts-theme-pslider'>
         <div class="ts-image-slider-container ts-image-slider-container-slider">

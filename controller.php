@@ -32,7 +32,9 @@ use ThinkStory\REST\Timbre;
 
 
 defined('C5_EXECUTE') or die('Access Denied.');
-require_once __DIR__ . '/vendor/autoload.php';
+//These belong in on_start()
+//require_once __DIR__ . '/vendor/autoload.php';
+//require_once dirname(__FILE__, 3) . '/concrete/vendor/autoload.php';
 /**
  * Look at C5 Documentation : https://documentation.concrete5.org/developers/packages/overview
  * And : https://github.com/cryophallion/C5-BoilerplatePackageController/blob/master/packageName/controller.php
@@ -77,20 +79,25 @@ class Controller extends Package
     public function on_start(){
         //Load necessary Composer packages
         require $this->getPackagePath() . '/vendor/autoload.php';
+        //require dirname(__FILE__, 3) . '/concrete/vendor/autoload.php';;
+        //$this->setupAutoloader();
         
         //Router for API Extensions, look for src/ThinkStory/REST/RouteList.php in this package...
         /*
         $router = $this->app->make('router');
         $list = new RouteList();
-        $list->loadRoutes($router);*/
-    }
-
-    /*
-    public function registerRoutes(){
+        $list->loadRoutes($router);
         //Route::register('/stuff/addPages', '\Concrete\Package\ThinkStory\Src\CommunityStore\Cart\CartTotal::getCartSummary');
         Route::register('/stuff/addPages', '\Concrete\Package\ThinkStory\Src\ThinkStory\REST\AddPages::getCartSummary');
-        
-    }*/
+        */
+    }
+
+    private function setupAutoloader()
+    {
+        if (file_exists($this->getPackagePath() . '/vendor')) {
+            require_once $this->getPackagePath() . '/vendor/autoload.php';
+        }
+    }
 
     public function install()
     {
@@ -192,8 +199,6 @@ class Controller extends Package
         parent::upgrade();
         $pkg = Package::getByHandle('think_story');
         //Nothing to update
-        $this->addBlockType('t_s_page_attribute_display', $pkg);
-        $this->addBlockType('t_s_next_previous', $pkg);
     }
 
     public function uninstall()

@@ -1,5 +1,15 @@
 {
+    "name" : "hubblecommand/think_story",
+    "type" : "concrete5-package",
+    "description": "Package to quickly make a story-telling site",
     "require": {
+        "concrete5/core": ">=8.5.0",
+        "gettext/gettext":"~3.5.9",
         "mpdf/mpdf": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ThinkStory\\": "src/"
+        }
     }
 }
