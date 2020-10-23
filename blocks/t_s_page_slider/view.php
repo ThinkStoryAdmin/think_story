@@ -4,24 +4,6 @@
     var speed = <?= $speed ?>;
 </script>
 <div>
-    <!--<img src='<?php
-        $urlHelper = Core::make('helper/concrete/urls');
-        $blockType = BlockType::getByHandle('t_s_page_slider');
-        $localPath = $urlHelper->getBlockTypeAssetsURL($blockType);
-        echo $localPath . '/coma_1.gif';
-    ?>'>-->
-    <?php
-    if(is_array($BAT)){
-        print_r($BAT);
-    } else {
-        echo $BAT;
-    }
-    if(!isset($TRANS)){
-        echo ':(';
-    } else {
-        echo $TRANS;
-    }
-    ?>
     <div class='cts-theme-pslider'>
         <div class="ts-image-slider-container ts-image-slider-container-slider">
             <div class="ts-image-slider-row">

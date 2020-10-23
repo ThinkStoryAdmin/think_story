@@ -114,7 +114,5 @@ class Controller extends BlockController
         $pages = $list->getResults();
         $this->set('pages', $pages);
         $this->set('list', $list);
-        $this->set('TRANS', BAT::findTranslation('PDF Download','fr'));
-        BAT::addEntryToTranslate('CRICKETY');
     }
 }
