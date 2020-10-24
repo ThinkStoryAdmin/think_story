@@ -20,44 +20,27 @@ use \Concrete\Core\Page\Single as SinglePage;
 use Concrete\Core\Attribute\TypeFactory;
 use Concrete\Core\Application\Application;
 
-//Page Type
 use PageType;
 use PageTemplate;
 use \Concrete\Core\Page\Type\PublishTarget\Type\Type as PublishTargetType;
-//
 
 //Import all custom code namespaces
 use ThinkStory\REST\RouteList;
 use ThinkStory\REST\Timbre;
 
-
 defined('C5_EXECUTE') or die('Access Denied.');
-//These belong in on_start()
-//require_once __DIR__ . '/vendor/autoload.php';
-//require_once dirname(__FILE__, 3) . '/concrete/vendor/autoload.php';
-/**
- * Look at C5 Documentation : https://documentation.concrete5.org/developers/packages/overview
- * And : https://github.com/cryophallion/C5-BoilerplatePackageController/blob/master/packageName/controller.php
- */
+//require_once __DIR__ . '/vendor/autoload.php'; belongs in on_start()
+//Look at C5 Documentation : https://documentation.concrete5.org/developers/packages/overview
+//And : https://github.com/cryophallion/C5-BoilerplatePackageController/blob/master/packageName/controller.php
 
 class Controller extends Package
 {
     protected $pkgHandle = 'think_story';
-    protected $appVersionRequired = '8.0';
-
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //appVersionRequired SHOULD BE ABOVE 8
-    //Otherwise the attribute autoload stuff won't work!!!
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
+    protected $appVersionRequired = '8.0'; //SHOULD BE ABOVE 8, otherwise the attribute autoload stuff won't work!!!
     protected $pkgVersion = '1.0.3.2';
+    //protected $pkgAllowsFullContentSwap = true;   //CONSISTENTLY causes errors, don't bother using
 
-    //using full content swap CONSISTENTLY causes errors
-    //don't bother using
-    //protected $pkgAllowsFullContentSwap = true;
-
-    //Importing Custom Code namespaces with PSR-4 autoloader
-    //For including REST API routes and Timbre class for Timbre attribute type
+    //Importing Custom Code namespaces with PSR-4 autoloader (to include REST routes & Timbre class for Timbre attribute type)
     protected $pkgAutoloaderRegistries = [
         'src/ThinkStory' => 'ThinkStory\\'
     ];
@@ -73,21 +56,16 @@ class Controller extends Package
 
     public function getPackageName()
     {
-        return t('ThinkStory');
+        return t('Think Story');
     }
 
     public function on_start(){
-        //Load necessary Composer packages
-        require $this->getPackagePath() . '/vendor/autoload.php';
-        //require dirname(__FILE__, 3) . '/concrete/vendor/autoload.php';;
-        //$this->setupAutoloader();
+        $this->setupAutoloader();   //Load necessary Composer packages
         
-        //Router for API Extensions, look for src/ThinkStory/REST/RouteList.php in this package...
-        /*
+        /*  Router for API Extensions, look for src/ThinkStory/REST/RouteList.php in this package...
         $router = $this->app->make('router');
         $list = new RouteList();
         $list->loadRoutes($router);
-        //Route::register('/stuff/addPages', '\Concrete\Package\ThinkStory\Src\CommunityStore\Cart\CartTotal::getCartSummary');
         Route::register('/stuff/addPages', '\Concrete\Package\ThinkStory\Src\ThinkStory\REST\AddPages::getCartSummary');
         */
     }
@@ -105,10 +83,11 @@ class Controller extends Package
 
         $r = \Request::getInstance();
 
-        //Install Dashboard Single Page
+        //Install Dashboard Single Page TODO put in own folder (ie /dashboard/system/think_story/)
         SinglePage::add('/dashboard/system/page_report', $pkg);
         SinglePage::add('/dashboard/system/data_importer', $pkg);
         SinglePage::add('/dashboard/system/add_pages_multilingual', $pkg);
+        SinglePage::add('/dashboard/system/export_pages', $pkg);
 
         //Install Attribute Types
         $factory = $this->app->make('Concrete\Core\Attribute\TypeFactory');
@@ -131,21 +110,18 @@ class Controller extends Package
             $categoryTimbre->associateAttributeKeyType($typeTimbre);
         }
 
-        //Add Block Types & Set
+        //Add Block Set & Types
         if (!BlockTypeSet::getByHandle('think_story')) {
             BlockTypeSet::add('think_story', 'Think Story', $pkg);
         }
-        //$this->addBlockType('t_s_hello_world', $pkg);
+        //Ignored blocks : t_s_hello_world, t_s_columns, t_s_page_attribute_display, t_s_next_previous
         $this->addBlockType('t_s_topic_list', $pkg);
         $this->addBlockType('t_s_page_list2', $pkg);
-        //$this->addBlockType('t_s_columns', $pkg);
         $this->addBlockType('t_s_print_page_to_pdf', $pkg);
         $this->addBlockType('t_s_page_slider', $pkg);
         $this->addBlockType('t_s_back_button', $pkg);
         $this->addBlockType('t_s_page_theme_display', $pkg);
         $this->addBlockType('t_s_page_list_result', $pkg);
-        //$this->addBlockType('t_s_page_attribute_display', $pkg);
-        //$this->addBlockType('t_s_next_previous', $pkg);
 
         if ($r->request->get('installTopics')) {
             $ci = new ContentImporter();
@@ -154,43 +130,16 @@ class Controller extends Package
 
         //Add theme
         PageTheme::add('t_s_theme_elemental', $pkg);
-
-        //TODO : Remove the following elements
-        //All data transfer will be done through sql dumps, 
-        // as the migration packages is proving to be too finecky and unrealiable
+        
         //Install page type & page type controller
-        /**
-         * Installing the page type controller cannot be directly done
+        /**Installing the page type controller cannot be directly done
          * 
-         * The page type itself must be installed through the package,
-         * and once the page type is linked to the package, then Concrete5
-         * will look into the package directory for the controller
-         * 
-         * The page type date can be exported with the Migration Tool / Addon
-         * Dashboard->Migration Tool->Export Content
-         *      -Choose the things that you want to export
-         *      -Export Batch
-         * The resulting XML will be saved to the downloads folder
+         * Page type installed here, and once the page type is linked to the package, 
+         * then Concrete5 will look into the package directory for the controller
          */
-        //Install page type
+        //Install sample content
         if ($r->request->get('installSampleContent')) {
-            //$ci = new ContentImporter();
-            //$ci->importContentFile($this->getPackagePath() . '/install/content_pagetypes.xml');
-            /*
-            $this->app->make('cache/request')->disable();
-            $this->installContentFile('/install/export(7).xml');
-            //$this->installContentFile('/install/export_pages.xml');
-            $this->installContentFile('/install/ts_mon _scenario_form.xml');*/
-            
-            /*$ci = new ContentImporter();
-            $ci->importContentFile($this->getPackagePath() . '/install/export(12).xml');
-            $ci->importContentFile($this->getPackagePath() . '/install/ts_mon _scenario_form.xml');*/
             $this->installContentFile('/install/export.xml');
-        }
-
-        //Install pages
-        if ($r->request->get('installPagesContent')) {
-            $this->installContentFile('/install/export_pages.xml');
         }
     }
 
@@ -198,7 +147,8 @@ class Controller extends Package
     {
         parent::upgrade();
         $pkg = Package::getByHandle('think_story');
-        //Nothing to update
+        
+        SinglePage::add('/dashboard/system/export_pages', $pkg);
     }
 
     public function uninstall()
@@ -207,33 +157,23 @@ class Controller extends Package
 
         $r = \Request::getInstance();
         if ($r->request->get('removeTables')) {
-            /*$this->dropTable('btTSPageList2');
-            $this->dropTable('btTSColumns');
-            $this->dropTable('btTSPrintPageToPdf');
-            $this->dropTable('btTSPageSlider');
-            //$this->dropTable('');
-            
-            $db = \Database::connection();
+            /*$db = \Database::connection();
             $db->query('drop table btTSTopicList');
             $db->query('drop table btTSPageList2');
-            $db->query('drop table btTSColumns');
-            $db->query('drop table btTSPrintPageToPdf');
-            $db->query('drop table btTSPageSlider');
-
-            $db->query('drop table btTSPageSliderloq');*/
+            $db->query('drop table btTSPrintPageToPdf');*/
         }
 
         if ($r->request->get('removeTopics')) {
             if (is_object(Topic:: getByName('Themes'))){
-                $deleteTopic = Topic:: getByName('Themes');
+                $deleteTopic = Topic::getByName('Themes');
                 $deleteTopic->delete();
             }
             if (is_object(Topic:: getByName('Metiers'))){
-                $deleteTopic = Topic:: getByName('Metiers');
+                $deleteTopic = Topic::getByName('Metiers');
                 $deleteTopic->delete();
             }
             if (is_object(Topic:: getByName('Donnees'))){
-                $deleteTopic = Topic:: getByName('Donnees');
+                $deleteTopic = Topic::getByName('Donnees');
                 $deleteTopic->delete();
             }
         }
@@ -241,15 +181,6 @@ class Controller extends Package
         if (BlockTypeSet::getByHandle('think_story')) {
             $set = BlockTypeSet::getByHandle('think_story');
             $set->delete();
-        }
-    }
-
-    protected function dropTable($table){
-        try{
-            $db = \Database::connection();
-            $db->query('drop table '.$table);
-        } catch (Exception $e){
-
         }
     }
 
