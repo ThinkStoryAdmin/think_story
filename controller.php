@@ -151,6 +151,13 @@ class Controller extends Package
         SinglePage::add('/dashboard/system/export_pages', $pkg);
     }
 
+    public function upgradeToNewSPPaths(){
+        //First, delete old single pages: https://www.concrete5.org/community/forums/5-7-discussion/remove-single-page-via-package-controller
+        \Page::getByPath('/dashboard/system/page_report', 'APPROVED')->delete();
+        \Page::getByPath('/dashboard/system/data_importer', 'APPROVED')->delete();
+        \Page::getByPath('/dashboard/system/add_pages_multilingual', 'APPROVED')->delete();
+    }
+
     public function uninstall()
     {
         parent::uninstall();
