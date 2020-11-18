@@ -28,6 +28,7 @@ $c = Page::getCurrentPage();
     }
     ?>
 </div>
+<!-- TODO remove
 <div class="form-group">
     <label class="control-label"><?=t('Sort')?></label>
     <select name="orderBy" class="form-control">
@@ -41,7 +42,7 @@ $c = Page::getCurrentPage();
             <?= t('Random') ?>
         </option>
     </select>
-</div>
+</div>-->
 <div class="form-group">
     <label class="control-label"><?=t('Sort Type')?></label>
     <select name="sortType" class="form-control">

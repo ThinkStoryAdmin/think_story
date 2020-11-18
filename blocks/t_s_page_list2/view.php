@@ -66,7 +66,7 @@
                             }
                         }
                     ?>
-                    <i class="fa fa-refresh cts-theme-icons" aria-hidden="true" style="padding-right:5px;"></i><a id="tsreload" class="cts-theme-tertiary-bar"><?= t("Reset") ?></a>
+                    <i class="fa fa-refresh cts-theme-icons" aria-hidden="true" style="padding-right:5px;cursor:pointer;"></i><a id="tsreload" style="cursor:pointer;" class="cts-theme-tertiary-bar"><?= t("Reset") ?></a>
             </div>
         </div>
     </div>

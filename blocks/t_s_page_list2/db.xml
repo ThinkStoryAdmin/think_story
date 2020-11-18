@@ -9,7 +9,7 @@
             <key/>
         </field>
         <field name="pageListTitle" type="string" size="255"/>
-        <field name="orderBy" type="string" size="32" comment="Was enum, display_asc','display_desc','chrono_asc','chrono_desc','alpha_asc','alpha_desc','score_asc','score_desc'"/>
+        <!-- TODO remove this field --><field name="orderBy" type="string" size="32" comment="Was enum, display_asc','display_desc','chrono_asc','chrono_desc','alpha_asc','alpha_desc','score_asc','score_desc'"/>
         <field name="sortType" type="boolean" comment="Holds the filter by type; 0 for Sort and 1 for Filter"/>
         <field name="bPostToAnotherPage" type="boolean">
         </field>
