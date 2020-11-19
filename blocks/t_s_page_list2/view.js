@@ -50,8 +50,8 @@ function fillPageGrid(response, paramsToAddToURL){
     console.log(response.result)
     console.log("Status")
     console.log(response.status)
-    console.log("XHR")
-    console.log(response.xhr)
+    //console.log("XHR")
+    //console.log(response.xhr)
     console.log("Params to add to URL")
     console.log(paramsToAddToURL)
 
@@ -133,7 +133,7 @@ function setSelects(values, callingBlock){
 }
 
 
-
+//TODO clean functions below
 $(function() {
     console.log( "View.js ready!" );
 

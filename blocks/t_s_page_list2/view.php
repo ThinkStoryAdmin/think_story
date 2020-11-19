@@ -1,11 +1,13 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied.")) ?>
 <script>
     let urlForThisPage = '<?php echo $thisUrl?>'
-    let urlFilterAction = '<?php echo $this->action('filter') ?>'
+    let urlFilterAction = '<?php echo $this->action('filter2') ?>'
     let sendToAnotherPage = '<?= $bPostToAnotherPage?>'
     let sendToAnotherPageID = '<?= $cParentID?>'
     let sendToAnotherPageIDURL = '<?= $cParentIDURL?>'
     let testHelpFixFilt = '<?= $testHelpFixFilt?>'
+    let ENT = '<?= $entityabc?>'
+    console.log("ENT : " + ENT)
 	console.log("testHelpFixFilt : " + testHelpFixFilt)
     console.log("URL filter action: " + urlFilterAction)
     console.log("URL for this page: " + urlForThisPage)
