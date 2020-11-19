@@ -6,7 +6,8 @@
 <main>
     <div style="padding-bottom:15px;">
         <?php
-        $a = new GlobalArea('Topic Filter');
+        //TODO use GlobalArea
+        $a = new Area('Topic Filter');
         $a->display($c);
         ?>
     </div>
