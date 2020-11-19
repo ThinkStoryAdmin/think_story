@@ -7,7 +7,7 @@ $this->inc('elements/header.php');
 <main>
     <div>
     <?php
-    $a = new GlobalArea('Main');
+    $a = new Area('Main');
     $a->display($c);
     ?>
     </div>
