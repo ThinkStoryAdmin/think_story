@@ -1,16 +1,13 @@
 //Some of the variables / functions are declared in view.php as they reference PHP
 //Function that gets pages through AJAX (method in controller), and calls method to populate grid
 function getPages(formdata){
-    console.log("Going to print the recieved topics...")
-    
     for(var i = 0; i < formdata.topics.length; i++){
         if(formdata.topics[i] == null || formdata.topics[i] == undefined || formdata.topics[i] == 'null'){
-            console.log("null value!")
             formdata.topics[i] = -1
         }
-        console.log("Value: " + i)
+        /*console.log("Value: " + i)
         console.log(formdata.topics[i])
-        console.log("Type: " + typeof formdata.topics[i])
+        console.log("Type: " + typeof formdata.topics[i])*/
     }
     console.log("Sending topics: ")
     console.log(formdata)
@@ -20,9 +17,9 @@ function getPages(formdata){
         data        : formdata,
         url         : urlFilterAction,
         encode      : true,
-        beforeSend: function(jqXHR, settings){
+        beforeSend: function(jqXHR, settings){  //WHY TF WOULD I COMMENT THIS OUT!!!
             jqXHR.url = settings.url;
-            jqXHR.dataTA = formdata;
+            //jqXHR.dataTA = formdata;
             $("#loader").show();
             $('#tspages').empty();
         },
@@ -33,7 +30,7 @@ function getPages(formdata){
         error:function(jqXHR, exception){
             console.log(exception);
 			console.log(jqXHR.url);
-			console.log(jqXHR.dataTA);
+			//console.log(jqXHR.dataTA);
 			console.log(jqXHR.responseText);
             $("#tspages").empty().append(`
                 <div>
@@ -114,7 +111,7 @@ function setSelects(values, callingBlock){
     let updatedBlocks = []
     for(var y=0; y<values.length;y++){
         if(!(values[y] == -1)){
-            for(var i = 0; i< blocks.length; i++){
+            for(var i = 0; i< blocks.length; i++){  //For all drop-downs, if it has the current searching value, then set it to said value
                 if($("#"+blocks[i].id +" option[value='"+values[y]+"']").length > 0){
                     if(!(updatedBlocks.includes(blocks[i].id))){
                         if(!(values[y] == -1)){
@@ -133,244 +130,70 @@ function setSelects(values, callingBlock){
 }
 
 
-//TODO clean functions below
 $(function() {
     console.log( "View.js ready!" );
 
-    const queryString = window.location.search;
-    console.log(queryString);
-
-    const urlParams = new URLSearchParams(queryString);
+    const urlParams = new URLSearchParams(window.location.search);
     let urlTopics = urlParams.getAll('topics[]');
-    if(!urlTopics === undefined || !urlTopics.length == 0){
-        console.log("Topics defined!")
-        setSelects(urlTopics)
+    if(!urlTopics === undefined || !urlTopics.length == 0){     //Topics defined, request search    //TODO pretty sure this is an &&
+        console.log("Topics defined!");
+        setSelects(urlTopics);
         getPages({topics:urlTopics}).then(function(result,status,xhr){
             var pageresponse = {result,status,xhr}
             fillPageGrid(pageresponse, urlParams.toString())
-        })
-    } else {
-        //No topics defined, base search
-        console.log("No topics defined!")
+        });
+    } else {        //No topics defined, base search
+        console.log("No topics defined!");
         getPages({topics:[]}).then(function(result,status,xhr){
             var pageresponse = {result,status,xhr}
             fillPageGrid(pageresponse, undefined)
-        })
+        });
     }
 
-
+    //On reload button click: Reset drop down & get list of the new resetted values
     $('#tsreload').click(function(){
-        console.log("Clicked reload...")
-        getPages({topics:[-1,-1,-1]}).then(function(result,status,xhr){
-            var pageresponse = {result,status,xhr}
-            fillPageGrid(pageresponse, undefined)
-        })
-        var blocks = []
-        var block = $(this).closest('.topic_select_parent');
-        
-        blocks = block.find(':input')
-        console.log('Num o blocks: ' + blocks.length)
-        console.log(blocks)
+        var blocks = $(this).closest('.topic_select_parent').find(':input')
+        const urlParams = new URLSearchParams();
         for(var i = 0; i < blocks.length; i++){
-            console.log(blocks[i])
-            console.log(blocks[i].id)
-            //$("#"+blocks[i].id).prop('selectedIndex', 0);
             $("#"+blocks[i].id).val("-1");
-        }
-
-        //rebuild URL as well, otherwise on page reload will keep the old one, and on subsequent searches as well (unless they are overwritten)
-        var selectedCountry = $(this).children("option:selected").val();
-        console.log('Event firing selected: ' + selectedCountry)
-
-        var block = $(this).closest('.topic_select_parent');
-        
-        var blocks = block.find(':input')
-        console.log('Num o blocks: ' + blocks.length)
-        let values = []
-        for(var i=0; i<blocks.length; i++){
             var val = $('#'+blocks[i].id).val()
-            values.push(val)
-            console.log(val)
-        }
-
-        console.log("URL for this page: ")
-        console.log(urlForThisPage)
-        var filteredURL = urlForThisPage.replace(/(^\w+:|^)\/\//, '');
-        filteredURL = filteredURL.substring(filteredURL.indexOf("/"), filteredURL.length)
-        filteredURL = filteredURL.split("?")[0]
-
-        filteredURL += "?"
-
-        let topicsListToRedirect = []
-        for(var q=0; q<values.length; q++){
-            let localVal = -1
-            if((!(typeof values[q] == 'null')) && (!(typeof values[q] == 'undefined')) && (!(values[q] == null))){
-                localVal = values[q]
-                topicsListToRedirect.push(localVal)
-                filteredURL += "topics[]=" + localVal +"&"
+            if((!(typeof val == 'null')) && (!(typeof val == 'undefined')) && (!(val == null))){
+                urlParams.append('topics[]', val)
             }
         }
-        filteredURL = filteredURL.substring(0, filteredURL.length - 1)
-        console.log(filteredURL)
-				
-        //window.history.pushState("object or string", "Page Title", filteredURL);
-		//Need to get parameters that were set
-        const urlParams = new URLSearchParams(/*queryString*/);
-        topicsListToRedirect.forEach(element => {
-            urlParams.append('topics[]', element)
-        })
 
         if(sendToAnotherPage == 1){
             window.location.href = sendToAnotherPageIDURL + '?' + urlParams.toString()
-		  	//window.location.href = filteredURL
         } else {
-            window.history.pushState("object or string", "Page Title", filteredURL);
-            
-            /*getPages(formData)
-            .then(function(result,status,xhr){
-                pageresponse = {result,status,xhr}
-                fillPageGrid(pageresponse, urlParams)
+            getPages({topics:[-1,-1,-1]}).then(function(result,status,xhr){ //If we don't go to a new page, update the current page
+                var pageresponse = {result,status,xhr}
+                fillPageGrid(pageresponse, undefined)
             })
-            
-            return false;*/
+            window.history.pushState("object or string", "Page Title", window.location.href.split('?')[0] + '?' + urlParams.toString());
         }
     })
 
     //If any of the topic selects change, update the URL and request the pages
 	$('.pagelist2[data-action=topic-select2]').change(function() {
-        /*if(sendToAnotherPage){
-            //Need to get parameters that were set
-            const urlParams = new URLSearchParams(queryString);
-            let urlTopics = urlParams.getAll('topics[]');
-
-            //Go to specified target window
-            window.location.href = ''
-        } else {
-            var action = $(this).attr('data-action').replace('--topic--', $(this).val());
-            console.log($(this));
-            console.log("Link: " + window.location.href);
-            console.log("Action: " + action);
-            let parts = action.split('/');
-            console.log(parts)
-
-            var selectedCountry = $(this). children("option:selected"). val();
-            console.log('Event firing selected: ' + selectedCountry)
-
-            var block = $(this).closest('.topic_select_parent');
-            
-            var blocks = block.find(':input')
-            console.log('Num o blocks: ' + blocks.length)
-            let values = []
-            for(var i=0; i<blocks.length; i++){
-                var val = $('#'+blocks[i].id).val()
-                values.push(val)
-                console.log(val)
-            }
-
-            let formData = {
-                topics: values
-            }
-
-            //Update URL
-            console.log("URL for this page: ")
-            console.log(urlForThisPage)
-            var filteredURL = urlForThisPage.replace(/(^\w+:|^)\/\//, '');
-            filteredURL = filteredURL.substring(filteredURL.indexOf("/"), filteredURL.length)
-            filteredURL = filteredURL.split("?")[0]
-
-            filteredURL += "?"
-
-            for(var q=0; q<values.length; q++){
-                let localVal = -1
-                if((!(typeof values[q] == 'null')) && (!(typeof values[q] == 'undefined')) && (!(values[q] == null))){
-                    localVal = values[q]
-                    filteredURL += "topics[]=" + localVal +"&"
-                }
-            }
-
-
-        
-            filteredURL = filteredURL.substring(0, filteredURL.length - 1)
-            console.log(filteredURL)
-            window.history.pushState("object or string", "Page Title", filteredURL);
-            
-            getPages(formData)
-            .then(function(result,status,xhr){
-                pageresponse = {result,status,xhr}
-                fillPageGrid(pageresponse)
-            })
-            
-            return false;
-        }*/
-
-        
-
-        var action = $(this).attr('data-action').replace('--topic--', $(this).val());
-        console.log($(this));
-        console.log("Link: " + window.location.href);
-        console.log("Action: " + action);
-        let parts = action.split('/');
-        console.log(parts)
-
-        var selectedCountry = $(this). children("option:selected"). val();
-        console.log('Event firing selected: ' + selectedCountry)
-
-        var block = $(this).closest('.topic_select_parent');
-        
-        var blocks = block.find(':input')
-        console.log('Num o blocks: ' + blocks.length)
+        var blocks = $(this).closest('.topic_select_parent').find(':input')
+        const urlParams = new URLSearchParams();
         let values = []
-        for(var i=0; i<blocks.length; i++){
+        for(var i = 0; i < blocks.length; i++){
             var val = $('#'+blocks[i].id).val()
             values.push(val)
-            console.log(val)
-        }
-
-        let formData = {
-            topics: values
-        }
-
-        //Update URL
-        console.log("URL for this page: ")
-        console.log(urlForThisPage)
-        var filteredURL = urlForThisPage.replace(/(^\w+:|^)\/\//, '');
-        filteredURL = filteredURL.substring(filteredURL.indexOf("/"), filteredURL.length)
-        filteredURL = filteredURL.split("?")[0]
-
-        filteredURL += "?"
-
-        let topicsListToRedirect = []
-
-        for(var q=0; q<values.length; q++){
-            let localVal = -1
-            if((!(typeof values[q] == 'null')) && (!(typeof values[q] == 'undefined')) && (!(values[q] == null))){
-                localVal = values[q]
-                topicsListToRedirect.push(localVal)
-                filteredURL += "topics[]=" + localVal +"&"
+            if((!(typeof val == 'null')) && (!(typeof val == 'undefined')) && (!(val == null))){
+                urlParams.append('topics[]', val)
             }
         }
-
-        filteredURL = filteredURL.substring(0, filteredURL.length - 1)
-        console.log(filteredURL)
-
-        //Need to get parameters that were set
-        const urlParams = new URLSearchParams(/*queryString*/);
-        topicsListToRedirect.forEach(element => {
-            urlParams.append('topics[]', element)
-        })
 
         if(sendToAnotherPage == 1){
             window.location.href = sendToAnotherPageIDURL + '?' + urlParams.toString()
         } else {
-            window.history.pushState("object or string", "Page Title", filteredURL);
-            
-            getPages(formData)
-            .then(function(result,status,xhr){
+            getPages({topics: values}).then(function(result,status,xhr){ //If we don't go to a new page, update the current page
                 var pageresponse = {result,status,xhr}
-                fillPageGrid(pageresponse, urlParams)
+                fillPageGrid(pageresponse, undefined)
             })
-            
-            return false;
+            window.history.pushState("object or string", "Page Title", window.location.href.split('?')[0] + '?' + urlParams.toString());
         }
     });
 });

@@ -6,7 +6,7 @@
 <main>
     <div style="padding-bottom:15px;">
         <?php
-        //TODO use GlobalArea
+        //TODO use GlobalArea (as this is used in a Page Template, the functionality WILL need to be different based on language (as we can only define func in one page))
         $a = new Area('Topic Filter');
         $a->display($c);
         ?>
