@@ -14,7 +14,6 @@ use Core;
 use PageList;
 use PageType;
 use Concrete\Core\Attribute\Key\CollectionKey;
-//use Concrete\Core\Tree\Node\Type\Topic;
 
 use Express;
 
@@ -49,7 +48,7 @@ class Controller extends BlockController
     protected $btExportPageColumns = ['cParentID'];
     protected $btExportPageTypeColumns = ['ptID'];
     protected $btDefaultSet = 'think_story';
-    //Make it so that Enable Grid COntainer is not an option for the block
+    //Make it so that Enable Grid Container is not an option for the block
     //However TOTALLY fucks the format, doesn't do what I thought
     //protected $btIgnorePageThemeGridFrameworkContainer = true;
     protected $pages;
@@ -57,29 +56,26 @@ class Controller extends BlockController
     protected $rightcolor;
     protected $themecomp;
     protected $categoryColorsMain;
-  	protected $testHelpFixFilt;
 
-    public function getBlockTypeDescription()
-    {
-        return t("Think Story Page List");
-    }
+    public $LOGGER = [];
 
     public function getBlockTypeName()
     {
-        return t("Think Story Page List");
+        return t("Think Story Page List Filter");
     }
 
+    public function getBlockTypeDescription()
+    {
+        return t("Block that filters the TS Page List Result block");
+    }
+    
     public function validate($data)
     {
         $e = Core::make('error');
-        /*
-        if (!$data['field1']) {
-            $e->add(t('You must put something in the field 1 box.'));
-        }*/
         if(!isset($data['expressColors']) && !$data['expressColors']){
             $e->add(t('You must select an Express Object'));
         }
-        if(!$data['ptID']){
+        if(!$data['ptID']){ //TODO need? ! -> remove
             //$e->add(t('You must select a page type'));
             //$data['ptID'] = 0;
         }
@@ -89,7 +85,7 @@ class Controller extends BlockController
     public function save($data){
         $data['topics'] = serialize($data['topics']);
         if(!isset($data['expressColors'])){
-            $data['expressColors'] = 'FUG U';
+            $data['expressColors'] = 'FUG U';   //TODO check if this causes errors
         } else {
             $data['expressColors'] = strval($data['expressColors']);
         }
@@ -115,7 +111,7 @@ class Controller extends BlockController
         $this->requireAsset('core/topics');
         $c = Page::getCurrentPage();
         $this->set('c', $c);
-        $this->set('includeName', true);
+        $this->set('includeName', true);    //CHECK ??
         $this->loadKeys();
     }
 
@@ -148,10 +144,10 @@ class Controller extends BlockController
         }
 
         $this->set('topictrees', $trees);
-	  	$this->set('testHelpFixFilt', $this->testHelpFixFilt);
     }
 
-    public function getTopicLink(\Concrete\Core\Tree\Node\Node $topic = null)
+    //TODO: remove
+    /*public function getTopicLink(\Concrete\Core\Tree\Node\Node $topic = null)
     {
         if ($this->cParentID) {
             $c = \Page::getByID($this->cParentID);
@@ -171,7 +167,7 @@ class Controller extends BlockController
         } else {
             return \URL::page($c);
         }
-    }
+    }*/
 
     public function loadData()
     {
@@ -272,56 +268,31 @@ class Controller extends BlockController
         //Cannot switch over object whose value could be 0, as if it is null will match with 0. Fucking weak-typed languages eh!
         //Regardless, these filter will be written over once the topic filter is applied
         //Except when it is not the sort that just sorts, and doesn't delete elements from the PageList
-        //TODO : Remove this, it doesn't do anything once topic sorts are applied
-        if($this->sortType === 0){
-            switch($this->orderBy){
-                case 'display_most_recent':
-                    $this->pages->sortByPublicDate();
-                    break;
-                case 'display_most_popular':
-                    if(TSAttributeValidator::checkCollectionAttributeHandleExists($this->viewCountAttribute)){
-                        //Need to add 'ak_' to the start
-                        $this->pages->sortBy('ak_'.$this->viewCountAttribute,'DESC');
-                    } else {
-                        $this->pages->sortBy('RAND()');
-                    }
-                    break;
-                case 'display_random':
+        //TODO : Remove this, it doesn't do anything once topic sorts are applied (?) or refactor
+        switch($this->orderBy){
+            case 'display_most_recent':
+                $this->pages->sortByPublicDate();
+                break;
+            case 'display_most_popular':
+                if(TSAttributeValidator::checkCollectionAttributeHandleExists($this->viewCountAttribute)){
+                    //Need to add 'ak_' to the start
+                    $this->pages->sortBy('ak_'.$this->viewCountAttribute,'DESC');
+                } else {
                     $this->pages->sortBy('RAND()');
-                    break;
-                default:
-                    $this->pages->sortBy('RAND()');
-                    break;
-            }
-        } else if ($this->sortType === 1) {
-            switch($this->orderBy){
-                case 'display_most_recent':
-                    $this->pages->filterByPublicDate();
-                    break;
-                case 'display_most_popular':
-                    if(TSAttributeValidator::checkCollectionAttributeHandleExists($this->viewCountAttribute)){
-                        $this->pages->filterBy('ak_'.$this->viewCountAttribute,'DESC');
-                    } else {
-                        $this->pages->filterBy('RAND()');
-                    }
-                    break;
-                case 'display_random':
-                    $this->pages->filterBy('RAND()');
-                    break;
-                default:
-                    $this->pages->filterBy('RAND()');
-                    break;
-            }
-        } else {
-            $this->pages->sortBy('RAND()');
+                }
+                break;
+            case 'display_random':
+                $this->pages->sortBy('RAND()');
+                break;
+            default:
+                $this->pages->sortBy('RAND()');
+                break;
         }
         
         if(ctype_xdigit(str_replace("-", "", $this->expressColors))){
             $entity = Express::getObjectByID($this->expressColors);
-		  	$this->testHelpFixFilt = "ID";
         } else { //Is probably handle
             $entity = Express::getObjectByHandle($this->expressColors);
-		  	$this->testHelpFixFilt = "HANDLE";
         }
         if(!is_null($entity)){
             $listentities = new \Concrete\Core\Express\EntryList($entity);
@@ -332,7 +303,6 @@ class Controller extends BlockController
         $this->set('entity', $entity);
 
         //return $this->pages;
-
         $c = Page::getCurrentPage();
         if ($c->getCollectionPointerExternalLink() != '') {
             $thisurl = $c->getCollectionPointerExternalLink();
@@ -342,21 +312,56 @@ class Controller extends BlockController
         $this->set("thisUrl", $thisurl);
     }
 
-    public function getTopicColor(){
-
+    //TODO finish
+    public function getTopicColor($topicName){
+        $tempcatcolor = $this->categoryColorsMain;
+        if(!is_null($tempcatcolor) && !empty($tempcatcolor)){
+            $tempcatcolor->filterByAttribute($this->expressColorsColorsAttribute, $topicName);      //TODO FIX THE BUG IS HERE!!!
+            $colortemp = $tempcatcolor->getResults();   //TODO the bug appears here, but it is because we filtered 2 lines above!
+            if(isset($colortemp[0])){//Check color existance
+                return $colortemp[0]->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
+            }
+        } 
+        array_push($this->$LOGGER, "WHY");
+        return null;
     }
 
-    public function getThemeName($themeObject){
+    public function getThemeName($theme){
         if(is_array($theme)){ 
             $themecomp = $theme[0];
+            /*foreach($theme AS $themeItem){
+                if($themeItem){
+                    $themename = $themeItem->getTreeNodeName();
+                    break;
+                }
+            }*/
         }else{
             $themecomp=$theme;
         }
-        $themename = $themecomp->getTreeNodeName();
-        return $themename;
+        return $themecomp->getTreeNodeName();
+    }
+
+    public function getPageTopics($page){   //TODO check if this works for heavily nested topic trees
+        $themes = [];
+        $keys = CollectionKey::getList();
+        foreach ($keys as $ak) {
+            if ($ak->getAttributeTypeHandle() == 'topics') {
+                $topicsForThisTree = $page->getAttribute($ak);
+                if(is_array($topicsForThisTree)){
+                    foreach($topicsForThisTree as $tftt){
+                        array_push($themes, $tftt->getTreeNodeID());
+                    }
+                } else if (!is_null($topicsForThisTree)){
+                    array_push($themes, $topicsForThisTree->getTreeNodeID());
+                }
+            }
+        }
+        return $themes;
     }
     
     //Filters page list and get page topic / theme colors
+    //TODO clean
+    //0 IS SORT, 1 IS FILTER
     public function action_filter($data){
         $topics = null;
         $templist = $this->pages;
@@ -383,10 +388,13 @@ class Controller extends BlockController
         }
         
         //Get the colors & stuff for the page list items
+        //FOREACH PAGE
         $temppages = $templist->getResults();
         $pagedata = [];
         foreach($temppages as $temppage){
-		  	$situation = [];
+            
+
+		  	$this->$LOGGER = [];    //Hold debug information for the current page
 		  	
             if ($temppage->getCollectionPointerExternalLink() != '') {
                 $url = $temppage->getCollectionPointerExternalLink();
@@ -396,30 +404,20 @@ class Controller extends BlockController
 
             $themecomp = null;
             $themename = null;
-            //$rightcolor = "b1b1b1";
             $rightcolor = null;
 
-            $arrNegOnes = [-1];
+            $theme = $temppage->getAttribute($this->pageTopicColors);
 
-            //Check if there are topics defined, and if at least one does not equal -1
-            $goodToGo = false;
-            if(is_null($topics)){
-
-            } else if(!empty(array_diff($topics, $arrNegOnes))) {
-                $goodToGo = true;
-            } else {
-                
-            }
-            if(/*count($topics) || */$goodToGo){
+            //TODO REDO, there is too many buggy things here
+            //If there are topics defined, and if at least one does not equal -1
+            if(!is_null($topics) && !empty(array_diff($topics, [-1]))){
+                $cond=1;
                 //Need to get FULL LIST OF ALL ASSOCIATED TOPICS FOR THIS PAGE :
-                $themes = [];
+                /*$themes = [];
                 $keys = CollectionKey::getList();
                 foreach ($keys as $ak) {
                     if ($ak->getAttributeTypeHandle() == 'topics') {
                         $topicsForThisTree = $temppage->getAttribute($ak);
-                        /*foreach($topicsForThisTree as $tftt){
-                            array_push($themes, $tftt->getTreeNodeID());
-                        }*/
                         if(is_array($topicsForThisTree)){
                             foreach($topicsForThisTree as $tftt){
                                 array_push($themes, $tftt->getTreeNodeID());
@@ -428,36 +426,27 @@ class Controller extends BlockController
                             array_push($themes, $topicsForThisTree->getTreeNodeID());
                         }
                     }
-                }
+                }*/
+                $themes = $this->getPageTopics($temppage);
 
-                $theme = $temppage->getAttribute($this->pageTopicColors);
-                
+                //$theme = $temppage->getAttribute($this->pageTopicColors);
                 $errorer = $themes;
-
-
-                //Determine if the current page has relevant topics
-                if(array_intersect($nums, $themes) == $nums){
-				  	
+                
+                if(array_intersect($nums, $themes) == $nums){ //if the current page has relevant topics
 				  	$tempcatcolor = $this->categoryColorsMain;
 				  
-				  
-				  	array_push($situation, 'if 1');
-				  	array_push($situation, $this->expressColors);
+				  	array_push($this->$LOGGER, 'if 1');
+				  	array_push($this->$LOGGER, $this->expressColors);
                     $sortOrder = 1;
-                    $theme = $temppage->getAttribute($this->pageTopicColors);
+                    //$theme = $temppage->getAttribute($this->pageTopicColors);
                     if(is_array($theme)){ 
-					  	$gotWhatWasNeeded = false;
                         foreach($theme as $t){
                             if($t->getTreeNodeID() == $topics[0]){
                                 $theme=$t;
-							  	$gotWhatWasNeeded = true;
                                 break;
                             }
                         }
-						if(!$gotWhatWasNeeded){
-						  //$tempcatcolor = null;
-						}
-                    }else{
+                    } else {
                         if($theme->getTreeNodeID() == $topics[0]){
 						  	//$theme=$t;
 						  	//break;
@@ -468,34 +457,32 @@ class Controller extends BlockController
 				  
 				  	$testFix = $theme;
 					//if(gettype($testFix) == "Topic"){
-					//How do you check type? Who knows!
-					$class = '\Concrete\Core\Tree\Type\Topic';
-					$class2 = "Concrete\\Core\\Tree\\Node\\Type\\Topic";
+                    //How do you check type? Who knows!
+                    //TODO remove WHAT IS THIS EVEN DOING HERE
 					//if($testFix instanceof $class){
-					if(is_a($testFix, $class2)){
-						array_push($situation, 'if 1.2a1');
-						//$testFix = 12;//$testFix->getTreeNodeID();
+					if(is_a($testFix, "Concrete\\Core\\Tree\\Node\\Type\\Topic")){ //"\Concrete\Core\Tree\Type\Topic"
+						array_push($this->$LOGGER, 'if 1.2a1');
+                        //$testFix = 12;
+                        $testFix = $testFix->getTreeNodeID();
 					} else {
-						array_push($situation, 'if 1.2a2');
-						//:(... just :( how could I not notice I wrote testfix...
+						array_push($this->$LOGGER, 'if 1.2a2');
 						//$testFix = 25;
-					  	//$tempcatcolor = null;
 					}
-				  
-
                     
-
                     if((is_null($tempcatcolor)) || (empty($tempcatcolor))){
-                        //$rightcolor = "#ff0000";
-					  	array_push($situation, '1.1');
+					  	array_push($this->$LOGGER, '1.1');
                     } else {
-					  	array_push($situation, 'if 1.2');
+					  	array_push($this->$LOGGER, 'if 1.2');
 					  	
 					  	//$tempcatcolor->filterByAttribute($this->expressColorsColorsAttribute, $testFix);
-					  	$tempcatcolor->filterByAttribute($this->expressColorsColorsAttribute, $theme);   
+					  	$tempcatcolor->filterByAttribute($this->expressColorsColorsAttribute, $testFix);      //TODO FIX THE BUG IS HERE!!!
                         //Check color existance
-                        $colortemp = $tempcatcolor->getResults();
+                        $colortemp = $tempcatcolor->getResults();   //TODO the bug appears here, but it is because we filtered 2 lines above!
                         //if(!is_array($colortemp)){
+
+                        //array_push($this->$LOGGER, implode($colortemp));  //TODO check here, causes wierd error
+
+                        //array_push($this->$LOGGER, implode(array_intersect($nums, $themes)));
                         if(isset($colortemp[0])){
                             //$rightcolor = $colortemp[0]->getTsTopicColorColor();
                             //ts_topic_color_color
@@ -503,136 +490,232 @@ class Controller extends BlockController
                             //$testera= $colortemp[0]->getTsTopicColorColor();
                                                     
                             if((is_null($rightcolor)) || (empty($rightcolor))){
-                                //$rightcolor = "#ff0000";
+                                //$rightcolor = "#ababab";
                             } 
                             //else {
-                            //    $rightcolor = "6d32a8";
                             //}
                             
                         } else {
-                            //$rightcolor = "#a8328d";
-						  	array_push($situation, 'if 1.2b');
+                            array_push($this->$LOGGER, 'if 1.2b');
+                            array_push($this->$LOGGER, implode($colortemp));
+                            array_push($this->$LOGGER, 'empty array?');
                         }
-                        
-                    }
-                    //Check theme existance
-                    if(is_array($theme)){ 
-                        $themecomp = $theme[0];
-                    }else{
-                        $themecomp=$theme;
-                    }
-
-                    //new
-                    //$themename = $themecomp->getTreeNodeName();
-                    if(!is_null($themecomp)){
-                        $themename = $themecomp->getTreeNodeName();
-                    } 
-                } else {
-                    array_push($situation, 'if 2');
-                    $sortOrder = 2;
-                    //$rightcolor = "#b1b1b1";
-                    $rightcolor = $this->defaultColor;
-                    $theme = $temppage->getAttribute($this->pageTopicColors);
-                    //Check theme existance
-                    if(is_array($theme) ){ 
-                        //$themecomp = $theme[0];
-                        foreach($theme AS $themeItem){
-                            if($themeItem){
-                                $themename = $themeItem->getTreeNodeName();
-                                break;
-                            }
-                        }
-                    }else if(!is_null($theme)){
-                        //$themecomp=$theme;
-                        $themename = $theme->getTreeNodeName();
                     }
                     
+                    $themename = $this->getThemeName($theme);
+                } else {
+                    //If no matching topics
+                    array_push($this->$LOGGER, 'if 2');
+                    $sortOrder = 2;
+                    $rightcolor = $this->defaultColor;
+                    //$theme = $temppage->getAttribute($this->pageTopicColors);
+                    $themename = $this->getThemeName($theme);
                 }
             } else {
-                //THIS ELSE IS IF there are no topics to filter or sort by
-                //If there are no topics defined, or they are all -1, then we just do as normal
-                //(color should be set to that specific grey here)
-                $theme = $temppage->getAttribute($this->pageTopicColors);
-                array_push($situation, 'else');
+                $cond=2;
+                //THIS ELSE IS IF there are no topics to filter or sort by. If there are no topics / all -1, then default color (i.e. gray)
+                //$theme = $temppage->getAttribute($this->pageTopicColors);
+                array_push($this->$LOGGER, 'else');
                 $sortOrder = 2;
 
-                if(is_null($theme) || empty($theme) || !(isset($theme))){
-                    //$rightcolor = "#00ff00";
-                } else {
+                if(!is_null($theme) && !empty($theme) && isset($theme)){
+                    array_push($this->$LOGGER, 'else 1');
                     //getAttributeValueObject
                     $tempcatcolor = $this->categoryColorsMain;
                     
                     if((is_null($tempcatcolor)) || (empty($tempcatcolor))){
-                        //$rightcolor = "#ff0000";
+                        array_push($this->$LOGGER, 'else 2');
                     } else {
                         $tempcatcolor->filterByAttribute($this->expressColorsColorsAttribute, $theme);   
+                        array_push($this->$LOGGER, $theme);
                         //Check color existance
                         $colortemp = $tempcatcolor->getResults();
                         //if(!is_array($colortemp)){
                         if(isset($colortemp[0])){
-                            //$rightcolor = $colortemp[0]->getTsTopicColorColor();
-                            //ts_topic_color_color
+                            //$rightcolor = $colortemp[0]->getTsTopicColorColor();  //"getTsTopicColorColor" as the object is called "ts_topic_color_color"
                             $rightcolor = $colortemp[0]->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
-                            //$testera= $colortemp[0]->getTsTopicColorColor();
                                                     
-                            if((is_null($rightcolor)) || (empty($rightcolor))){
-                                //$rightcolor = "#ff0000";
-                            } 
-                            //else {
-                            //    $rightcolor = "6d32a8";
-                            //}
-                            
+                            /*if((is_null($rightcolor)) || (empty($rightcolor))){
+                                
+                            } else {
+                                
+                            }*/
                         } else {
-                            //$rightcolor = "#a8328d";
+                            $rightcolor = "#a8328d";
+                            //array_push($this->$LOGGER, $theme);
                         }
-                        
                     }
-                    //Check theme existance
-                    if(is_array($theme)){ 
-                        $themecomp = $theme[0];
-                    }else{
-                        $themecomp=$theme;
-                    }
-                    $themename = $themecomp->getTreeNodeName();
+                    
+                    $themename = $this->getThemeName($theme);
+                } else {
+                    //$rightcolor = "#800080";
                 }
             }
 
+            //If no color is set, set it to default
             if(!isset($rightcolor)){
                 $rightcolor = $this->defaultColor;
-                if($rightcolor[0] != '#'){
-                    //$rightcolor = '#' . $rightcolor;
-                }
             }
 
+            //If no theme is set, set theme name to blank text TODO make this parameter
             if(!isset($themename) || is_null($themename)){
                 $themename = " ";
             }
-		  
-			if(is_array($situation)){
-			  	$situation = implode('; ', $situation);
+          
+            //Put situation array into colon-delimited string
+			if(is_array($this->$LOGGER)){
+			  	$this->$LOGGER = implode('; ', $this->$LOGGER);
 			}
 
+            //Push this page's data
             array_push($pagedata, array(
+                "cond"=>$cond,
                 "title"=>$temppage->getCollectionName(), 
                 "description"=>$temppage->getCollectionDescription(), 
                 "url"=>$url,
                 "theme"=> tc('TopicName',$themename),
                 "color"=>$rightcolor,
                 "sortOrder"=>$sortOrder,
-                "situation"=>$situation,
-                'errorers'=>$errorer
+                "LOGGER"=>$this->$LOGGER,
+                "errorers"=>$errorer
             ));
         }
-
-        $didsort = false;
+        
         //If there are topics to sort with, and sort type is of type sort (not filter), sort!
-        //if ($this->post('topics')) {
-            //CANNOT USE usort, AS IS NOT OBJECT BUT MULTIDIMENSIONAL ARRAY
-            $sortOrders = array_column($pagedata, 'sortOrder');
+        if($this->sortType == 0){ //TODO finish & check if this is 2
+            $sortOrders = array_column($pagedata, 'sortOrder'); //CANNOT USE usort, AS IS NOT OBJECT BUT MULTIDIMENSIONAL ARRAY
             array_multisort($sortOrders, SORT_ASC, $pagedata);
-        //}
+        }
 
-        echo json_encode(array("recieved"=>$data, "topics"=>$topics,/* "count"=>count($temppages),*/ "nums"=>$nums, /*"pages"=>$temppages,*/ "pagedata" =>$pagedata));
+        echo json_encode(array("recieved"=>$data, "topics"=>$topics, "nums"=>$nums, "pagedata" =>$pagedata));
+        exit;
+    }
+
+    public function action_filter2($data){
+        $topics = null;
+        $templist = $this->pages;
+        $nums = [];
+        if ($this->post('topics')) {
+            $topics = $this->request->post('topics');
+            //Correction, filtering by multiple successive topics seems to work, but not sorting -> sorting done manually here. Topic id's to filter by are collected below
+            if($this->sortType == 1 || !isset($this->sortType)){
+                foreach($topics as $topic){
+                    if((!(intval($topic) == -1)) && is_int(intval($topic))){
+                        $templist->filterByTopic(intval($topic));
+                    }
+                }
+            } else {
+                foreach($topics as $topic){
+                    if((!(intval($topic) == -1)) && is_int(intval($topic))){
+                        array_push($nums, intval($topic));
+                    }
+                }
+            }
+        }
+        
+        //Get the colors & stuff for the page list items
+        //FOREACH PAGE
+        $temppages = $templist->getResults();
+        $pagedata = [];
+        foreach($temppages as $temppage){
+		  	$this->$LOGGER = [];    //Hold debug information for the current page
+		  	
+            if ($temppage->getCollectionPointerExternalLink() != '') {
+                $url = $temppage->getCollectionPointerExternalLink();
+            } else {
+                $url = $temppage->getCollectionLink();
+            }
+
+            $themecomp = null;
+            $themename = null;
+            $rightcolor = null;
+
+            $theme = $temppage->getAttribute($this->pageTopicColors);
+
+            //If there are topics defined, and if at least one does not equal -1
+            if(!is_null($topics) && !empty(array_diff($topics, [-1]))){
+                if(array_intersect($nums, $this->getPageTopics($temppage)) == $nums){ //if the current page has relevant topics
+				  	array_push($this->$LOGGER, 'if 1');
+				  	//array_push($this->$LOGGER, $this->expressColors);
+                    $sortOrder = 1;
+                    if(is_array($theme)){ 
+                        foreach($theme as $t){
+                            if($t->getTreeNodeID() == $topics[0]){
+                                $theme=$t;
+                                break;
+                            }
+                        }
+                    }
+                    if(is_array($theme)){ 
+                        array_push($this->$LOGGER, 'OH SHIT');
+                    }
+                    $testFix = $theme;
+                    if(is_a($testFix, "Concrete\\Core\\Tree\\Node\\Type\\Topic")){ //"\Concrete\Core\Tree\Type\Topic"
+						array_push($this->$LOGGER, 'if 1.2a1');
+                        //$testFix = 12;
+                        $testFix = $testFix->getTreeNodeID();
+                        array_push($this->$LOGGER, "{$testFix}");
+					} else {
+						array_push($this->$LOGGER, 'if 1.2a2');
+                        //$testFix = 25;
+                        array_push($this->$LOGGER, "{$testFix}");
+					}
+                    $rightcolor = $this->getTopicColor($testFix);
+                    array_push($this->$LOGGER, "RIGHT COL: {$rightcolor}");
+                    $themename = $this->getThemeName($theme);
+                } else {    //Else no matching topics
+                    array_push($this->$LOGGER, 'if 2');
+                    $sortOrder = 2;
+                    $rightcolor = $this->defaultColor;
+                    $themename = $this->getThemeName($theme);
+                }
+            } else {//THIS ELSE IS IF there are no topics to filter or sort by. If there are no topics / all -1, then default color (i.e. gray)
+                $cond=2;
+                array_push($this->$LOGGER, 'else');
+                $sortOrder = 2;
+
+                if(!is_null($theme) && !empty($theme) && isset($theme)){
+                    array_push($this->$LOGGER, 'else 1');
+                    $rightcolor = $this->getTopicColor($theme);
+                    $themename = $this->getThemeName($theme);
+                }
+            }
+
+            //If no color is set, set it to default
+            if(!isset($rightcolor)){
+                $rightcolor = $this->defaultColor;
+            }
+
+            //If no theme is set, set theme name to blank text TODO make this parameter
+            if(!isset($themename) || is_null($themename)){
+                $themename = " ";
+            }
+          
+            //Put situation array into colon-delimited string
+			if(is_array($this->$LOGGER)){
+			  	$this->$LOGGER = implode('; ', $this->$LOGGER);
+			}
+
+            //IF NOT RELEVANT (i.e. sort order == 2), then use array_unshift
+            $newPageToAddToList = array(
+                "cond"=>$cond,
+                "title"=>$temppage->getCollectionName(), 
+                "description"=>$temppage->getCollectionDescription(), 
+                "url"=>$url,
+                "theme"=> tc('TopicName',$themename),
+                "color"=>$rightcolor,
+                "LOGGER"=>$this->$LOGGER,
+                "sortOrder"=>$sortOrder
+            );
+
+            if($sortOrder == 1){
+                array_unshift($pagedata, $newPageToAddToList);      //If page IS relevant to search, then add to start of list
+            } else {
+                array_push($pagedata, $newPageToAddToList);         //If page IS NOT relevant to search, then add to end of list
+            }
+        }
+
+        echo json_encode(array("recieved"=>$data, "topics"=>$topics, "nums"=>$nums, "pagedata" =>$pagedata));
         exit;
     }
 }
