@@ -1,14 +1,11 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied.")) ?>
 <script>
     let blockID = '<?php echo $bID?>';
-    let urlForThisPage = '<?php echo $thisUrl?>'
-    let urlFilterAction = '<?php echo $this->action('filter2') ?>'
+    let urlFilterAction = '<?php echo $this->action('filter') ?>'
     let sendToAnotherPage = '<?= $bPostToAnotherPage?>'
     let sendToAnotherPageID = '<?= $cParentID?>'
     let sendToAnotherPageIDURL = '<?= $cParentIDURL?>'
     console.log("URL filter action: " + urlFilterAction)
-    console.log("URL for this page: " + urlForThisPage)
-    console.log("URL for this pageJS: " + window.location.href.split('?')[0])
     console.log('sendToAnotherPage: ' + sendToAnotherPage)
     console.log('sendToAnotherPageID: ' + sendToAnotherPageID)
     console.log('sendToAnotherPageIDURL: ' + sendToAnotherPageIDURL)

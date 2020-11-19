@@ -191,7 +191,7 @@ $(function() {
         } else {
             getPages({topics: values}).then(function(result,status,xhr){ //If we don't go to a new page, update the current page
                 var pageresponse = {result,status,xhr}
-                fillPageGrid(pageresponse, undefined)
+                fillPageGrid(pageresponse, urlParams.toString())
             })
             window.history.pushState("object or string", "Page Title", window.location.href.split('?')[0] + '?' + urlParams.toString());
         }
