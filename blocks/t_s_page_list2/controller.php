@@ -387,6 +387,7 @@ class Controller extends BlockController
                 foreach($topics as $topic){
                     if((!(intval($topic) == -1)) && is_int(intval($topic))){
                         $templist->filterByTopic(intval($topic));
+                        array_push($nums, intval($topic));
                     }
                 }
             } else {
@@ -420,7 +421,9 @@ class Controller extends BlockController
 				  	array_push($this->$LOGGER, 'if 1');
                     $sortOrder = 1;
 
-                    array_push($this->$LOGGER, implode(array_intersect($nums, $this->getPageTopics($temppage))));
+                    array_push($this->$LOGGER, implode($nums));
+                    array_push($this->$LOGGER, implode($this->getPageTopics($temppage)));
+                    array_push($this->$LOGGER, implode(", ", array_intersect($nums, $this->getPageTopics($temppage))));
 
                     $correctTopic = array_intersect($nums, $this->getPageTopics($temppage))[0];
 
