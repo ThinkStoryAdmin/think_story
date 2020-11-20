@@ -47,9 +47,7 @@ class Controller extends BlockController
     protected $btExportPageColumns = ['cParentID'];
     protected $btExportPageTypeColumns = ['ptID'];
     protected $btDefaultSet = 'think_story';
-    //Make it so that Enable Grid Container is not an option for the block
-    //However TOTALLY fucks the format, doesn't do what I thought
-    //protected $btIgnorePageThemeGridFrameworkContainer = true;
+    //protected $btIgnorePageThemeGridFrameworkContainer = true;    //Makes it so that Enable Grid Container isn't option for the block, but fucks the format
     protected $pages;
     protected $topics_loc;
     protected $rightcolor;
@@ -58,18 +56,15 @@ class Controller extends BlockController
     public $LOGGER = [];
     public $relationsTC = array();
 
-    public function getBlockTypeName()
-    {
+    public function getBlockTypeName()  {
         return t("Think Story Page List Filter");
     }
 
-    public function getBlockTypeDescription()
-    {
+    public function getBlockTypeDescription()   {
         return t("Block that filters the TS Page List Result block");
     }
     
-    public function validate($data)
-    {
+    public function validate($data) {
         $e = Core::make('error');
         if(!isset($data['expressColors']) && !$data['expressColors']){
             $e->add(t('You must select an Express Object'));
@@ -104,8 +99,7 @@ class Controller extends BlockController
         parent::save($data);
     }
 
-    public function add()
-    {
+    public function add()   {
         $this->loadData();
         $this->requireAsset('core/topics');
         $c = Page::getCurrentPage();
@@ -114,8 +108,7 @@ class Controller extends BlockController
         $this->loadKeys();
     }
 
-    public function edit()
-    {
+    public function edit()  {
         $this->loadData();
         $this->requireAsset('core/topics');
         $b = $this->getBlockObject();
@@ -126,8 +119,7 @@ class Controller extends BlockController
         $this->loadKeys();
     }
     
-    public function view()
-    {
+    public function view()  {
         $this->set('bPostToAnotherPage', $this->bPostToAnotherPage);
         $this->set('cParentID', $this->cParentID);
         $this->set('cParentIDURL', \Page::getByID($this->cParentID)->getCollectionLink());
@@ -145,8 +137,7 @@ class Controller extends BlockController
         $this->set('topictrees', $trees);
     }
 
-    public function loadData()
-    {
+    public function loadData()  {
         $r = $this->entityManager->getRepository(Entity::class);
         $entityObjects = $r->findAll();
         $entities = ['' => t("** No Entity")]; //Need AT LEAST & MOST ONE Express OBJECT TO BE CHOSEN
@@ -156,8 +147,7 @@ class Controller extends BlockController
         $this->set('entities', $entities);
     }
 
-    public function action_load_entity_data()
-    {
+    public function action_load_entity_data()   {
         $exEntityID = $this->request->request->get('expressColorsSelc');
         if ($exEntityID) {
             $entity = $this->entityManager->find(Entity::class, $exEntityID);
@@ -171,12 +161,10 @@ class Controller extends BlockController
                 return new JsonResponse($r);
             }
         }
-
         \Core::make('app')->shutdown();
     }
 
-    protected function getSearchPropertiesJsonArray($entity)
-    {
+    protected function getSearchPropertiesJsonArray($entity)    {
         $attributes = $entity->getAttributeKeyCategory()->getList();
         $select = [];
         foreach ($attributes as $ak) {
@@ -185,12 +173,10 @@ class Controller extends BlockController
             $o->akName = $ak->getAttributeKeyDisplayName();
             $select[] = $o;
         }
-
         return $select;
     }
 
-    protected function loadKeys()
-    {
+    protected function loadKeys()   {
         $attributeKeysTopics = [];
         $attributeKeysTopicLinkedColor = [];
         $keys = CollectionKey::getList();
@@ -215,13 +201,11 @@ class Controller extends BlockController
         $this->set('attributeKeysVC', $attributeKeysVC);
     }
 
-    public function registerViewAssets($outputContent = '')
-    {
-        $al = \Concrete\Core\Asset\AssetList::getInstance();
+    public function registerViewAssets($outputContent = '') {
+        $al = \Concrete\Core\Asset\AssetList::getInstance();    //$al->register('javascript', 'select2sortable', 'blocks/testimonial_stack_output/js_form/select2.sortable.js');
         $this->requireAsset('javascript', 'jquery');
         $this->requireAsset('css', 'select2');
         $this->requireAsset('javascript', 'select2');
-        //$al->register('javascript', 'select2sortable', 'blocks/testimonial_stack_output/js_form/select2.sortable.js');
     }
 
     public function registerAssets(){
@@ -231,15 +215,12 @@ class Controller extends BlockController
     public function on_start(){
         $this->app = Facade::getFacadeApplication();
         $this->entityManager = $this->app->make('database/orm')->entityManager();
-        
         $this->pages = new PageList();
         $this->pages->disableAutomaticSorting();
         $this->pages->setNameSpace('b' . $this->bID);
         $this->pages->getQueryObject()->setMaxResults($num);
 
-        if($this->ptID){
-            $this->pages->filterByPageTypeHandle(PageType::getByID($this->ptID)->getPageTypeHandle());
-        }
+        if($this->ptID){        $this->pages->filterByPageTypeHandle(PageType::getByID($this->ptID)->getPageTypeHandle());      }
 
         switch($this->orderBy){
             case 'display_most_recent':
@@ -247,8 +228,7 @@ class Controller extends BlockController
                 break;
             case 'display_most_popular':
                 if(TSAttributeValidator::checkCollectionAttributeHandleExists($this->viewCountAttribute)){
-                    //Need to add 'ak_' to the start
-                    $this->pages->sortBy('ak_'.$this->viewCountAttribute,'DESC');
+                    $this->pages->sortBy('ak_'.$this->viewCountAttribute,'DESC');   //Need to add 'ak_' to the start
                 } else {
                     $this->pages->sortBy('RAND()');
                 }
@@ -266,63 +246,16 @@ class Controller extends BlockController
         } else { //Is probably handle
             $entity = Express::getObjectByHandle($this->expressColors);
         }
+        
         if(!is_null($entity)){
             $listentities = new \Concrete\Core\Express\EntryList($entity);
             $this->categoryColorsMain = $listentities;
         }
         $this->set('entity', $entity);
-
-        //TODO Set topic -> color relations
-        $tcResls = $this->categoryColorsMain->getResults();
-        foreach($tcResls AS $topicColor){
-            //$this->set('ENTTYPE', get_class($topicColor));
-            //$this->set('ENTTYPE', $topicColor->getAttributeValue($this->expressColorsTopicsAttribute));
-            $this->set('ENTTYPE', get_class($topicColor->getAttributeValue($this->expressColorsColorsAttribute)));  //ConcreteCoreEntityAttributeValueExpressValue
-            //$this->set('ENTTYPE', get_class($topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getValue()));
-            //$this->set('ENTTYPE', $topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getAttributeValueID());  //ConcreteCoreEntityAttributeValueExpressValue
-
-            $this->set('ENTTYPE', $topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getDisplayValue());              //Gets the TOPIC NAME
-            $this->set('ENTTYPE', $topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getValue()[0]->getTreeNodeID()); //Gets the TOPIC ID
-
-            //$this->relationsTC[$topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getDisplayValue()] = $topicColor->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
-            //$this->relationsTC[$topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getValue()] = $topicColor->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
-            
-            //ID = Topic ID
-            $this->relationsTC[$topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getValue()[0]->getTreeNodeID()] = $topicColor->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
-
-            //ID = Topic Name
-            //$this->relationsTC[$topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getDisplayValue()] = $topicColor->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
-            
-        }
-        $this->set('RELTC', json_encode($this->relationsTC));
-    }
-
-    //TODO put this in on_start, get FULL list of topic -> color, then just query that!
-    public function getTopicColor($topicName){
-        if(is_object($topicName)){
-            array_push($this->$LOGGER, "TopicName class: " + get_class($topicName));
-        } /*else if(!is_array($topicName)) {
-            array_push($this->$LOGGER, "TopicName class: " + strval(gettype($topicName)));
-        }*/
-        if(gettype($topicName)){
-            array_push($this->$LOGGER, "TopicName class: ");
-            array_push($this->$LOGGER, strval(gettype($topicName)));
-            array_push($this->$LOGGER, $topicName);
-            /*if(is_array($topicName)){
-                array_push($this->$LOGGER, implode($topicName));
-            }*/
-        }
         
-        $tempcatcolor = $this->categoryColorsMain;
-        if(!is_null($tempcatcolor) && !empty($tempcatcolor)){
-            $tempcatcolor->filterByAttribute($this->expressColorsColorsAttribute, $topicName);      //TODO FIX THE BUG IS HERE!!!
-            $colortemp = $tempcatcolor->getResults();   //TODO the bug appears here, but it is because we filtered 2 lines above!
-            if(isset($colortemp[0])){//Check color existance
-                return $colortemp[0]->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
-            }
-        } 
-        array_push($this->$LOGGER, "WHY");
-        return null;
+        foreach($this->categoryColorsMain->getResults() AS $topicColor){    //$tcResls = $this->categoryColorsMain->getResults();
+            $this->relationsTC[$topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getValue()[0]->getTreeNodeID()] = $topicColor->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
+        }
     }
 
     public function getTopicColor2($topicName){
@@ -332,12 +265,7 @@ class Controller extends BlockController
     public function getThemeID($theme){
         if(is_array($theme)){ 
             $themecomp = $theme[0];
-            /*foreach($theme AS $themeItem){
-                if($themeItem){
-                    $themename = $themeItem->getTreeNodeName(); break;
-                }
-            }*/
-        }else{
+        } else {
             $themecomp=$theme;
         }
         return $themecomp->getTreeNodeID();
@@ -347,10 +275,7 @@ class Controller extends BlockController
         if(is_array($theme)){ 
             $themecomp = $theme[0];
             /*foreach($theme AS $themeItem){
-                if($themeItem){
-                    $themename = $themeItem->getTreeNodeName(); break;
-                }
-            }*/
+                if($themeItem){         $themename = $themeItem->getTreeNodeName(); break;          }           }*/
         }else{
             $themecomp=$theme;
         }
@@ -380,14 +305,13 @@ class Controller extends BlockController
         $topics = null;
         $templist = $this->pages;
         $nums = [];
-        if ($this->post('topics')) {
+        if ($this->post('topics')) {    //Correction, filtering by multiple successive topics seems to work, but not sorting -> do manually. Topic id's to filter by are collected below
             $topics = $this->request->post('topics');
-            //Correction, filtering by multiple successive topics seems to work, but not sorting -> do manually. Topic id's to filter by are collected below
             if($this->sortType == 1 || !isset($this->sortType)){
                 foreach($topics as $topic){
                     if((!(intval($topic) == -1)) && is_int(intval($topic))){
                         $templist->filterByTopic(intval($topic));
-                        array_push($nums, intval($topic));
+                        array_push($nums, intval($topic));  //Still need to collect topics for page block headers
                     }
                 }
             } else {
@@ -399,13 +323,12 @@ class Controller extends BlockController
             }
         }
         
-        //FOREACH PAGE : Get the colors & stuff for the page list items
         $temppages = $templist->getResults();
         $pagedata = [];
-        foreach($temppages as $temppage){
-            $rightcolor = $this->defaultColor;//If no color is set, set it to default
-            $themename = " ";//If no theme is set, set theme name to blank text TODO make this parameter
-		  	$this->$LOGGER = [];    //Hold debug information for the current page
+        foreach($temppages as $temppage){   //FOREACH PAGE : Get the colors & stuff for the page list items
+            $rightcolor = $this->defaultColor;  //If no color is set, set it to default
+            $themename = " ";                   //If no theme is set, set theme name to blank text TODO make this parameter
+		  	$this->$LOGGER = [];                //Hold debug information for the current page
 		  	
             if ($temppage->getCollectionPointerExternalLink() != '') {
                 $url = $temppage->getCollectionPointerExternalLink();
@@ -415,18 +338,11 @@ class Controller extends BlockController
 
             $theme = $temppage->getAttribute($this->pageTopicColors);
 
-            //If there are topics defined, and if at least one does not equal -1
-            if(!is_null($topics) && !empty(array_diff($topics, [-1]))){
+            if(!is_null($topics) && !empty(array_diff($topics, [-1]))){     //If there are topics defined, and if at least one does not equal -1
                 if(array_intersect($nums, $this->getPageTopics($temppage)) == $nums){ //if the current page has relevant topics
 				  	array_push($this->$LOGGER, 'if 1');
                     $sortOrder = 1;
-
-                    array_push($this->$LOGGER, implode($nums));
-                    array_push($this->$LOGGER, implode($this->getPageTopics($temppage)));
-                    array_push($this->$LOGGER, implode(", ", array_intersect($nums, $this->getPageTopics($temppage))));
-
                     $correctTopic = array_intersect($nums, $this->getPageTopics($temppage))[0];
-
                     $found = false;
                     if(is_array($theme)){
                         foreach($theme AS $t){
@@ -437,40 +353,10 @@ class Controller extends BlockController
                             }
                         }
                     }
-                    
-
-                    
-
-                    //TODO NEED TO GET THE TOPIC FROM THE SEARCH, NOT THE FIRST TOPIC OF THE PAGE!!!
-
-                    /*if(is_array($theme)){ 
-                        foreach($theme as $t){
-                            if($t->getTreeNodeID() == $topics[0]){
-                                $theme=$t;
-                                break;
-                            }
-                        }
-                    }
-                    if(is_array($theme)){ 
-                        array_push($this->$LOGGER, 'OH SHIT');
-                    }
-                    $testFix = $theme;
-                    if(is_a($testFix, "Concrete\\Core\\Tree\\Node\\Type\\Topic")){ //"\Concrete\Core\Tree\Type\Topic"
-						array_push($this->$LOGGER, 'if 1.2a1');
-                        $testFix = $testFix->getTreeNodeID();
-                        array_push($this->$LOGGER, "{$testFix}");
-					} else {
-						array_push($this->$LOGGER, 'if 1.2a2');
-                        array_push($this->$LOGGER, "{$testFix}");
-					}
-                    $rightcolor = $this->getTopicColor($testFix);
-                    array_push($this->$LOGGER, "RIGHT COL: {$rightcolor}");*/
-
                     if(!$found){
                         $themename = $this->getThemeName($theme);
                         $rightcolor = $this->getTopicColor2($this->getThemeID($theme));
                     }
-                    
                 } else {    //Else no matching topics
                     array_push($this->$LOGGER, 'if 2');
                     $sortOrder = 2;
@@ -478,22 +364,10 @@ class Controller extends BlockController
                     $themename = $this->getThemeName($theme);
                 }
             } else {//THIS ELSE IS IF there are no topics to filter or sort by. If there are no topics / all -1, then default color (i.e. gray)
-                $cond=2;
-                array_push($this->$LOGGER, 'else');
                 $sortOrder = 2;
-
                 if(!is_null($theme) && !empty($theme) && isset($theme)){
                     array_push($this->$LOGGER, 'else 1');
-                    //$rightcolor = $this->getTopicColor($theme); //THIS RETURNS AN ARRAY OF Concrete\\Core\\Tree\\Node\\Type\\Topic
-                    //$rightcolor = $this->getTopicColor($this->getThemeName($theme));
-                    /*if(is_array($theme)){
-                        $rightcolor = $this->getTopicColor($theme[0]->getTreeNodeID());
-                    } else {
-                        $rightcolor = $this->getTopicColor($theme->getTreeNodeID());
-                    }*/
-
                     $themename = $this->getThemeName($theme);
-                    //$rightcolor = $this->getTopicColor2($themename);
                     if(is_array($theme)){
                         $rightcolor = $this->getTopicColor2($theme[0]->getTreeNodeID());
                     } else {
@@ -502,9 +376,7 @@ class Controller extends BlockController
                 }
             }
 
-            //IF NOT RELEVANT (i.e. sort order == 2), then use array_unshift
             $newPageToAddToList = array(
-                "cond"=>$cond,
                 "title"=>$temppage->getCollectionName(), 
                 "description"=>$temppage->getCollectionDescription(), 
                 "url"=>$url,
