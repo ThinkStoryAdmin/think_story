@@ -59,6 +59,14 @@ class Controller extends Package
         return t('Think Story');
     }
 
+    //https://documentation.concrete5.org/developers/packages/installation/package-dependencies
+    public function getPackageDependencies()
+    {
+        return [
+            'customizable_twitter_feed' => '1.0.4'
+        ];
+    }
+
     public function on_start(){
         $this->setupAutoloader();   //Load necessary Composer packages
         
