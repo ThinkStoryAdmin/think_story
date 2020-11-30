@@ -90,12 +90,12 @@
     <label class="control-label" for="expressColors"><?=t('Category Colors Express Object')?></label>
     <?php
         echo $form->select('expressColors', $entities, $expressColors, ['data-action'=>$view->action('load_entity_data')]);
-    ?>
+    ?><br>
     <!-- TODO fix! Colors defines topics, and Topics defines colors! (https://github.com/ThinkStoryAdmin/think_story/issues/7)-->
-    <label class="control-label" for="expressColorsColorsAttribute"><?=t('Category Colors Express Object, Topic Attribute')?></label><br>
-    <select name='expressColorsColorsAttribute' data-container="attributes-list-select-color"></select><br>
+    <label for="expressColorsColorsAttribute"><?=t('Category Colors Express Object, Topic Attribute')?></label>
+    <select name='expressColorsColorsAttribute' data-container="attributes-list-select-color"></select><br><br>
     
-    <label class="control-label" for="expressColorsTopicsAttribute"><?=t('Category Colors Express Object, Color Attribute')?></label><br>
+    <label for="expressColorsTopicsAttribute"><?=t('Category Colors Express Object, Color Attribute')?></label>
     <select name='expressColorsTopicsAttribute' data-container="attributes-list-select-topic"></select><br>
 </div>
 
@@ -109,9 +109,6 @@
 </div>
 <script>
     $(function() {
-        $('#ccm-search-block-external-target-page').hide();
-        $('#ccm-number-up-target-page').hide();
-
         //Methods needed for the form drop downs (for the express topic color object)
         var $source = $('#ccm-content-search')
         _expressObjectAdvAttributesTemplate = _.template($('script[data-template=express-object-attributes-list-adv]').html())
@@ -165,6 +162,25 @@
                 fillTemplateTopic(null,null)
             }
         });
+
+        //Redirect options set visibility based on existing choices
+        $('#ccm-search-block-external-target-page').hide();
+        $('#ccm-number-up-target-page').hide();
+        switch(<?= $iRedirectMethod ?>){
+            case 1:
+                $('#ccm-search-block-external-target-page').show();
+                $('#ccm-number-up-target-page').hide();
+                break;
+            case 2:
+                $('#ccm-search-block-external-target-page').hide();
+                $('#ccm-number-up-target-page').show();
+                break;
+            case 0:
+            default:
+                $('#ccm-search-block-external-target-page').hide();
+                $('#ccm-number-up-target-page').hide();
+                break;
+        }
 
         //Redirect options listeners
         $('[data-action=redirectMethodListener]').on('change', () => {

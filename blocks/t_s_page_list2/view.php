@@ -1,7 +1,7 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied.")) ?>
 <script>
-    console.log("Redirect up number: " + '<?= $numberUpRedirect ?>')
     let numberUpRedirect = <?= $numberUpRedirect ?>;
+    let iRedirectMethod = <?= $iRedirectMethod ?>;
     let blockID = '<?php echo $bID?>';
     let urlFilterAction = '<?php echo $this->action('filter') ?>'
     let sendToAnotherPage = '<?= $bPostToAnotherPage?>'

@@ -143,9 +143,8 @@ class Controller extends BlockController
     }
     
     public function view()  {
-        $this->set('numberUpRedirect', $this->numberUpRedirect);
         $this->set('iRedirectMethod', $this->iRedirectMethod);
-        
+        $this->set('numberUpRedirect', $this->numberUpRedirect);
         $this->set('cParentID', $this->cParentID);
         $this->set('cParentIDURL', \Page::getByID($this->cParentID)->getCollectionLink());
 
