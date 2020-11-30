@@ -1,6 +1,6 @@
 <?php 
     defined('C5_EXECUTE') or die("Access Denied.");
-    $c = Page::getCurrentPage();
+    $c = Page::getCurrentPage();    //TODO remove
 ?>
 <div class="form-group">
     <label class="control-label"><?= t('Page Type') ?></label>
@@ -12,7 +12,7 @@
             foreach ($ctArray as $ct) {
                 $pageTypesArray[$ct->getPageTypeID()] = $ct->getPageTypeDisplayName();
             }
-            echo $form->select('ptID', $pageTypesArray, $ptID);
+            echo $form->select('ptID', $pageTypesArray, $ptID, ['data-action'=>'doSomethingQ']);
         }
     ?>
 </div>
@@ -52,6 +52,9 @@
             <?= t('Random') ?>
         </option>
     </select>
+    <?php
+        echo $form->select('orderBy', ['display_most_recent' => t('Most recent'), 'display_most_popular' => t('Most popular'), 'display_random' => t('Random')], $orderBy);
+    ?>
 </div>-->
 
 <!--View Counter Forms stuff-->
@@ -64,21 +67,20 @@
 
 <!-- Choose Redirect method & page -->
 <div class='form-group'>
-    <label for='title' class="control-label"><?=t('Results Page')?>:</label>
-    <div class="checkbox">
-        <label for="ccm-search-block-external-target">
-            <input id="ccm-search-block-external-target" <?php if (intval($cParentID) > 0) {
-                ?>checked<?php 
-            } ?> name="externalTarget" type="checkbox" value="1" />
-            <?=t('Post Results to a Different Page')?>
-        </label>
-    </div>
+    <label for='title' class="control-label"><?=t('Results Page')?></label>
+    <!--<label for="ccm-search-block-external-target">
+        <?php 
+            echo $form->checkbox('externalTarget', "1", intval($cParentID) > 0 ? true : false, ['data-action'=>'resultRedirectListener']); 
+        ?>
+        <?=t('Post Results to a Different Page')?>
+    </label>-->
+    
     <div id="ccm-redirect-method">
         <label><?= t('How to redirect') ?></label>
-        <fieldset id="group1">
-            <input type="radio" value="value1" name="group1" id="type1"><label><?= t('Choose a specific page') ?></label><br>
-            <input type="radio" value="value2" name="group1" id="type2"><label><?= t('Choose number of pages to go up') ?></label>
-        </fieldset>
+            <?php
+                echo $form->select('iRedirectMethod', [ 0 => t("Don't redirect"), 1 => t('Redirect to a specific page'), 2 => t('Redirect a number of pages up the site tree') ], $iRedirectMethod, ['data-action'=>'redirectMethodListener']);
+            ?>
+        <br>
 
         <div id="ccm-redirect-method-choice">
             <div id="ccm-search-block-external-target-page">
@@ -88,7 +90,7 @@
             </div>
             <div id="ccm-number-up-target-page">
                 <?php
-                    echo $form->number('numberUpRedirect', $numberUpRedirect, ['placeholder' => 'Number of pages up to redirect by']);
+                    echo $form->number('numberUpRedirect', $numberUpRedirect, ['placeholder' => 'Number of pages up the site tree to redirect by']);
                 ?>
             </div>
         </div>
@@ -120,10 +122,10 @@
 <script>
     $(function() {
         $('#ccm-search-block-external-target-page').hide();
+        $('#ccm-number-up-target-page').hide();
+
         //Methods needed for the form drop downs (for the express topic color object)
         var $source = $('#ccm-content-search')
-        console.log("Source:")
-        console.log($source)
         _expressObjectAdvAttributesTemplate = _.template($('script[data-template=express-object-attributes-list-adv]').html())
         
         function fillTemplateColor(attributes, selected){
@@ -143,6 +145,7 @@
         var expressColorsTopicsAttributeJSVar = '<?= $expressColorsTopicsAttribute?>';
         console.log('expressColorsTopicsAttributeJSVar ; ' + expressColorsTopicsAttributeJSVar)
 
+        //Set topic color menus
         if(!expressColorsVar.length == 0){
             $.concreteAjax({
                 url: $source.find('select[name=expressColors]').attr('data-action'),
@@ -154,7 +157,7 @@
                 }
             });
         }
-
+        
         $source.find('select[name=expressColors]').on('change', function() {
             console.log('Executing the thing!')
             var exEntityID = $(this).val();
@@ -175,45 +178,28 @@
             }
         });
 
-        /*$("input[name=externalTarget]").on('change', function() {
-            if ($(this).is(":checked")) {
+        //Redirect options listeners
+        $('[data-action=redirectMethodListener]').on('change', () => {
+            if($('#' + event.target.id).val() == 1){
                 $('#ccm-search-block-external-target-page').show();
+                $('#ccm-number-up-target-page').hide();
+            } else if($('#' + event.target.id).val() == 2) {
+                $('#ccm-search-block-external-target-page').hide();
+                $('#ccm-number-up-target-page').show()
             } else {
                 $('#ccm-search-block-external-target-page').hide();
+                $('#ccm-number-up-target-page').hide()
             }
-        }).trigger('change');*/
-
-        //Redirect set defaults (VALUES are set, but menus aren't unhidden -> use C5's built in select instead of a radio group ?)
+        })
         
-        //Redirect options listeners
-        $("input[name=externalTarget]").on('change', function() {
+        /*$("input[name=externalTarget]").on('change', function() {
             if ($(this).is(":checked")) {
                 $('#ccm-redirect-method').show();
                 $('#ccm-search-block-external-target-page').hide();
             } else {
                 $('#ccm-redirect-method').hide();
             }
-        }).trigger('change');
-
-        $("input[id=type1]").on('change', function() {
-            if ($(this).is(":checked")) {
-                $('#ccm-search-block-external-target-page').show();
-                $('#ccm-number-up-target-page').hide();
-            } else {
-                $('#ccm-search-block-external-target-page').hide();
-                $('#ccm-number-up-target-page').show()
-            }
-        }).trigger('change');
-
-        $("input[id=type2]").on('change', function() {
-            if ($(this).is(":checked")) {
-                $('#ccm-number-up-target-page').show();
-                $('#ccm-search-block-external-target-page').hide();
-            } else {
-                $('#ccm-number-up-target-page').hide();
-                $('#ccm-search-block-external-target-page').show();
-            }
-        }).trigger('change');
+        }).trigger('change');*/
     });
 </script>
 
