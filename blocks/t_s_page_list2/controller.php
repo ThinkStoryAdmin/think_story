@@ -44,7 +44,7 @@ class Controller extends BlockController
     protected $btTable = 'btTSPageList2';
     protected $btInterfaceWidth = 700;
     protected $btInterfaceHeight = 525;
-    protected $btExportPageColumns = ['cParentID'];
+    protected $btExportPageColumns = [];
     protected $btExportPageTypeColumns = ['ptID'];
     protected $btDefaultSet = 'think_story';
     //protected $btIgnorePageThemeGridFrameworkContainer = true;    //Makes it so that Enable Grid Container isn't option for the block, but fucks the format
@@ -73,6 +73,24 @@ class Controller extends BlockController
             //$e->add(t('You must select a page type'));
             //$data['ptID'] = 0;
         }
+
+        //Validate redirect method
+        switch($data['iRedirectMethod']){
+            case 1:
+                if(!$data['cParentID']){
+                    $e->add(t('If you choose to redirect to a specific page, you must select a page!'));
+                }
+                break;
+            case 2:
+                if(!$data['numberUpRedirect']){
+                    $e->add(t('If you choose to redirect a specific number of pages up, you must choose by how many pages!'));
+                }
+                break;
+            default:
+                $e->add(t('An error appears to have occured saving the redirect method!'));
+                break;
+        }
+
         return $e;
     }
 
@@ -84,7 +102,7 @@ class Controller extends BlockController
             $data['expressColors'] = strval($data['expressColors']);
         }
 
-        $data += array(
+        /*$data += array(
             'externalTarget' => 0,
         );
         $externalTarget = intval($data['externalTarget']);
@@ -94,6 +112,11 @@ class Controller extends BlockController
         } else {
             $data['cParentID'] = intval($data['cParentID']);
             $data['bPostToAnotherPage'] = 1;
+        }*/
+
+        if($data['iRedirectMethod'] == 0){
+            $data['cParentID'] = 0;
+            $data['numberUpRedirect'] = 0;
         }
 
         parent::save($data);
@@ -120,7 +143,9 @@ class Controller extends BlockController
     }
     
     public function view()  {
-        $this->set('bPostToAnotherPage', $this->bPostToAnotherPage);
+        $this->set('numberUpRedirect', $this->numberUpRedirect);
+        $this->set('iRedirectMethod', $this->iRedirectMethod);
+        
         $this->set('cParentID', $this->cParentID);
         $this->set('cParentIDURL', \Page::getByID($this->cParentID)->getCollectionLink());
 

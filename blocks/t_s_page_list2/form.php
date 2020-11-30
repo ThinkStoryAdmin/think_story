@@ -67,32 +67,20 @@
 
 <!-- Choose Redirect method & page -->
 <div class='form-group'>
-    <label for='title' class="control-label"><?=t('Results Page')?></label>
-    <!--<label for="ccm-search-block-external-target">
-        <?php 
-            echo $form->checkbox('externalTarget', "1", intval($cParentID) > 0 ? true : false, ['data-action'=>'resultRedirectListener']); 
-        ?>
-        <?=t('Post Results to a Different Page')?>
-    </label>-->
-    
-    <div id="ccm-redirect-method">
-        <label><?= t('How to redirect') ?></label>
+    <label for='title' class="control-label"><?=t('Results Page : how to redirect results')?></label>
+    <?php
+        echo $form->select('iRedirectMethod', [ 0 => t("Don't redirect"), 1 => t('Redirect to a specific page'), 2 => t('Redirect a number of pages up the site tree') ], $iRedirectMethod, ['data-action'=>'redirectMethodListener']);
+    ?><br>
+    <div id="ccm-redirect-method-choice">
+        <div id="ccm-search-block-external-target-page">
             <?php
-                echo $form->select('iRedirectMethod', [ 0 => t("Don't redirect"), 1 => t('Redirect to a specific page'), 2 => t('Redirect a number of pages up the site tree') ], $iRedirectMethod, ['data-action'=>'redirectMethodListener']);
+                echo Loader::helper('form/page_selector')->selectPage('cParentID', $cParentID);
             ?>
-        <br>
-
-        <div id="ccm-redirect-method-choice">
-            <div id="ccm-search-block-external-target-page">
-                <?php
-                    echo Loader::helper('form/page_selector')->selectPage('cParentID', $cParentID);
-                ?>
-            </div>
-            <div id="ccm-number-up-target-page">
-                <?php
-                    echo $form->number('numberUpRedirect', $numberUpRedirect, ['placeholder' => 'Number of pages up the site tree to redirect by']);
-                ?>
-            </div>
+        </div>
+        <div id="ccm-number-up-target-page">
+            <?php
+                echo $form->number('numberUpRedirect', $numberUpRedirect, ['placeholder' => 'Number of pages up the site tree to redirect by']);
+            ?>
         </div>
     </div>
 </div>
@@ -191,15 +179,6 @@
                 $('#ccm-number-up-target-page').hide()
             }
         })
-        
-        /*$("input[name=externalTarget]").on('change', function() {
-            if ($(this).is(":checked")) {
-                $('#ccm-redirect-method').show();
-                $('#ccm-search-block-external-target-page').hide();
-            } else {
-                $('#ccm-redirect-method').hide();
-            }
-        }).trigger('change');*/
     });
 </script>
 

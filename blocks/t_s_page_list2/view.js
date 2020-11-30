@@ -129,7 +129,6 @@ function setSelects(values, callingBlock){
     updatedBlocks = []
 }
 
-
 $(function() {
     console.log( "View.js ready!" );
 
@@ -175,6 +174,7 @@ $(function() {
 
     //If any of the topic selects change, update the URL and request the pages
 	$('.pagelist2[data-action=topic-select2]').change(function() {
+        console.log("CHANGED TOPICS")
         var blocks = $(this).closest('.topic_select_parent').find(':input')
         const urlParams = new URLSearchParams();
         let values = []
@@ -186,7 +186,27 @@ $(function() {
             }
         }
 
-        if(sendToAnotherPage == 1){
+        switch(iRedirectMethod){
+            case 1:
+                window.location.href = sendToAnotherPageIDURL + '?' + urlParams.toString()
+                break;
+            case 2:
+                var url = new URL(window.location.href)
+                var urlParams = new URLSearchParams(url.searchParams)
+                window.location.href = window.location.href.split("/").slice(0, -1 * (numberUpRedirect)).join("/") + "?" + urlParams.toString();
+                break;
+            
+            case 0:
+            default:
+                getPages({topics: values}).then(function(result,status,xhr){ //If we don't go to a new page, update the current page
+                    var pageresponse = {result,status,xhr}
+                    fillPageGrid(pageresponse, urlParams.toString())
+                })
+                window.history.pushState("object or string", "Page Title", window.location.href.split('?')[0] + '?' + urlParams.toString());
+                break;
+        }
+
+        /*if(sendToAnotherPage == 1){
             window.location.href = sendToAnotherPageIDURL + '?' + urlParams.toString()
         } else {
             getPages({topics: values}).then(function(result,status,xhr){ //If we don't go to a new page, update the current page
@@ -194,6 +214,6 @@ $(function() {
                 fillPageGrid(pageresponse, urlParams.toString())
             })
             window.history.pushState("object or string", "Page Title", window.location.href.split('?')[0] + '?' + urlParams.toString());
-        }
+        }*/
     });
 });
