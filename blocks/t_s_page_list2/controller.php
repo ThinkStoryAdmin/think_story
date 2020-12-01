@@ -347,8 +347,6 @@ class Controller extends BlockController
         $temppages = $templist->getResults();
         $pagedata = [];
         foreach($temppages as $temppage){   //FOREACH PAGE : Get the colors & stuff for the page list items
-            $rightcolor = $this->defaultColor;  //If no color is set, set it to default
-            $themename = " ";                   //If no theme is set, set theme name to blank text TODO make this parameter
 		  	$this->$LOGGER = [];                //Hold debug information for the current page
 		  	
             if ($temppage->getCollectionPointerExternalLink() != '') {
@@ -395,6 +393,14 @@ class Controller extends BlockController
                         $rightcolor = $this->getTopicColor2($theme->getTreeNodeID());
                     }
                 }
+            }
+
+            if(!isset($rightcolor)){    //This actually needs to be here, cannot set default at start, as can be set to null above!
+                $rightcolor = $this->defaultColor;
+            }
+
+            if(!isset($themename)){
+                $themename = " ";
             }
 
             $newPageToAddToList = array(

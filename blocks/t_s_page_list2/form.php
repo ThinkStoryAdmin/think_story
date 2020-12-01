@@ -91,7 +91,6 @@
     <?php
         echo $form->select('expressColors', $entities, $expressColors, ['data-action'=>$view->action('load_entity_data')]);
     ?><br>
-    <!-- TODO fix! Colors defines topics, and Topics defines colors! (https://github.com/ThinkStoryAdmin/think_story/issues/7)-->
     <label for="expressColorsColorsAttribute"><?=t('Category Colors Express Object, Color Attribute')?></label>
     <select name='expressColorsColorsAttribute' data-container="attributes-list-select-color"></select><br><br>
     
