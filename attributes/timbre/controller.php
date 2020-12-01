@@ -1,16 +1,9 @@
 <?php
-//namespace Application\Attribute\Timbre;
 namespace Concrete\Package\ThinkStory\Attribute\Timbre;
-
 use Concrete\Core\Attribute\FontAwesomeIconFormatter;
-//use ThinkStory\Attrs\TimbreA;
 use ThinkStory\Attributes\Timbre;
-
 use File;
-
-//use Application\Entity\Attribute\Key\Settings\TimbreSettings;
 use Concrete\Package\ThinkStory\Entity\Attribute\Key\Settings\TimbreSettings;
-//use Application\Entity\Attribute\Value\Value\TimbreValue;
 use Concrete\Package\ThinkStory\Entity\Attribute\Value\Value\TimbreValue;
 
 use Concrete\Core\Attribute\Controller as AttributeController; 
@@ -204,62 +197,6 @@ class Controller extends AttributeController
          */
         $settings = $this->getAttributeKeySettings();
 
-
-        /*
-        if ($this->getAttributeKeySettings()->isModeHtmlInput()) {
-            $previousFileID = (int) $this->post('previousFile');
-            if ($previousFileID !== 0) {
-                $operation = $this->post('operation') ?: 'replace';
-                if ($operation === 'remove') {
-                    return $this->createAttributeValue(null);
-                }
-                if ($operation === 'keep') {
-                    return $this->createAttributeValue(File::getByID($previousFileID));
-                }
-            }
-            $uploadedFile = array_get($this->request->files->all(), "akID.{$this->attributeKey->getAttributeKeyID()}.value");
-            if ($uploadedFile instanceof UploadedFile && $uploadedFile->isValid()) {
-                $importer = new Importer();
-                $f = $importer->import($uploadedFile->getPathname(), $uploadedFile->getClientOriginalName());
-                if (is_object($f)) {
-                    return $this->createAttributeValue($f->getFile());
-                }
-            }
-        }
-
-        return $this->createAttributeValue(null);
-        */
-
-        /*
-        $previousFileID = (int) $this->post('previousFile');
-        if ($previousFileID !== 0) {
-            $operation = $this->post('operation') ?: 'replace';
-            if ($operation === 'remove') {
-                //return $this->createAttributeValue(null);
-            }
-            if ($operation === 'keep') {
-                //return $this->createAttributeValue(File::getByID($previousFileID));
-                $file = $data[$previousFileID];
-            }
-        }
-        $uploadedFile = array_get($this->request->files->all(), "akID.{$this->attributeKey->getAttributeKeyID()}.value");
-        if ($uploadedFile instanceof UploadedFile && $uploadedFile->isValid()) {
-            $importer = new Importer();
-            $f = $importer->import($uploadedFile->getPathname(), $uploadedFile->getClientOriginalName());
-            if (is_object($f)) {
-                //return $this->createAttributeValue($f->getFile());
-                $file = $data[$f];
-            }
-        }
-        */
-
-        //return $this->createAttributeValue(null);
-
-        //$formDisplayMethod = 'select';
-        /*if (isset($data['value']) && $data['value']) {
-            $file = $data['value'];
-        }*/
-
         $fID = (int) $this->post('value');
         if ($fID !== 0) {
             //return $this->createAttributeValue(File::getByID($fID));
@@ -348,7 +285,6 @@ class Controller extends AttributeController
                     } else {
                         return 0;
                     }
-                    //return $value->getValid();
                 } else {
                     return 2;
                 }
@@ -356,77 +292,3 @@ class Controller extends AttributeController
         }
     }
 }
-
-/*
-public function validateForm($data)
-{
-    if ($this->getAttributeKeySettings()->isModeFileManager()) {
-        if ((int) ($data['value']) > 0) {
-            $f = File::getByID((int) ($data['value']));
-            if (is_object($f) && !$f->isError()) {
-                return true;
-            } else {
-                return new Error(t('You must specify a valid file for %s', $this->getAttributeKey()->getAttributeKeyDisplayName()),
-                    new AttributeField($this->getAttributeKey())
-                );
-            }
-        } else {
-            return new FieldNotPresentError(new AttributeField($this->getAttributeKey()));
-        }
-    }
-    if ($this->getAttributeKeySettings()->isModeHtmlInput()) {
-        $previousFileID = empty($data['previousFile']) ? 0 : (int) $data['previousFile'];
-        if ($previousFileID !== 0) {
-            $operation = empty($data['operation']) ? 'replace' : $data['operation'];
-            if (in_array($operation, ['keep', 'remove'], true)) {
-                return true;
-            }
-        }
-        $uploadedFile = array_get($this->request->files->all(), "akID.{$this->attributeKey->getAttributeKeyID()}.value");
-        if (!$uploadedFile instanceof UploadedFile || !$uploadedFile->isValid()) {
-            return new FieldNotPresentError(new AttributeField($this->getAttributeKey()));
-        }
-        $name = $uploadedFile->getClientOriginalName();
-        $fh = $this->app->make('helper/validation/file');
-        if (!$fh->extension($name)) {
-            return new Error(t('Invalid file extension.'),
-                new AttributeField($this->getAttributeKey())
-            );
-        }
-        return true;
-    }
-}*/
-
-/*
-public function createAttributeValueFromRequest()
-    {
-        if ($this->getAttributeKeySettings()->isModeFileManager()) {
-            $fID = (int) $this->post('value');
-            if ($fID !== 0) {
-                return $this->createAttributeValue(File::getByID($fID));
-            }
-        }
-        if ($this->getAttributeKeySettings()->isModeHtmlInput()) {
-            $previousFileID = (int) $this->post('previousFile');
-            if ($previousFileID !== 0) {
-                $operation = $this->post('operation') ?: 'replace';
-                if ($operation === 'remove') {
-                    return $this->createAttributeValue(null);
-                }
-                if ($operation === 'keep') {
-                    return $this->createAttributeValue(File::getByID($previousFileID));
-                }
-            }
-            $uploadedFile = array_get($this->request->files->all(), "akID.{$this->attributeKey->getAttributeKeyID()}.value");
-            if ($uploadedFile instanceof UploadedFile && $uploadedFile->isValid()) {
-                $importer = new Importer();
-                $f = $importer->import($uploadedFile->getPathname(), $uploadedFile->getClientOriginalName());
-                if (is_object($f)) {
-                    return $this->createAttributeValue($f->getFile());
-                }
-            }
-        }
-
-        return $this->createAttributeValue(null);
-    }
-    */

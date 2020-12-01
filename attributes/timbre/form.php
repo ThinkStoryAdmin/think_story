@@ -1,7 +1,4 @@
 <div class="form-inline">
-    <!--<label><?=t('Custom Label')?></label>
-    <input class="form-control" type="text" value="<?=$customLabel?>" name="<?=$view->field('customLabel')?>">-->
-
     <legend><?= t('Validated') ?></legend>
     <div class="form-group">
         Validated:
@@ -11,9 +8,4 @@
             <option value="1" <?php if (isset($valid) && $valid == 1) { ?>selected<?php }  ?>>Validated</option>
         </select>
     </div> <br>
-    <!--<div> Valid: 
-        <?php
-            echo $valid;
-        ?>
-    </div>-->
 </div>
