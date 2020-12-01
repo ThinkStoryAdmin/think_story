@@ -63,15 +63,20 @@ class Controller extends BlockController
     public function getBlockTypeDescription()   {
         return t("Block that filters the TS Page List Result block");
     }
+
+    public function getBlockTypeHelp()
+    {
+        $help = `
+            <p>If the topic colors are always the default color, you have either misconfigured your topic<->color Express object or misconfigured this block.</p>
+            <p>Second paragraph of help.</p>
+        `;
+        return $help;
+    }
     
     public function validate($data) {
         $e = Core::make('error');
         if(!isset($data['expressColors']) && !$data['expressColors']){
             $e->add(t('You must select an Express Object'));
-        }
-        if(!$data['ptID']){ //TODO need? ! -> remove
-            //$e->add(t('You must select a page type'));
-            //$data['ptID'] = 0;
         }
 
         //Validate redirect method
@@ -85,6 +90,8 @@ class Controller extends BlockController
                 if(!$data['numberUpRedirect']){
                     $e->add(t('If you choose to redirect a specific number of pages up, you must choose by how many pages!'));
                 }
+                break;
+            case 0:
                 break;
             default:
                 $e->add(t('An error appears to have occured saving the redirect method!'));
@@ -101,18 +108,6 @@ class Controller extends BlockController
         } else {
             $data['expressColors'] = strval($data['expressColors']);
         }
-
-        /*$data += array(
-            'externalTarget' => 0,
-        );
-        $externalTarget = intval($data['externalTarget']);
-        if ($externalTarget === 0) {
-            $data['cParentID'] = 0;
-            $data['bPostToAnotherPage'] = 0;
-        } else {
-            $data['cParentID'] = intval($data['cParentID']);
-            $data['bPostToAnotherPage'] = 1;
-        }*/
 
         if($data['iRedirectMethod'] == 0){
             $data['cParentID'] = 0;
@@ -278,7 +273,9 @@ class Controller extends BlockController
         $this->set('entity', $entity);
         
         foreach($this->categoryColorsMain->getResults() AS $topicColor){    //$tcResls = $this->categoryColorsMain->getResults();
-            $this->relationsTC[$topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getValue()[0]->getTreeNodeID()] = $topicColor->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
+            try{
+                $this->relationsTC[$topicColor->getAttributeValue($this->expressColorsTopicsAttribute)->getValue()[0]->getTreeNodeID()] = $topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getDisplayValue();
+            } catch(\Exception $e){} catch(\Throwable $e){} //NEED TO USE \ OR IT DOESN'T CATCH
         }
     }
 
