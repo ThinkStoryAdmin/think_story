@@ -219,6 +219,7 @@ class Controller extends BlockController
 
     public function view()
     {
+        //TODO use the color stuff from t_s_page_list2
         /*$entity = Express::getObjectByHandle('tstopiccolor');
         $listentities = new \Concrete\Core\Express\EntryList($entity);
         $categoryColors = $listentities->getResults();*/
