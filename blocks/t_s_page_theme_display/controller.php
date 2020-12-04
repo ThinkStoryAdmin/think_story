@@ -246,7 +246,7 @@ class Controller extends BlockController
                 }
             }
         }
-        echo json_encode(array('data' => $this->request->post(), 'theme' => $themename, 'color' => $rightcolor));
+        echo json_encode(array('data' => $this->request->post(), 'theme' => tc('TopicName', $themename), 'color' => $rightcolor));
         exit;
     }
 

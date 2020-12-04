@@ -9,7 +9,7 @@
             if(is_null($pageTopic)){
                 echo "";
             } else {
-                echo $pageTopic->getTreeNodeDisplayName();
+                echo tc('TopicName', $pageTopic->getTreeNodeDisplayName());
             }
         ?>
     </div>
