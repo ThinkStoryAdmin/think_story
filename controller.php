@@ -122,7 +122,7 @@ class Controller extends Package
         if (!BlockTypeSet::getByHandle('think_story')) {
             BlockTypeSet::add('think_story', 'Think Story', $pkg);
         }
-        //Ignored blocks : t_s_hello_world, t_s_columns, t_s_page_attribute_display, t_s_next_previous
+        //Ignored blocks : t_s_columns
         $this->addBlockType('t_s_topic_list', $pkg);
         $this->addBlockType('t_s_page_list2', $pkg);
         $this->addBlockType('t_s_print_page_to_pdf', $pkg);
