@@ -195,8 +195,7 @@ class Controller extends BlockController
             } catch(\Exception $e){} catch(\Throwable $e){} //NEED TO USE \ OR IT DOESN'T CATCH
         }
     }
-
-    //TODO put following methods in seperate class, as the are duplicated in t_s_page_theme_display
+    
     public function getTopicColor2($topicName){
         return $this->relationsTC[$topicName];
     }
@@ -268,7 +267,6 @@ class Controller extends BlockController
         $this->set('pageTopic', $temppage->getAttribute($this->topic)[0]);
         $this->set('bID', $this->bID);
         
-        //TODO a block of code was copied here from t_s_page_list2 for topic color stuff (check deletions)
         $theme = $temppage->getAttribute($this->topic);
         if(!is_null($theme) && !empty($theme) && isset($theme)){
             if(is_array($theme)){

@@ -106,7 +106,7 @@ class Controller extends BlockController
     public function save($data){
         $data['topics'] = serialize($data['topics']);
         if(!isset($data['expressColors'])){
-            $data['expressColors'] = 'FUG U';   //TODO check if this causes errors
+            $data['expressColors'] = 'WHA?';   //This souldn't be called anymore due to validate($data)
         } else {
             $data['expressColors'] = strval($data['expressColors']);
         }

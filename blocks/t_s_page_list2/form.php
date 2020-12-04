@@ -1,6 +1,6 @@
 <?php 
     defined('C5_EXECUTE') or die("Access Denied.");
-    $c = Page::getCurrentPage();    //TODO remove
+    $c = Page::getCurrentPage();
 ?>
 <div class="form-group">
     <label class="control-label"><?= t('Page Type') ?></label>
