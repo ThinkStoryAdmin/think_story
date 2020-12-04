@@ -1,7 +1,7 @@
 <?php
 namespace Concrete\Package\ThinkStory\Block\TSPageList2;
 
-use ThinkStory\TSTopicColor;
+use ThinkStory\TSTopicColorHelper;
 
 use BlockType;
 use CollectionAttributeKey;
@@ -322,10 +322,10 @@ class Controller extends BlockController
             $theme = $temppage->getAttribute($this->pageTopicColors);
 
             if(!is_null($topics) && !empty(array_diff($topics, [-1]))){     //If there are topics defined, and if at least one does not equal -1
-                if(array_intersect($nums, TSTopicColor::getPageTopics($temppage)) == $nums){ //if the current page has relevant topics
+                if(array_intersect($nums, TSTopicColorHelper::getPageTopics($temppage)) == $nums){ //if the current page has relevant topics
 				  	array_push($this->$LOGGER, 'if 1');
                     $sortOrder = 1;
-                    $correctTopic = array_intersect($nums, TSTopicColor::getPageTopics($temppage))[0];
+                    $correctTopic = array_intersect($nums, TSTopicColorHelper::getPageTopics($temppage))[0];
                     $found = false;
                     if(is_array($theme)){
                         foreach($theme AS $t){
@@ -337,20 +337,20 @@ class Controller extends BlockController
                         }
                     }
                     if(!$found){
-                        $themename = TSTopicColor::getThemeName($theme);
-                        $rightcolor = $this->getTopicColor2(TSTopicColor::getThemeID($theme));
+                        $themename = TSTopicColorHelper::getThemeName($theme);
+                        $rightcolor = $this->getTopicColor2(TSTopicColorHelper::getThemeID($theme));
                     }
                 } else {    //Else no matching topics
                     array_push($this->$LOGGER, 'if 2');
                     $sortOrder = 2;
                     $rightcolor = $this->defaultColor;
-                    $themename = TSTopicColor::getThemeName($theme);
+                    $themename = TSTopicColorHelper::getThemeName($theme);
                 }
             } else {//THIS ELSE IS IF there are no topics to filter or sort by. If there are no topics / all -1, then default color (i.e. gray)
                 $sortOrder = 2;
                 if(!is_null($theme) && !empty($theme) && isset($theme)){
                     array_push($this->$LOGGER, 'else 1');
-                    $themename = TSTopicColor::getThemeName($theme);
+                    $themename = TSTopicColorHelper::getThemeName($theme);
                     if(is_array($theme)){
                         $rightcolor = $this->getTopicColor2($theme[0]->getTreeNodeID());
                     } else {

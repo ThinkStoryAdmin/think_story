@@ -1,7 +1,7 @@
 <?php
 namespace Concrete\Package\ThinkStory\Block\TSPageThemeDisplay;
 
-use ThinkStory\TSTopicColor;
+use ThinkStory\TSTopicColorHelper;
 
 use BlockType;
 use CollectionAttributeKey;
@@ -217,8 +217,8 @@ class Controller extends BlockController
         }
         
         if(!is_null($topics) && !empty(array_diff($topics, [-1]))){     //If there are topics defined, and if at least one does not equal -1
-            if(array_intersect($nums, TSTopicColor::getPageTopics($temppage)) == $nums){ //if the current page has relevant topics
-                $correctTopic = array_intersect($nums, TSTopicColor::getPageTopics($temppage))[0];
+            if(array_intersect($nums, TSTopicColorHelper::getPageTopics($temppage)) == $nums){ //if the current page has relevant topics
+                $correctTopic = array_intersect($nums, TSTopicColorHelper::getPageTopics($temppage))[0];
                 $found = false;
                 if(is_array($theme)){
                     foreach($theme AS $t){
@@ -230,16 +230,16 @@ class Controller extends BlockController
                     }
                 }
                 if(!$found){
-                    $themename = TSTopicColor::getThemeName($theme);
-                    $rightcolor = $this->getTopicColor2(TSTopicColor::getThemeID($theme));
+                    $themename = TSTopicColorHelper::getThemeName($theme);
+                    $rightcolor = $this->getTopicColor2(TSTopicColorHelper::getThemeID($theme));
                 }
             } else {    //Else no matching topics
                 $rightcolor = $this->defaultColor;
-                $themename = TSTopicColor::getThemeName($theme);
+                $themename = TSTopicColorHelper::getThemeName($theme);
             }
         } else {//ELSE there are no topics to filter or sort by
             if(!is_null($theme) && !empty($theme) && isset($theme)){
-                $themename = TSTopicColor::getThemeName($theme);
+                $themename = TSTopicColorHelper::getThemeName($theme);
                 if(is_array($theme)){
                     $rightcolor = $this->getTopicColor2($theme[0]->getTreeNodeID());
                 } else {
