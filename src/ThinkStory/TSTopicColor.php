@@ -63,6 +63,8 @@ class TSTopicColor {
 
     public static function getThemeID($theme){
         if(is_array($theme)){ 
+            /*foreach($theme AS $themeItem){
+                if($themeItem){         $themename = $themeItem->getTreeNodeName(); break;          }           }*/
             return $theme[0]->getTreeNodeID();
         } else {
             return $theme->getTreeNodeID();
