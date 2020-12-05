@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	THIS IS FOR FULL CONTENT SWAP
+	NEED TO FIRST INSTALL CONTENT FROM export-beutify.
+	This XML only contains stacks and pages, none of the page types / express objects!
+-->
+<concrete5-cif version="1.0">
+	<themes>
+		<theme handle="elemental" package="" activated="0"/>
+		<theme handle="t_s_theme_elemental" package="think_story" activated="1"/>
+	</themes>
+	<pages>
+		<page name="Welcome" path="" public-date="2020-06-30 13:46:00" filename="" pagetype="page" template="page_home" user="AdminTnkDta" description="" package="" root="true">
+			<area name="Main">
+				<blocks/>
+			</area>
+			<area name="Page Footer">
+				<blocks/>
+			</area>
+			<area name="Carousel">
+				<blocks>
+					<block type="t_s_page_slider" name="">
+						<data table="btTSPageSlider">
+							<record>
+								<pageListTitle>
+									<![CDATA[]]>
+								</pageListTitle>
+								<num>
+									<![CDATA[5]]>
+								</num>
+								<orderBy>
+									<![CDATA[display_most_recent]]>
+								</orderBy>
+								<cParentID>{ccm:export:page:}</cParentID>
+								<ptID>{ccm:export:pagetype:scenario_page_type}</ptID>
+								<speed>
+									<![CDATA[5]]>
+								</speed>
+								<viewCountAttribute>
+									<![CDATA[ts_pattr_number_views]]>
+								</viewCountAttribute>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Sujet 1">
+				<blocks>
+					<block type="t_s_topic_list" name="">
+						<data>
+							<mode>S</mode>
+							<title>Subjects</title>
+							<topicAttributeKeyHandle/>
+							<tree>Subjects</tree>
+							<cParentID>{ccm:export:page:/scenarios}</cParentID>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Sujet 2">
+				<blocks>
+					<block type="t_s_topic_list" name="">
+						<data>
+							<mode>S</mode>
+							<title>Occupation</title>
+							<topicAttributeKeyHandle/>
+							<tree>Jobs</tree>
+							<cParentID>{ccm:export:page:/scenarios}</cParentID>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Sujet 3">
+				<blocks>
+					<block type="t_s_topic_list" name="">
+						<data>
+							<mode>S</mode>
+							<title>Data</title>
+							<topicAttributeKeyHandle/>
+							<tree>Data types</tree>
+							<cParentID>{ccm:export:page:/scenarios}</cParentID>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</page>
+		<page name="Scenarios" path="/scenarios" public-date="2020-06-30 14:38:41" filename="" pagetype="page" template="page_scenarios" user="AdminTnkDta" description="" package=""/>
+		<page name="Glossary" path="/glossary" public-date="2020-06-30 14:38:56" filename="" pagetype="page" template="full" user="AdminTnkDta" description="" package="">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[<div>Put your glossary here!</div>]]>
+								</content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks/>
+			</area>
+		</page>
+		<page name="My Scenario" path="/my-scenario" public-date="2020-06-30 14:39:13" filename="" pagetype="page" template="full" user="AdminTnkDta" description="" package="">
+			<area name="Page Header">
+				<blocks/>
+			</area>
+			<area name="Contenu">
+				<blocks/>
+			</area>
+			<area name="Page Footer">
+				<blocks/>
+			</area>
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[<div>Put your description here!</div>]]>
+								</content>
+							</record>
+						</data>
+					</block>
+					<block type="express_form" name="">
+						<data table="btExpressForm">
+							<record>
+								<exFormID>
+									<![CDATA[35160245-b404-11ea-913b-de3f9e5efbce]]>
+								</exFormID>
+								<submitLabel>
+									<![CDATA[Submit]]>
+								</submitLabel>
+								<thankyouMsg>
+									<![CDATA[Thanks!]]>
+								</thankyouMsg>
+								<notifyMeOnSubmission>
+									<![CDATA[0]]>
+								</notifyMeOnSubmission>
+								<recipientEmail>
+									<![CDATA[]]>
+								</recipientEmail>
+								<displayCaptcha>
+									<![CDATA[1]]>
+								</displayCaptcha>
+								<storeFormSubmission>
+									<![CDATA[1]]>
+								</storeFormSubmission>
+								<redirectCID/>
+								<replyToEmailControlID>
+									<![CDATA[]]>
+								</replyToEmailControlID>
+								<addFilesToSet>
+									<![CDATA[0]]>
+								</addFilesToSet>
+								<addFilesToFolder>
+									<![CDATA[7]]>
+								</addFilesToFolder>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</page>
+		<page name="EXTRASen" path="/extrasen" public-date="2020-06-30 14:39:00" filename="" pagetype="page" template="full" user="AdminTnkDta" description="" package="">
+			<attributes>
+				<attributekey handle="exclude_nav">
+					<value>1</value>
+				</attributekey>
+				<attributekey handle="exclude_page_list">
+					<value>1</value>
+				</attributekey>
+				<attributekey handle="exclude_search_index">
+					<value>1</value>
+				</attributekey>
+			</attributes>
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[]]>
+								</content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</page>
+		<page name="About" path="/extrasen/history" public-date="2020-06-30 14:40:15" filename="" pagetype="page" template="full" user="AdminTnkDta" description="" package="">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[<div>Tell your users about your site, and your project!</div>]]>
+								</content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks/>
+			</area>
+		</page>
+		<page name="News" path="/extrasen/news" public-date="2020-06-30 14:40:37" filename="" pagetype="page" template="full" user="AdminTnkDta" description="" package="">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[]]>
+								</content>
+							</record>
+						</data>
+					</block>
+					<block type="customizable_twitter_feed" name="">
+						<data table="btCustomizableTwitterFeed">
+							<record>
+								<userName>
+									<![CDATA[thinkdata101]]>
+								</userName>
+								<feedTitle>
+									<![CDATA[]]>
+								</feedTitle>
+								<feedTitleColor>
+									<![CDATA[#000000]]>
+								</feedTitleColor>
+								<feedTitleTextSize>
+									<![CDATA[0]]>
+								</feedTitleTextSize>
+								<maxTweets>
+									<![CDATA[10]]>
+								</maxTweets>
+								<showUser>
+									<![CDATA[1]]>
+								</showUser>
+								<showTime>
+									<![CDATA[1]]>
+								</showTime>
+								<showInteraction>
+									<![CDATA[1]]>
+								</showInteraction>
+								<showRetweet>
+									<![CDATA[1]]>
+								</showRetweet>
+								<showImages>
+									<![CDATA[1]]>
+								</showImages>
+								<linksInNewWindow>
+									<![CDATA[1]]>
+								</linksInNewWindow>
+								<maxWidth>
+									<![CDATA[0]]>
+								</maxWidth>
+								<feedPadding>
+									<![CDATA[0]]>
+								</feedPadding>
+								<feedBackgroundColor>
+									<![CDATA[]]>
+								</feedBackgroundColor>
+								<feedTheme>
+									<![CDATA[no theme]]>
+								</feedTheme>
+								<tweetDivider>
+									<![CDATA[1]]>
+								</tweetDivider>
+								<tweetDividerColor>
+									<![CDATA[#000000]]>
+								</tweetDividerColor>
+								<nameTextColor>
+									<![CDATA[#000000]]>
+								</nameTextColor>
+								<nameTextSize>
+									<![CDATA[0]]>
+								</nameTextSize>
+								<atNameTextSize>
+									<![CDATA[0]]>
+								</atNameTextSize>
+								<feedTextColor>
+									<![CDATA[#000000]]>
+								</feedTextColor>
+								<feedTextSize>
+									<![CDATA[0]]>
+								</feedTextSize>
+								<feedLinkColor>
+									<![CDATA[#868686]]>
+								</feedLinkColor>
+								<feedLinkHoverColor>
+									<![CDATA[#46a3d9]]>
+								</feedLinkHoverColor>
+								<timePostedColor>
+									<![CDATA[#46a3d9]]>
+								</timePostedColor>
+								<timePostedTextSize>
+									<![CDATA[0]]>
+								</timePostedTextSize>
+								<interactTextSize>
+									<![CDATA[0]]>
+								</interactTextSize>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks/>
+			</area>
+		</page>
+		<page name="FAQ" path="/extrasen/faq" public-date="2020-06-30 14:40:46" filename="" pagetype="page" template="full" user="AdminTnkDta" description="" package="">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[<div>Put your FAQ here! Or use Concrete5's built-in FAQ block! </div>]]>
+								</content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks/>
+			</area>
+		</page>
+		<page name="Data Protection" path="/extrasen/data-protection" public-date="2020-06-30 14:40:59" filename="" pagetype="page" template="full" user="AdminTnkDta" description="" package="">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[<div>Describe here how you potect your user's data!</div>]]>
+								</content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks/>
+			</area>
+		</page>
+		<page name="Contact" path="/extrasen/contact" public-date="2020-06-30 14:41:10" filename="" pagetype="page" template="full" user="AdminTnkDta" description="" package="">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[<div>Put your contact information here!</div>]]>
+								</content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+			<area name="Page Footer">
+				<blocks/>
+			</area>
+		</page>
+	</pages>
+    <stacks>
+		<stack name="Footer Legal" type="global_area" path="/footer-legal">
+			<area name="Main">
+				<blocks>
+					<block type="image" name="">
+						<data table="btContentImage">
+							<record>
+								<fID>{ccm:export:file:761593528515:cc.png}</fID>
+								<fOnstateID/>
+								<cropImage>
+									<![CDATA[0]]>
+								</cropImage>
+								<maxWidth>
+									<![CDATA[0]]>
+								</maxWidth>
+								<maxHeight>
+									<![CDATA[0]]>
+								</maxHeight>
+								<externalLink>
+									<![CDATA[http://creativecommons.org/licenses/by-nc-sa/3.0]]>
+								</externalLink>
+								<internalLinkCID/>
+								<fileLinkID/>
+								<openLinkInNewWindow>
+									<![CDATA[1]]>
+								</openLinkInNewWindow>
+								<altText>
+									<![CDATA[CC]]>
+								</altText>
+								<title>
+									<![CDATA[]]>
+								</title>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Footer Navigation Primary" type="global_area" path="/footer-navigation-primary">
+			<area name="Main">
+				<blocks>
+					<block type="autonav" name="" custom-template="think_story_footer_nav">
+						<data table="btNavigation">
+							<record>
+								<orderBy>
+									<![CDATA[display_asc]]>
+								</orderBy>
+								<displayPages>
+									<![CDATA[top]]>
+								</displayPages>
+								<displayPagesCID/>
+								<displayPagesIncludeSelf>
+									<![CDATA[0]]>
+								</displayPagesIncludeSelf>
+								<displaySubPages>
+									<![CDATA[none]]>
+								</displaySubPages>
+								<displaySubPageLevels>
+									<![CDATA[enough]]>
+								</displaySubPageLevels>
+								<displaySubPageLevelsNum>
+									<![CDATA[0]]>
+								</displaySubPageLevelsNum>
+								<displayUnavailablePages>
+									<![CDATA[0]]>
+								</displayUnavailablePages>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Footer Navigation Secondary" type="global_area" path="/footer-navigation-secondary">
+			<area name="Main">
+				<blocks>
+					<block type="autonav" name="" custom-template="think_story_footer_nav">
+						<data table="btNavigation">
+							<record>
+								<orderBy>
+									<![CDATA[display_asc]]>
+								</orderBy>
+								<displayPages>
+									<![CDATA[custom]]>
+								</displayPages>
+								<displayPagesCID>{ccm:export:page:/extrasen}</displayPagesCID>
+								<displayPagesIncludeSelf>
+									<![CDATA[0]]>
+								</displayPagesIncludeSelf>
+								<displaySubPages>
+									<![CDATA[none]]>
+								</displaySubPages>
+								<displaySubPageLevels>
+									<![CDATA[enough]]>
+								</displaySubPageLevels>
+								<displaySubPageLevelsNum>
+									<![CDATA[0]]>
+								</displaySubPageLevelsNum>
+								<displayUnavailablePages>
+									<![CDATA[0]]>
+								</displayUnavailablePages>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Header Navigation" type="global_area" path="/header-navigation">
+			<area name="Main">
+				<blocks>
+					<block type="switch_language" name="" custom-template="t_s_template">
+						<style>
+							<backgroundColor/>
+							<backgroundRepeat>no-repeat</backgroundRepeat>
+							<backgroundSize>auto</backgroundSize>
+							<backgroundPosition>0% 0%</backgroundPosition>
+							<borderWidth/>
+							<borderColor/>
+							<borderStyle/>
+							<borderRadius/>
+							<baseFontSize/>
+							<alignment>right</alignment>
+							<textColor/>
+							<linkColor/>
+							<paddingTop/>
+							<paddingBottom/>
+							<paddingLeft/>
+							<paddingRight/>
+							<marginTop/>
+							<marginBottom/>
+							<marginLeft/>
+							<marginRight/>
+							<rotate/>
+							<boxShadowHorizontal/>
+							<boxShadowVertical/>
+							<boxShadowBlur/>
+							<boxShadowSpread/>
+							<boxShadowColor/>
+							<customClass/>
+							<customID/>
+							<customElementAttribute/>
+							<hideOnExtraSmallDevice/>
+							<hideOnSmallDevice/>
+							<hideOnMediumDevice/>
+							<hideOnLargeDevice/>
+						</style>
+						<data table="btSwitchLanguage">
+							<record>
+								<label>
+									<![CDATA[]]>
+								</label>
+							</record>
+						</data>
+					</block>
+					<block type="autonav" name="" custom-template="think_story_secondary_nav">
+						<style>
+							<backgroundColor/>
+							<backgroundRepeat>no-repeat</backgroundRepeat>
+							<backgroundSize>auto</backgroundSize>
+							<backgroundPosition>0% 0%</backgroundPosition>
+							<borderWidth/>
+							<borderColor/>
+							<borderStyle/>
+							<borderRadius/>
+							<baseFontSize/>
+							<alignment>right</alignment>
+							<textColor/>
+							<linkColor/>
+							<paddingTop/>
+							<paddingBottom/>
+							<paddingLeft/>
+							<paddingRight/>
+							<marginTop/>
+							<marginBottom/>
+							<marginLeft/>
+							<marginRight/>
+							<rotate/>
+							<boxShadowHorizontal/>
+							<boxShadowVertical/>
+							<boxShadowBlur/>
+							<boxShadowSpread/>
+							<boxShadowColor/>
+							<customClass/>
+							<customID/>
+							<customElementAttribute/>
+							<hideOnExtraSmallDevice/>
+							<hideOnSmallDevice/>
+							<hideOnMediumDevice/>
+							<hideOnLargeDevice/>
+						</style>
+						<data table="btNavigation">
+							<record>
+								<orderBy>
+									<![CDATA[display_asc]]>
+								</orderBy>
+								<displayPages>
+									<![CDATA[custom]]>
+								</displayPages>
+								<displayPagesCID>{ccm:export:page:/extrasen}</displayPagesCID>
+								<displayPagesIncludeSelf>
+									<![CDATA[0]]>
+								</displayPagesIncludeSelf>
+								<displaySubPages>
+									<![CDATA[none]]>
+								</displaySubPages>
+								<displaySubPageLevels>
+									<![CDATA[enough]]>
+								</displaySubPageLevels>
+								<displaySubPageLevelsNum>
+									<![CDATA[0]]>
+								</displaySubPageLevelsNum>
+								<displayUnavailablePages>
+									<![CDATA[0]]>
+								</displayUnavailablePages>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Header Site Title" type="global_area" path="/header-site-title">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[<p>Put your site header here!</p>]]>
+								</content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Primary Navigation" type="global_area" path="/primary-navigation">
+			<area name="Main">
+				<blocks>
+					<block type="autonav" name="" custom-template="think_story_primary_nav">
+						<data table="btNavigation">
+							<record>
+								<orderBy>
+									<![CDATA[display_asc]]>
+								</orderBy>
+								<displayPages>
+									<![CDATA[top]]>
+								</displayPages>
+								<displayPagesCID/>
+								<displayPagesIncludeSelf>
+									<![CDATA[0]]>
+								</displayPagesIncludeSelf>
+								<displaySubPages>
+									<![CDATA[none]]>
+								</displaySubPages>
+								<displaySubPageLevels>
+									<![CDATA[enough]]>
+								</displaySubPageLevels>
+								<displaySubPageLevelsNum>
+									<![CDATA[0]]>
+								</displaySubPageLevelsNum>
+								<displayUnavailablePages>
+									<![CDATA[0]]>
+								</displayUnavailablePages>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Souteneurs" type="global_area" path="/souteneurs">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<style>
+							<backgroundColor/>
+							<backgroundRepeat>no-repeat</backgroundRepeat>
+							<backgroundSize>auto</backgroundSize>
+							<backgroundPosition>0% 0%</backgroundPosition>
+							<borderWidth/>
+							<borderColor/>
+							<borderStyle/>
+							<borderRadius/>
+							<baseFontSize/>
+							<alignment>center</alignment>
+							<textColor/>
+							<linkColor/>
+							<paddingTop/>
+							<paddingBottom/>
+							<paddingLeft/>
+							<paddingRight/>
+							<marginTop/>
+							<marginBottom/>
+							<marginLeft/>
+							<marginRight/>
+							<rotate/>
+							<boxShadowHorizontal/>
+							<boxShadowVertical/>
+							<boxShadowBlur/>
+							<boxShadowSpread/>
+							<boxShadowColor/>
+							<customClass/>
+							<customID/>
+							<customElementAttribute/>
+							<hideOnExtraSmallDevice/>
+							<hideOnSmallDevice/>
+							<hideOnMediumDevice/>
+							<hideOnLargeDevice/>
+						</style>
+						<data table="btContentLocal">
+							<record>
+								<content>
+									<![CDATA[<div>You should mention the organisations that helped you make your prject happen!</div>]]>
+								</content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Topic Filter" type="global_area" path="/topic-filter">
+			<area name="Main">
+				<blocks/>
+			</area>
+		</stack>
+	</stacks>
+	<expressentries>
+		<entry id="a1bcec002d77" label="" entity="tstopiccolor" display-order="1">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/HR Management]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#1d96b4]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="4644436ac864" label="" entity="tstopiccolor" display-order="2">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Publication of pictures on Internet]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#a8d025]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="28c1fc5ed957" label="" entity="tstopiccolor" display-order="3">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Transparency]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#be8ecd]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="890ec52a4b00" label="" entity="tstopiccolor" display-order="4">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Geolocation]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#786a21]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="ebab25b6c051" label="" entity="tstopiccolor" display-order="5">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Use of video Surveillance]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#e65c21]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="f545c5db3896" label="" entity="tstopiccolor" display-order="6">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Professional emails]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#ffaed5]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1722f0b25ef5" label="" entity="tstopiccolor" display-order="7">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Biometrics]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#b41d2f]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="9dc2852f78e7" label="" entity="tstopiccolor" display-order="8">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Data Access]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#ecc128]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1f64b316b05b" label="" entity="tstopiccolor" display-order="9">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Personal File]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#7673d9]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1c29e1ed7226" label="" entity="tstopiccolor" display-order="10">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Surveillance (extensive)]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#6b1f6b]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="9a45fde789f0" label="" entity="tstopiccolor" display-order="11">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/School Environment]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#1f5e1e]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="f343808c7ed1" label="" entity="tstopiccolor" display-order="12">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/GDPR Application]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#4d484d]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="93873a104ec4" label="" entity="tstopiccolor" display-order="13">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Connected Items]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#1d0d59]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+	</expressentries>
+</concrete5-cif>
