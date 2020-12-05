@@ -6,11 +6,10 @@ $this->inc('elements/header.php');
 
 <main>
     <div>
-    <?php
-    //TODO just use Area
-    $a = new GlobalArea('Main');
-    $a->display($c);
-    ?>
+        <?php
+            $a = new Area('Main');
+            $a->display($c);
+        ?>
     </div>
 </main>
 
