@@ -1,4 +1,6 @@
 # Think Story (EN)
+NOTE: DO NOT USE CURRENTLY. Ongoing work may break your site! A working version will be available by 2020.12.12.
+
 A Concrete5 package that allows the rapid creation of a Story Telling website.
 
 The wiki of this repo contains information on how to use this package.
