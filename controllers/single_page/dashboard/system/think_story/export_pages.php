@@ -1,6 +1,6 @@
 <?php
 //namespace Concrete\Controller\SinglePage\Dashboard\System\Multilingual;
-namespace Concrete\Package\ThinkStory\Controller\SinglePage\Dashboard\System;
+namespace Concrete\Package\ThinkStory\Controller\SinglePage\Dashboard\System\ThinkStory;
 
 use BlockType;
 use CollectionAttributeKey;
@@ -44,7 +44,7 @@ use Concrete\Package\ThinkStory\AttributeValidator\TSAttributeValidator;
 
 defined('C5_EXECUTE') or die("Access Denied.");
 
-class DataImporter extends DashboardSitePageController
+class ExportPages extends DashboardSitePageController
 {
     public $helpers = array('form');
 

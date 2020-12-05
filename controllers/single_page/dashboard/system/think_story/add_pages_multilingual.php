@@ -2,7 +2,7 @@
 // !!! FOR THIS PAGE TO BE INSTALLED THE SITE NEEDS TO BE RESET
 
 //namespace Concrete\Controller\SinglePage\Dashboard\System\Multilingual;
-namespace Concrete\Package\ThinkStory\Controller\SinglePage\Dashboard\System;
+namespace Concrete\Package\ThinkStory\Controller\SinglePage\Dashboard\System\ThinkStory;
 
 use BlockType;
 use CollectionAttributeKey;

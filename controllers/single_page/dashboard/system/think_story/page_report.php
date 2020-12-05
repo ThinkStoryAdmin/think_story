@@ -1,6 +1,6 @@
 <?php
 //NOTICE : THIS IS BASED OF THE DASHBOARD PAGE "Page Report" AVAILABLE IN Concrete5 CORE! 
-namespace Concrete\Package\ThinkStory\Controller\SinglePage\Dashboard\System;
+namespace Concrete\Package\ThinkStory\Controller\SinglePage\Dashboard\System\ThinkStory;
 use PageType;
 use Concrete\Core\Attribute\Key\CollectionKey;
 use Concrete\Core\Page\Controller\DashboardPageController;
