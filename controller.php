@@ -37,7 +37,7 @@ class Controller extends Package
 {
     protected $pkgHandle = 'think_story';
     protected $appVersionRequired = '8.0'; //SHOULD BE ABOVE 8, otherwise the attribute autoload stuff won't work!!!
-    protected $pkgVersion = '1.0.3.2';
+    protected $pkgVersion = '1.0.3.6';
     //protected $pkgAllowsFullContentSwap = true;   //CONSISTENTLY causes errors, don't bother using
 
     //Importing Custom Code namespaces with PSR-4 autoloader (to include REST routes & Timbre class for Timbre attribute type)
@@ -90,7 +90,7 @@ class Controller extends Package
         $pkg = parent::install();
         $r = \Request::getInstance();
 
-        //Install Dashboard Single Page TODO put in own folder (ie /dashboard/system/think_story/)
+        SinglePage::add('/dashboard/system/think_story', $pkg);
         SinglePage::add('/dashboard/system/think_story/page_report', $pkg);
         SinglePage::add('/dashboard/system/think_story/data_importer', $pkg);
         SinglePage::add('/dashboard/system/think_story/add_pages_multilingual', $pkg);
@@ -153,6 +153,11 @@ class Controller extends Package
         parent::upgrade();
         $pkg = Package::getByHandle('think_story');
         
+        SinglePage::add('/dashboard/system/think_story', $pkg);
+        SinglePage::add('/dashboard/system/think_story/page_report', $pkg);
+        SinglePage::add('/dashboard/system/think_story/data_importer', $pkg);
+        SinglePage::add('/dashboard/system/think_story/add_pages_multilingual', $pkg);
+        SinglePage::add('/dashboard/system/think_story/export_pages', $pkg);
     }
 
     public function uninstall()
