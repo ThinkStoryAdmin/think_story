@@ -131,7 +131,7 @@ class Controller extends Package
         $this->addBlockType('t_s_page_list_result', $pkg);
 
         //Add theme
-        PageTheme::add('t_s_theme_elemental', $pkg);
+        PageTheme::add('t_s_theme_elemental', $pkg);    //Theme::add('urbanic', $pkg); ???
         
         /** NOTE: Installing the page type controller cannot be directly done
          * Page types are installed here, and once the page type is linked to the package, 
@@ -139,8 +139,6 @@ class Controller extends Package
          */
         //Install sample content
         if ($r->request->get('installSampleContent')) {
-            $this->installContentFile('/install/export-beutify-cleaned.xml');
-            $this->installContentFile('/install/content_topics_en.xml');
             $this->installContentFile('/install/content.xml');
         } else {
             //Install the base content (express objects & attributes) needed for the package to work

@@ -4,7 +4,10 @@
 	NEED TO FIRST INSTALL CONTENT FROM export-beutify.
 	This XML only contains stacks and pages, none of the page types / express objects!
 -->
+<!ENTITY baseEntities SYSTEM "export-beutify-cleaned.xml">
+]>
 <concrete5-cif version="1.0">
+	&baseEntities;
 	<themes>
 		<theme handle="elemental" package="" activated="0"/>
 		<theme handle="t_s_theme_elemental" package="think_story" activated="1"/>
@@ -692,7 +695,45 @@
 			</area>
 		</stack>
 	</stacks>
-	<expressentries>
+	<trees>
+        <tree type="topic" name="Subjects">
+            <topic name="HR Management"/>
+            <topic name="Publication of pictures on Internet"/>
+            <topic name="Transparency"/>
+            <topic name="Geolocation"/>
+            <topic name="Use of video Surveillance"/>
+            <topic name="Professional emails"/>
+            <topic name="Biometrics"/>
+            <topic name="Data Access"/>
+            <topic name="Personal File"/>
+            <topic name="Surveillance (extensive)"/>
+            <topic name="School Environment"/>
+            <topic name="GDPR Application"/>
+            <topic name="Connected Items"/>
+        </tree>
+        <tree type="topic" name="Jobs">
+            <topic name="Human Resources Department (HRD)"/>
+            <topic name="Employee"/>
+            <topic name="Manager"/>
+            <topic name="Information Systems Manager"/>
+            <topic name="Citizen"/>
+            <topic name="Student"/>
+            <topic name="Insured Person"/>
+        </tree>
+        <tree type="topic" name="Data types">
+            <topic name="Bank, Finance"/>
+            <topic name="Localisation"/>
+            <topic name="Biometrics"/>
+            <topic name="Pictures"/>
+            <topic name="Medical"/>
+            <topic name="Private"/>
+            <topic name="Professionnals"/>
+            <topic name="Public/non public"/>
+            <topic name="School"/>
+            <topic name="Personality Profile"/>
+        </tree>
+    </trees>
+	<!--<expressentries>
 		<entry id="a1bcec002d77" label="" entity="tstopiccolor" display-order="1">
 			<attributes>
 				<attributekey handle="ts_topic_color_topic">
@@ -901,5 +942,5 @@
 				</attributekey>
 			</attributes>
 		</entry>
-	</expressentries>
+	</expressentries> -->
 </concrete5-cif>
