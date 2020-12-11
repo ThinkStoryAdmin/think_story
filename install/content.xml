@@ -4,10 +4,49 @@
 	NEED TO FIRST INSTALL CONTENT FROM export-beutify.
 	This XML only contains stacks and pages, none of the page types / express objects!
 -->
-<!ENTITY baseEntities SYSTEM "export-beutify-cleaned.xml">
+<!DOCTYPE doc [
+	<!ENTITY baseEntities SYSTEM "export-beutify-cleaned.xml">
 ]>
 <concrete5-cif version="1.0">
 	&baseEntities;
+		<trees>
+        <tree type="topic" name="Subjects">
+            <topic name="HR Management"/>
+            <topic name="Publication of pictures on Internet"/>
+            <topic name="Transparency"/>
+            <topic name="Geolocation"/>
+            <topic name="Use of video Surveillance"/>
+            <topic name="Professional emails"/>
+            <topic name="Biometrics"/>
+            <topic name="Data Access"/>
+            <topic name="Personal File"/>
+            <topic name="Surveillance (extensive)"/>
+            <topic name="School Environment"/>
+            <topic name="GDPR Application"/>
+            <topic name="Connected Items"/>
+        </tree>
+        <tree type="topic" name="Jobs">
+            <topic name="Human Resources Department (HRD)"/>
+            <topic name="Employee"/>
+            <topic name="Manager"/>
+            <topic name="Information Systems Manager"/>
+            <topic name="Citizen"/>
+            <topic name="Student"/>
+            <topic name="Insured Person"/>
+        </tree>
+        <tree type="topic" name="Data types">
+            <topic name="Bank, Finance"/>
+            <topic name="Localisation"/>
+            <topic name="Biometrics"/>
+            <topic name="Pictures"/>
+            <topic name="Medical"/>
+            <topic name="Private"/>
+            <topic name="Professionnals"/>
+            <topic name="Public/non public"/>
+            <topic name="School"/>
+            <topic name="Personality Profile"/>
+        </tree>
+    </trees>
 	<themes>
 		<theme handle="elemental" package="" activated="0"/>
 		<theme handle="t_s_theme_elemental" package="think_story" activated="1"/>
@@ -25,23 +64,13 @@
 					<block type="t_s_page_slider" name="">
 						<data table="btTSPageSlider">
 							<record>
-								<pageListTitle>
-									<![CDATA[]]>
-								</pageListTitle>
-								<num>
-									<![CDATA[5]]>
-								</num>
-								<orderBy>
-									<![CDATA[display_most_recent]]>
-								</orderBy>
+								<pageListTitle><![CDATA[]]></pageListTitle>
+								<num><![CDATA[5]]></num>
+								<orderBy><![CDATA[display_most_recent]]></orderBy>
 								<cParentID>{ccm:export:page:}</cParentID>
 								<ptID>{ccm:export:pagetype:scenario_page_type}</ptID>
-								<speed>
-									<![CDATA[5]]>
-								</speed>
-								<viewCountAttribute>
-									<![CDATA[ts_pattr_number_views]]>
-								</viewCountAttribute>
+								<speed><![CDATA[5]]></speed>
+								<viewCountAttribute><![CDATA[ts_pattr_number_views]]></viewCountAttribute>
 							</record>
 						</data>
 					</block>
@@ -94,9 +123,7 @@
 					<block type="content" name="">
 						<data table="btContentLocal">
 							<record>
-								<content>
-									<![CDATA[<div>Put your glossary here!</div>]]>
-								</content>
+								<content><![CDATA[<div>Put your glossary here!</div>]]></content>
 							</record>
 						</data>
 					</block>
@@ -121,46 +148,24 @@
 					<block type="content" name="">
 						<data table="btContentLocal">
 							<record>
-								<content>
-									<![CDATA[<div>Put your description here!</div>]]>
-								</content>
+								<content><![CDATA[<div>Put your description here!</div>]]></content>
 							</record>
 						</data>
 					</block>
 					<block type="express_form" name="">
 						<data table="btExpressForm">
 							<record>
-								<exFormID>
-									<![CDATA[35160245-b404-11ea-913b-de3f9e5efbce]]>
-								</exFormID>
-								<submitLabel>
-									<![CDATA[Submit]]>
-								</submitLabel>
-								<thankyouMsg>
-									<![CDATA[Thanks!]]>
-								</thankyouMsg>
-								<notifyMeOnSubmission>
-									<![CDATA[0]]>
-								</notifyMeOnSubmission>
-								<recipientEmail>
-									<![CDATA[]]>
-								</recipientEmail>
-								<displayCaptcha>
-									<![CDATA[1]]>
-								</displayCaptcha>
-								<storeFormSubmission>
-									<![CDATA[1]]>
-								</storeFormSubmission>
-								<redirectCID/>
-								<replyToEmailControlID>
-									<![CDATA[]]>
-								</replyToEmailControlID>
-								<addFilesToSet>
-									<![CDATA[0]]>
-								</addFilesToSet>
-								<addFilesToFolder>
-									<![CDATA[7]]>
-								</addFilesToFolder>
+								<exFormID><![CDATA[35160245-b404-11ea-913b-de3f9e5efbce]]></exFormID>
+								<submitLabel><![CDATA[Submit]]></submitLabel>
+								<thankyouMsg><![CDATA[Thanks!]]></thankyouMsg>
+								<notifyMeOnSubmission><![CDATA[0]]></notifyMeOnSubmission>
+								<recipientEmail><![CDATA[]]></recipientEmail>
+								<displayCaptcha><![CDATA[1]]></displayCaptcha>
+								<storeFormSubmission><![CDATA[1]]></storeFormSubmission>
+								<!--<redirectCID></redirectCID>-->
+								<replyToEmailControlID><![CDATA[]]></replyToEmailControlID>
+								<addFilesToSet><![CDATA[0]]></addFilesToSet>
+								<addFilesToFolder><![CDATA[7]]></addFilesToFolder>
 							</record>
 						</data>
 					</block>
@@ -223,7 +228,7 @@
 							</record>
 						</data>
 					</block>
-					<block type="customizable_twitter_feed" name="">
+					<!--<block type="customizable_twitter_feed" name="">
 						<data table="btCustomizableTwitterFeed">
 							<record>
 								<userName>
@@ -309,7 +314,7 @@
 								</interactTextSize>
 							</record>
 						</data>
-					</block>
+					</block>-->
 				</blocks>
 			</area>
 			<area name="Page Footer">
@@ -340,9 +345,7 @@
 					<block type="content" name="">
 						<data table="btContentLocal">
 							<record>
-								<content>
-									<![CDATA[<div>Describe here how you potect your user's data!</div>]]>
-								</content>
+								<content><![CDATA[<div>Describe here how you potect your user's data!</div>]]></content>
 							</record>
 						</data>
 					</block>
@@ -358,9 +361,7 @@
 					<block type="content" name="">
 						<data table="btContentLocal">
 							<record>
-								<content>
-									<![CDATA[<div>Put your contact information here!</div>]]>
-								</content>
+								<content><![CDATA[<div>Put your contact information here!</div>]]></content>
 							</record>
 						</data>
 					</block>
@@ -375,7 +376,7 @@
 		<stack name="Footer Legal" type="global_area" path="/footer-legal">
 			<area name="Main">
 				<blocks>
-					<block type="image" name="">
+					<!--<block type="image" name="">
 						<data table="btContentImage">
 							<record>
 								<fID>{ccm:export:file:761593528515:cc.png}</fID>
@@ -394,18 +395,12 @@
 								</externalLink>
 								<internalLinkCID/>
 								<fileLinkID/>
-								<openLinkInNewWindow>
-									<![CDATA[1]]>
-								</openLinkInNewWindow>
-								<altText>
-									<![CDATA[CC]]>
-								</altText>
-								<title>
-									<![CDATA[]]>
-								</title>
+								<openLinkInNewWindow><![CDATA[1]]></openLinkInNewWindow>
+								<altText><![CDATA[CC]]></altText>
+								<title><![CDATA[]]></title>
 							</record>
 						</data>
-					</block>
+					</block>-->
 				</blocks>
 			</area>
 		</stack>
@@ -415,28 +410,14 @@
 					<block type="autonav" name="" custom-template="think_story_footer_nav">
 						<data table="btNavigation">
 							<record>
-								<orderBy>
-									<![CDATA[display_asc]]>
-								</orderBy>
-								<displayPages>
-									<![CDATA[top]]>
-								</displayPages>
+								<orderBy><![CDATA[display_asc]]></orderBy>
+								<displayPages><![CDATA[top]]></displayPages>
 								<displayPagesCID/>
-								<displayPagesIncludeSelf>
-									<![CDATA[0]]>
-								</displayPagesIncludeSelf>
-								<displaySubPages>
-									<![CDATA[none]]>
-								</displaySubPages>
-								<displaySubPageLevels>
-									<![CDATA[enough]]>
-								</displaySubPageLevels>
-								<displaySubPageLevelsNum>
-									<![CDATA[0]]>
-								</displaySubPageLevelsNum>
-								<displayUnavailablePages>
-									<![CDATA[0]]>
-								</displayUnavailablePages>
+								<displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+								<displaySubPages><![CDATA[none]]></displaySubPages>
+								<displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+								<displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+								<displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
 							</record>
 						</data>
 					</block>
@@ -449,28 +430,14 @@
 					<block type="autonav" name="" custom-template="think_story_footer_nav">
 						<data table="btNavigation">
 							<record>
-								<orderBy>
-									<![CDATA[display_asc]]>
-								</orderBy>
-								<displayPages>
-									<![CDATA[custom]]>
-								</displayPages>
+								<orderBy><![CDATA[display_asc]]></orderBy>
+								<displayPages><![CDATA[custom]]></displayPages>
 								<displayPagesCID>{ccm:export:page:/extrasen}</displayPagesCID>
-								<displayPagesIncludeSelf>
-									<![CDATA[0]]>
-								</displayPagesIncludeSelf>
-								<displaySubPages>
-									<![CDATA[none]]>
-								</displaySubPages>
-								<displaySubPageLevels>
-									<![CDATA[enough]]>
-								</displaySubPageLevels>
-								<displaySubPageLevelsNum>
-									<![CDATA[0]]>
-								</displaySubPageLevelsNum>
-								<displayUnavailablePages>
-									<![CDATA[0]]>
-								</displayUnavailablePages>
+								<displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+								<displaySubPages><![CDATA[none]]></displaySubPages>
+								<displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+								<displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+								<displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
 							</record>
 						</data>
 					</block>
@@ -518,9 +485,7 @@
 						</style>
 						<data table="btSwitchLanguage">
 							<record>
-								<label>
-									<![CDATA[]]>
-								</label>
+								<label><![CDATA[]]></label>
 							</record>
 						</data>
 					</block>
@@ -562,28 +527,14 @@
 						</style>
 						<data table="btNavigation">
 							<record>
-								<orderBy>
-									<![CDATA[display_asc]]>
-								</orderBy>
-								<displayPages>
-									<![CDATA[custom]]>
-								</displayPages>
+								<orderBy><![CDATA[display_asc]]></orderBy>
+								<displayPages><![CDATA[custom]]></displayPages>
 								<displayPagesCID>{ccm:export:page:/extrasen}</displayPagesCID>
-								<displayPagesIncludeSelf>
-									<![CDATA[0]]>
-								</displayPagesIncludeSelf>
-								<displaySubPages>
-									<![CDATA[none]]>
-								</displaySubPages>
-								<displaySubPageLevels>
-									<![CDATA[enough]]>
-								</displaySubPageLevels>
-								<displaySubPageLevelsNum>
-									<![CDATA[0]]>
-								</displaySubPageLevelsNum>
-								<displayUnavailablePages>
-									<![CDATA[0]]>
-								</displayUnavailablePages>
+								<displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+								<displaySubPages><![CDATA[none]]></displaySubPages>
+								<displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+								<displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+								<displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
 							</record>
 						</data>
 					</block>
@@ -611,28 +562,14 @@
 					<block type="autonav" name="" custom-template="think_story_primary_nav">
 						<data table="btNavigation">
 							<record>
-								<orderBy>
-									<![CDATA[display_asc]]>
-								</orderBy>
-								<displayPages>
-									<![CDATA[top]]>
-								</displayPages>
+								<orderBy><![CDATA[display_asc]]></orderBy>
+								<displayPages><![CDATA[top]]></displayPages>
 								<displayPagesCID/>
-								<displayPagesIncludeSelf>
-									<![CDATA[0]]>
-								</displayPagesIncludeSelf>
-								<displaySubPages>
-									<![CDATA[none]]>
-								</displaySubPages>
-								<displaySubPageLevels>
-									<![CDATA[enough]]>
-								</displaySubPageLevels>
-								<displaySubPageLevelsNum>
-									<![CDATA[0]]>
-								</displaySubPageLevelsNum>
-								<displayUnavailablePages>
-									<![CDATA[0]]>
-								</displayUnavailablePages>
+								<displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+								<displaySubPages><![CDATA[none]]></displaySubPages>
+								<displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+								<displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+								<displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
 							</record>
 						</data>
 					</block>
@@ -680,9 +617,7 @@
 						</style>
 						<data table="btContentLocal">
 							<record>
-								<content>
-									<![CDATA[<div>You should mention the organisations that helped you make your prject happen!</div>]]>
-								</content>
+								<content><![CDATA[<div>You should mention the organisations that helped you make your prject happen!</div>]]></content>
 							</record>
 						</data>
 					</block>
@@ -695,44 +630,6 @@
 			</area>
 		</stack>
 	</stacks>
-	<trees>
-        <tree type="topic" name="Subjects">
-            <topic name="HR Management"/>
-            <topic name="Publication of pictures on Internet"/>
-            <topic name="Transparency"/>
-            <topic name="Geolocation"/>
-            <topic name="Use of video Surveillance"/>
-            <topic name="Professional emails"/>
-            <topic name="Biometrics"/>
-            <topic name="Data Access"/>
-            <topic name="Personal File"/>
-            <topic name="Surveillance (extensive)"/>
-            <topic name="School Environment"/>
-            <topic name="GDPR Application"/>
-            <topic name="Connected Items"/>
-        </tree>
-        <tree type="topic" name="Jobs">
-            <topic name="Human Resources Department (HRD)"/>
-            <topic name="Employee"/>
-            <topic name="Manager"/>
-            <topic name="Information Systems Manager"/>
-            <topic name="Citizen"/>
-            <topic name="Student"/>
-            <topic name="Insured Person"/>
-        </tree>
-        <tree type="topic" name="Data types">
-            <topic name="Bank, Finance"/>
-            <topic name="Localisation"/>
-            <topic name="Biometrics"/>
-            <topic name="Pictures"/>
-            <topic name="Medical"/>
-            <topic name="Private"/>
-            <topic name="Professionnals"/>
-            <topic name="Public/non public"/>
-            <topic name="School"/>
-            <topic name="Personality Profile"/>
-        </tree>
-    </trees>
 	<!--<expressentries>
 		<entry id="a1bcec002d77" label="" entity="tstopiccolor" display-order="1">
 			<attributes>
