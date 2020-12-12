@@ -28,8 +28,8 @@ if (count($sections) > 0) {
                 </div>
             </div>
         </div>
-<div>Sections</div>
-<?php print_r($sections) ?>
+<!--<div>Sections</div>
+<?php /*print_r($sections)*/ //This is to print out language sections for debugging  ?>-->
 <!--
         My Additional Menu
 -->

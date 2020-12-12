@@ -1,6 +1,8 @@
 <?php
 namespace Concrete\Package\ThinkStory\Block\TSPageList2;
 
+use ThinkStory\TSTopicColorHelper;
+
 use BlockType;
 use CollectionAttributeKey;
 use Concrete\Core\Block\BlockController;
@@ -44,7 +46,7 @@ class Controller extends BlockController
     protected $btTable = 'btTSPageList2';
     protected $btInterfaceWidth = 700;
     protected $btInterfaceHeight = 525;
-    protected $btExportPageColumns = ['cParentID'];
+    protected $btExportPageColumns = [];
     protected $btExportPageTypeColumns = ['ptID'];
     protected $btDefaultSet = 'think_story';
     //protected $btIgnorePageThemeGridFrameworkContainer = true;    //Makes it so that Enable Grid Container isn't option for the block, but fucks the format
@@ -63,37 +65,55 @@ class Controller extends BlockController
     public function getBlockTypeDescription()   {
         return t("Block that filters the TS Page List Result block");
     }
+
+    public function getBlockTypeHelp()
+    {
+        $help = `
+            <p>If the topic colors are always the default color, you have either misconfigured your topic<->color Express object or misconfigured this block.</p>
+            <p>Second paragraph of help.</p>
+        `;
+        return $help;
+    }
     
     public function validate($data) {
         $e = Core::make('error');
         if(!isset($data['expressColors']) && !$data['expressColors']){
             $e->add(t('You must select an Express Object'));
         }
-        if(!$data['ptID']){ //TODO need? ! -> remove
-            //$e->add(t('You must select a page type'));
-            //$data['ptID'] = 0;
+
+        //Validate redirect method
+        switch($data['iRedirectMethod']){
+            case 1:
+                if(!$data['cParentID']){
+                    $e->add(t('If you choose to redirect to a specific page, you must select a page!'));
+                }
+                break;
+            case 2:
+                if(!$data['numberUpRedirect']){
+                    $e->add(t('If you choose to redirect a specific number of pages up, you must choose by how many pages!'));
+                }
+                break;
+            case 0:
+                break;
+            default:
+                $e->add(t('An error appears to have occured saving the redirect method!'));
+                break;
         }
+
         return $e;
     }
 
     public function save($data){
         $data['topics'] = serialize($data['topics']);
         if(!isset($data['expressColors'])){
-            $data['expressColors'] = 'FUG U';   //TODO check if this causes errors
+            $data['expressColors'] = 'WHA?';   //This souldn't be called anymore due to validate($data)
         } else {
             $data['expressColors'] = strval($data['expressColors']);
         }
 
-        $data += array(
-            'externalTarget' => 0,
-        );
-        $externalTarget = intval($data['externalTarget']);
-        if ($externalTarget === 0) {
+        if($data['iRedirectMethod'] == 0){
             $data['cParentID'] = 0;
-            $data['bPostToAnotherPage'] = 0;
-        } else {
-            $data['cParentID'] = intval($data['cParentID']);
-            $data['bPostToAnotherPage'] = 1;
+            $data['numberUpRedirect'] = 0;
         }
 
         parent::save($data);
@@ -120,7 +140,8 @@ class Controller extends BlockController
     }
     
     public function view()  {
-        $this->set('bPostToAnotherPage', $this->bPostToAnotherPage);
+        $this->set('iRedirectMethod', $this->iRedirectMethod);
+        $this->set('numberUpRedirect', $this->numberUpRedirect);
         $this->set('cParentID', $this->cParentID);
         $this->set('cParentIDURL', \Page::getByID($this->cParentID)->getCollectionLink());
 
@@ -254,50 +275,14 @@ class Controller extends BlockController
         $this->set('entity', $entity);
         
         foreach($this->categoryColorsMain->getResults() AS $topicColor){    //$tcResls = $this->categoryColorsMain->getResults();
-            $this->relationsTC[$topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getValue()[0]->getTreeNodeID()] = $topicColor->getAttributeValue($this->expressColorsTopicsAttribute)->getDisplayValue();
+            try{
+                $this->relationsTC[$topicColor->getAttributeValue($this->expressColorsTopicsAttribute)->getValue()[0]->getTreeNodeID()] = $topicColor->getAttributeValue($this->expressColorsColorsAttribute)->getDisplayValue();
+            } catch(\Exception $e){} catch(\Throwable $e){} //NEED TO USE \ OR IT DOESN'T CATCH
         }
     }
 
     public function getTopicColor2($topicName){
         return $this->relationsTC[$topicName];
-    }
-
-    public function getThemeID($theme){
-        if(is_array($theme)){ 
-            $themecomp = $theme[0];
-        } else {
-            $themecomp=$theme;
-        }
-        return $themecomp->getTreeNodeID();
-    }
-
-    public function getThemeName($theme){
-        if(is_array($theme)){ 
-            $themecomp = $theme[0];
-            /*foreach($theme AS $themeItem){
-                if($themeItem){         $themename = $themeItem->getTreeNodeName(); break;          }           }*/
-        }else{
-            $themecomp=$theme;
-        }
-        return $themecomp->getTreeNodeName();
-    }
-
-    public function getPageTopics($page){   //TODO check if this works for heavily nested topic trees
-        $themes = [];
-        $keys = CollectionKey::getList();
-        foreach ($keys as $ak) {
-            if ($ak->getAttributeTypeHandle() == 'topics') {
-                $topicsForThisTree = $page->getAttribute($ak);
-                if(is_array($topicsForThisTree)){
-                    foreach($topicsForThisTree as $tftt){
-                        array_push($themes, $tftt->getTreeNodeID());
-                    }
-                } else if (!is_null($topicsForThisTree)){
-                    array_push($themes, $topicsForThisTree->getTreeNodeID());
-                }
-            }
-        }
-        return $themes;
     }
     
     //Filters page list and get page topic / theme colors, 0 IS SORT, 1 IS FILTER
@@ -326,8 +311,6 @@ class Controller extends BlockController
         $temppages = $templist->getResults();
         $pagedata = [];
         foreach($temppages as $temppage){   //FOREACH PAGE : Get the colors & stuff for the page list items
-            $rightcolor = $this->defaultColor;  //If no color is set, set it to default
-            $themename = " ";                   //If no theme is set, set theme name to blank text TODO make this parameter
 		  	$this->$LOGGER = [];                //Hold debug information for the current page
 		  	
             if ($temppage->getCollectionPointerExternalLink() != '') {
@@ -339,10 +322,10 @@ class Controller extends BlockController
             $theme = $temppage->getAttribute($this->pageTopicColors);
 
             if(!is_null($topics) && !empty(array_diff($topics, [-1]))){     //If there are topics defined, and if at least one does not equal -1
-                if(array_intersect($nums, $this->getPageTopics($temppage)) == $nums){ //if the current page has relevant topics
+                if(array_intersect($nums, TSTopicColorHelper::getPageTopics($temppage)) == $nums){ //if the current page has relevant topics
 				  	array_push($this->$LOGGER, 'if 1');
                     $sortOrder = 1;
-                    $correctTopic = array_intersect($nums, $this->getPageTopics($temppage))[0];
+                    $correctTopic = array_intersect($nums, TSTopicColorHelper::getPageTopics($temppage))[0];
                     $found = false;
                     if(is_array($theme)){
                         foreach($theme AS $t){
@@ -354,26 +337,34 @@ class Controller extends BlockController
                         }
                     }
                     if(!$found){
-                        $themename = $this->getThemeName($theme);
-                        $rightcolor = $this->getTopicColor2($this->getThemeID($theme));
+                        $themename = TSTopicColorHelper::getThemeName($theme);
+                        $rightcolor = $this->getTopicColor2(TSTopicColorHelper::getThemeID($theme));
                     }
                 } else {    //Else no matching topics
                     array_push($this->$LOGGER, 'if 2');
                     $sortOrder = 2;
                     $rightcolor = $this->defaultColor;
-                    $themename = $this->getThemeName($theme);
+                    $themename = TSTopicColorHelper::getThemeName($theme);
                 }
             } else {//THIS ELSE IS IF there are no topics to filter or sort by. If there are no topics / all -1, then default color (i.e. gray)
                 $sortOrder = 2;
                 if(!is_null($theme) && !empty($theme) && isset($theme)){
                     array_push($this->$LOGGER, 'else 1');
-                    $themename = $this->getThemeName($theme);
+                    $themename = TSTopicColorHelper::getThemeName($theme);
                     if(is_array($theme)){
                         $rightcolor = $this->getTopicColor2($theme[0]->getTreeNodeID());
                     } else {
                         $rightcolor = $this->getTopicColor2($theme->getTreeNodeID());
                     }
                 }
+            }
+
+            if(!isset($rightcolor)){    //This actually needs to be here, cannot set default at start, as can be set to null above!
+                $rightcolor = $this->defaultColor;
+            }
+
+            if(!isset($themename)){
+                $themename = " ";
             }
 
             $newPageToAddToList = array(

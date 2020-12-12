@@ -2,67 +2,18 @@
 //use Concrete\Attribute\ImageFile\Controller AS  $controller
 //use Application\Attribute\Timbre\Controller as TimbreController;
 use Concrete\Package\ThinkStory\Attribute\Timbre\Controller as TimbreController;
-
-
 ?>
 
 <fieldset>
     <legend>Timbre Settings</legend>
     <label class="control-label" for="file">File</label>
     <?php
-    /*
         $al = Core::make('helper/concrete/asset_library');
-        echo $al->file('ccm-file-akID-' . $controller->getAttributeKey()->getAttributeKeyID(), $this->field('value'), t('Choose File'), $file);
-    */
-    /*
-    $app = Concrete\Core\Support\Facade\Application::getFacadeApplication();
-    //print $html = $app->make('helper/concrete/file_manager');
-    $form = \Core::make('helper/form');
-    echo $form->file('file');*/
-
-
-    $al = Core::make('helper/concrete/asset_library');
-    $thing = $controller->getAttributeKey();
-    if(isset($thing) && $thing){
-        echo $al->file('ccm-file-akID-' . $controller->getAttributeKey()->getAttributeKeyID(), $this->field('value'), t('Choose File'), $file);
-    }
+        $thing = $controller->getAttributeKey();
+        if(isset($thing) && $thing){
+            echo $al->file('ccm-file-akID-' . $controller->getAttributeKey()->getAttributeKeyID(), $this->field('value'), t('Choose File'), $file);
+        }
     ?>
-
-    <?php
-    /*
-    $htmlFileID = trim(preg_replace('/\W+/', '-', $view->field('value')), '-');
-    if ($file === null) {
-        ?>
-        <input type="file" name="<?= h($view->field('value')) ?>" id="<?= $htmlFileID ?>" />
-        <?php
-    } else {
-        $form = Core::make('helper/form');
-        $htmlRadioReplaceID = trim(preg_replace('/\W+/', '-', $view->field('operation')), '-') . '-replace';
-        $enableFileCallback = 'document.getElementById(' . json_encode($htmlFileID) . ').disabled = !document.getElementById(' . json_encode($htmlRadioReplaceID) . ').checked'
-        ?>
-        <input type="hidden" name="<?= $view->field('previousFile') ?>" value="<?= $file->getFileID() ?>" />
-        <div class="radio">
-            <label>
-                <?= $form->radio($view->field('operation'), 'keep', true, ['onchange' => h($enableFileCallback)]) ?>
-                <?= t('Keep existing file (%s)', h($file->getFileName())) ?>
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                <?= $form->radio($view->field('operation'), 'remove', false, ['onchange' => h($enableFileCallback)]) ?>
-                <?= t('Remove current file') ?>
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                <?= $form->radio($view->field('operation'), 'replace', false, ['id' => $htmlRadioReplaceID, 'onchange' => h($enableFileCallback)]) ?>
-                <?= t('Replace with') ?>
-                <input type="file" name="<?= h($view->field('value')) ?>" id="<?= $htmlFileID ?>" disabled="disabled" />
-            </label>
-        </div>
-        <?php
-    }
-    */?>
 
 <script>
     (function() {

@@ -11,19 +11,6 @@
     ?>
 </div>
 
-<!--<div class="form-group">
-    <label class="control-label" for="expressColors"><?=t('Category Color Express Object Handle')?></label>
-    <input type="text" class="form-control" name="expressColors" value="<?php echo $expressColors?>">
-</div>
-<div class="form-group">
-    <label class="control-label" for="expressColorsColorsAttribute"><?=t('Category Colors Express Object, Color Attribute Handle')?></label>
-    <input type="text" class="form-control" name="expressColorsColorsAttribute" value="<?php echo $expressColorsColorsAttribute?>">
-</div>
-<div class="form-group">
-    <label class="control-label" for="expressColorsTopicsAttribute"><?=t('Category Colors Express Object, Topic Attribute Handle')?></label>
-    <input type="text" class="form-control" name="expressColorsTopicsAttribute" value="<?php echo $expressColorsTopicsAttribute?>">
-</div>-->
-
 <div class="form-group" id='ccm-content-search'>
     <label class="control-label" for="expressColors"><?=t('Category Colors Express Object')?></label>
     <?php

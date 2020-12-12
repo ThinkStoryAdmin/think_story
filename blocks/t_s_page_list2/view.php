@@ -1,5 +1,7 @@
 <?php defined('C5_EXECUTE') or die(_("Access Denied.")) ?>
 <script>
+    let numberUpRedirect = <?= $numberUpRedirect ?>;
+    let iRedirectMethod = <?= $iRedirectMethod ?>;
     let blockID = '<?php echo $bID?>';
     let urlFilterAction = '<?php echo $this->action('filter') ?>'
     let sendToAnotherPage = '<?= $bPostToAnotherPage?>'
@@ -9,7 +11,7 @@
     console.log('sendToAnotherPage: ' + sendToAnotherPage)
     console.log('sendToAnotherPageID: ' + sendToAnotherPageID)
     console.log('sendToAnotherPageIDURL: ' + sendToAnotherPageIDURL)
-    console.log("View.php ready!")
+    console.log("View.php ready! Updated...")
     //All other JS code is in the view.js
 </script>
 <div class="cts-theme-tertiary-bar-background"id=<?php echo $bID?>>

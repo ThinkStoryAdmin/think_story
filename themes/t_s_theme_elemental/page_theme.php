@@ -36,12 +36,12 @@ class PageTheme extends Theme implements ThemeProviderInterface
 
     public function getThemeName()
     {
-        return t('Elemental TS');
+        return t('Think Story Elemental');
     }
 
     public function getThemeDescription()
     {
-        return t('Elegant, spacious theme with support for blogs, portfolios, layouts and more.');
+        return t('Theme to make story telling websites.');
     }
 
     /**

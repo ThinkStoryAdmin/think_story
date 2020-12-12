@@ -37,7 +37,7 @@ class Controller extends Package
 {
     protected $pkgHandle = 'think_story';
     protected $appVersionRequired = '8.0'; //SHOULD BE ABOVE 8, otherwise the attribute autoload stuff won't work!!!
-    protected $pkgVersion = '1.0.3.2';
+    protected $pkgVersion = '1.0.3.6';
     //protected $pkgAllowsFullContentSwap = true;   //CONSISTENTLY causes errors, don't bother using
 
     //Importing Custom Code namespaces with PSR-4 autoloader (to include REST routes & Timbre class for Timbre attribute type)
@@ -57,6 +57,14 @@ class Controller extends Package
     public function getPackageName()
     {
         return t('Think Story');
+    }
+
+    //https://documentation.concrete5.org/developers/packages/installation/package-dependencies
+    public function getPackageDependencies()
+    {
+        return [
+            //'customizable_twitter_feed' => '1.0.4'
+        ];
     }
 
     public function on_start(){
@@ -80,14 +88,13 @@ class Controller extends Package
     public function install()
     {
         $pkg = parent::install();
-
         $r = \Request::getInstance();
 
-        //Install Dashboard Single Page TODO put in own folder (ie /dashboard/system/think_story/)
-        SinglePage::add('/dashboard/system/page_report', $pkg);
-        SinglePage::add('/dashboard/system/data_importer', $pkg);
-        SinglePage::add('/dashboard/system/add_pages_multilingual', $pkg);
-        SinglePage::add('/dashboard/system/export_pages', $pkg);
+        SinglePage::add('/dashboard/system/think_story', $pkg);
+        SinglePage::add('/dashboard/system/think_story/page_report', $pkg);
+        SinglePage::add('/dashboard/system/think_story/data_importer', $pkg);
+        SinglePage::add('/dashboard/system/think_story/add_pages_multilingual', $pkg);
+        SinglePage::add('/dashboard/system/think_story/export_pages', $pkg);
 
         //Install Attribute Types
         $factory = $this->app->make('Concrete\Core\Attribute\TypeFactory');
@@ -110,11 +117,11 @@ class Controller extends Package
             $categoryTimbre->associateAttributeKeyType($typeTimbre);
         }
 
-        //Add Block Set & Types
+        //Add Block Set 
         if (!BlockTypeSet::getByHandle('think_story')) {
             BlockTypeSet::add('think_story', 'Think Story', $pkg);
         }
-        //Ignored blocks : t_s_hello_world, t_s_columns, t_s_page_attribute_display, t_s_next_previous
+        //Add Block Types, ignored block(s) : t_s_columns
         $this->addBlockType('t_s_topic_list', $pkg);
         $this->addBlockType('t_s_page_list2', $pkg);
         $this->addBlockType('t_s_print_page_to_pdf', $pkg);
@@ -123,23 +130,19 @@ class Controller extends Package
         $this->addBlockType('t_s_page_theme_display', $pkg);
         $this->addBlockType('t_s_page_list_result', $pkg);
 
-        if ($r->request->get('installTopics')) {
-            $ci = new ContentImporter();
-            $ci->importContentFile($this->getPackagePath() . '/install/content_topics_en.xml');
-        }
-
         //Add theme
-        PageTheme::add('t_s_theme_elemental', $pkg);
+        PageTheme::add('t_s_theme_elemental', $pkg);    //Theme::add('urbanic', $pkg); ???
         
-        //Install page type & page type controller
-        /**Installing the page type controller cannot be directly done
-         * 
-         * Page type installed here, and once the page type is linked to the package, 
+        /** NOTE: Installing the page type controller cannot be directly done
+         * Page types are installed here, and once the page type is linked to the package, 
          * then Concrete5 will look into the package directory for the controller
          */
         //Install sample content
         if ($r->request->get('installSampleContent')) {
-            $this->installContentFile('/install/export.xml');
+            $this->installContentFile('/install/content.xml');
+        } else {
+            //Install the base content (express objects & attributes) needed for the package to work
+            $this->installContentFile('/install/export-beutify-cleaned.xml');
         }
     }
 
@@ -148,14 +151,11 @@ class Controller extends Package
         parent::upgrade();
         $pkg = Package::getByHandle('think_story');
         
-        SinglePage::add('/dashboard/system/export_pages', $pkg);
-    }
-
-    public function upgradeToNewSPPaths(){
-        //First, delete old single pages: https://www.concrete5.org/community/forums/5-7-discussion/remove-single-page-via-package-controller
-        \Page::getByPath('/dashboard/system/page_report', 'APPROVED')->delete();
-        \Page::getByPath('/dashboard/system/data_importer', 'APPROVED')->delete();
-        \Page::getByPath('/dashboard/system/add_pages_multilingual', 'APPROVED')->delete();
+        SinglePage::add('/dashboard/system/think_story', $pkg);
+        SinglePage::add('/dashboard/system/think_story/page_report', $pkg);
+        SinglePage::add('/dashboard/system/think_story/data_importer', $pkg);
+        SinglePage::add('/dashboard/system/think_story/add_pages_multilingual', $pkg);
+        SinglePage::add('/dashboard/system/think_story/export_pages', $pkg);
     }
 
     public function uninstall()

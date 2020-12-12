@@ -129,7 +129,6 @@ function setSelects(values, callingBlock){
     updatedBlocks = []
 }
 
-
 $(function() {
     console.log( "View.js ready!" );
 
@@ -186,14 +185,22 @@ $(function() {
             }
         }
 
-        if(sendToAnotherPage == 1){
-            window.location.href = sendToAnotherPageIDURL + '?' + urlParams.toString()
-        } else {
-            getPages({topics: values}).then(function(result,status,xhr){ //If we don't go to a new page, update the current page
-                var pageresponse = {result,status,xhr}
-                fillPageGrid(pageresponse, urlParams.toString())
-            })
-            window.history.pushState("object or string", "Page Title", window.location.href.split('?')[0] + '?' + urlParams.toString());
+        switch(iRedirectMethod){
+            case 1:
+                window.location.href = sendToAnotherPageIDURL + '?' + urlParams.toString()
+                break;
+            case 2:
+                window.location.href = window.location.href.split("/").slice(0, -1 * (numberUpRedirect)).join("/") + "?" + urlParams.toString();
+                break;
+            case 0:
+            default:
+                console.log("Updating this page...")
+                getPages({topics: values}).then(function(result,status,xhr){ //If we don't go to a new page, update the current page
+                    var pageresponse = {result,status,xhr}
+                    fillPageGrid(pageresponse, urlParams.toString())
+                })
+                window.history.pushState("object or string", "Page Title", window.location.href.split('?')[0] + '?' + urlParams.toString());
+                break;
         }
     });
 });

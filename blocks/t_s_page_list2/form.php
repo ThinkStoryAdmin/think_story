@@ -1,63 +1,29 @@
-<?php defined('C5_EXECUTE') or die("Access Denied.");
-$c = Page::getCurrentPage();
+<?php 
+    defined('C5_EXECUTE') or die("Access Denied.");
+    $c = Page::getCurrentPage();
 ?>
 <div class="form-group">
     <label class="control-label"><?= t('Page Type') ?></label>
     <?php
-    $ctArray = PageType::getList(false, $siteType);
-
-    if (is_array($ctArray)) {
-        ?>
-        <select class="form-control" name="ptID" id="selectPTID">
-            <option value="0">** <?php echo t('All') ?> **</option>
-            <?php
+        $ctArray = PageType::getList(false, $siteType);
+        if (is_array($ctArray)) {
+            $pageTypesArray = [];
+            $pageTypesArray[0] = '** ' . t('All') . ' **';
             foreach ($ctArray as $ct) {
-                ?>
-                <option
-                    value="<?= $ct->getPageTypeID() ?>" <?php if ($ptID == $ct->getPageTypeID()) {
-                    ?> selected <?php
-                }
-                ?>>
-                    <?= $ct->getPageTypeDisplayName() ?>
-                </option>
-                <?php
+                $pageTypesArray[$ct->getPageTypeID()] = $ct->getPageTypeDisplayName();
             }
-            ?>
-        </select>
-        <?php
-    }
+            echo $form->select('ptID', $pageTypesArray, $ptID, ['data-action'=>'doSomethingQ']);
+        }
     ?>
 </div>
-<!-- TODO remove
-<div class="form-group">
-    <label class="control-label"><?=t('Sort')?></label>
-    <select name="orderBy" class="form-control">
-        <option value="display_most_recent" <?= ($orderBy == 'display_most_recent' ? 'selected="selected"' : '');?>>
-            <?= t('Most recent') ?>
-        </option>
-        <option value="display_most_popular" <?= ($orderBy == 'display_most_popular' ? 'selected="selected"' : '');?>>
-            <?= t('Most popular') ?>
-        </option>
-        <option value="display_random" <?= ($orderBy == 'display_random' ? 'selected="selected"' : '');?>>
-            <?= t('Random') ?>
-        </option>
-    </select>
-</div>-->
-<div class="form-group">
+
+<div class="form-group">    <!-- Sort method (filter or sort) --> 
     <label class="control-label"><?=t('Sort Type')?></label>
-    <select name="sortType" class="form-control">
-        <option value="0" <?php if ($sortType == '0') {
-            ?> selected <?php
-        } ?>>
-            <?= t('Sort') ?>
-        </option>
-        <option value="1" <?php if ($sortType == '1') {
-            ?> selected <?php
-        } ?>>
-            <?= t('Filter') ?>
-        </option>
-    </select>
+    <?php
+        echo $form->select('sortType', [0 => t('Sort'), 1 => t('Filter')], $sortType);
+    ?>
 </div>
+
 <div class="form-group">
     <label class="control-label"><?=t('Choose topics attribute')?></label>
     <?php
@@ -72,6 +38,25 @@ $c = Page::getCurrentPage();
     ?>
 </div>
 
+<!-- TODO remove ?
+<div class="form-group">
+    <label class="control-label"><?=t('Sort')?></label>
+    <select name="orderBy" class="form-control">
+        <option value="display_most_recent" <?= ($orderBy == 'display_most_recent' ? 'selected="selected"' : '');?>>
+        <?= t('Most recent') ?>
+        </option>
+        <option value="display_most_popular" <?= ($orderBy == 'display_most_popular' ? 'selected="selected"' : '');?>>
+            <?= t('Most popular') ?>
+        </option>
+        <option value="display_random" <?= ($orderBy == 'display_random' ? 'selected="selected"' : '');?>>
+            <?= t('Random') ?>
+        </option>
+    </select>
+    <?php
+        echo $form->select('orderBy', ['display_most_recent' => t('Most recent'), 'display_most_popular' => t('Most popular'), 'display_random' => t('Random')], $orderBy);
+    ?>
+</div>-->
+
 <!--View Counter Forms stuff-->
 <div class="form-group">
     <label class="control-label"><?= t('Page View Count Page Attribute (needed if you sort by popularity)') ?></label>
@@ -80,37 +65,40 @@ $c = Page::getCurrentPage();
     ?>
 </div>
 
+<!-- Choose Redirect method & page -->
 <div class='form-group'>
-    <label for='title' class="control-label"><?=t('Results Page')?>:</label>
-    <div class="checkbox">
-        <label for="ccm-search-block-external-target">
-            <input id="ccm-search-block-external-target" <?php if (intval($cParentID) > 0) {
-                ?>checked<?php 
-            } ?> name="externalTarget" type="checkbox" value="1" />
-            <?=t('Post Results to a Different Page')?>
-        </label>
-    </div>
-    <div id="ccm-search-block-external-target-page">
-        <?php
-            echo Loader::helper('form/page_selector')->selectPage('cParentID', $cParentID);
-        ?>
+    <label for='title' class="control-label"><?=t('Results Page : how to redirect results')?></label>
+    <?php
+        echo $form->select('iRedirectMethod', [ 0 => t("Don't redirect"), 1 => t('Redirect to a specific page'), 2 => t('Redirect a number of pages up the site tree') ], $iRedirectMethod, ['data-action'=>'redirectMethodListener']);
+    ?><br>
+    <div id="ccm-redirect-method-choice">
+        <div id="ccm-search-block-external-target-page">
+            <?php
+                echo Loader::helper('form/page_selector')->selectPage('cParentID', $cParentID);
+            ?>
+        </div>
+        <div id="ccm-number-up-target-page">
+            <?php
+                echo $form->number('numberUpRedirect', $numberUpRedirect, ['placeholder' => 'Number of pages up the site tree to redirect by']);
+            ?>
+        </div>
     </div>
 </div>
 
+<!-- Topic Color Express Object-->
 <div class="form-group" id='ccm-content-search'>
     <label class="control-label" for="expressColors"><?=t('Category Colors Express Object')?></label>
     <?php
         echo $form->select('expressColors', $entities, $expressColors, ['data-action'=>$view->action('load_entity_data')]);
-    ?>
-
-    <label class="control-label" for="expressColorsColorsAttribute"><?=t('Category Colors Express Object, Topic Attribute')?></label><br>
-    <select name='expressColorsColorsAttribute' data-container="attributes-list-select-color"></select><br>
+    ?><br>
+    <label for="expressColorsColorsAttribute"><?=t('Category Colors Express Object, Color Attribute')?></label>
+    <select name='expressColorsColorsAttribute' data-container="attributes-list-select-color"></select><br><br>
     
-    <label class="control-label" for="expressColorsTopicsAttribute"><?=t('Category Colors Express Object, Color Attribute')?></label><br>
+    <label for="expressColorsTopicsAttribute"><?=t('Category Colors Express Object, Topic Attribute')?></label>
     <select name='expressColorsTopicsAttribute' data-container="attributes-list-select-topic"></select><br>
 </div>
 
-<!--View Counter Forms stuff-->
+<!-- Default topic color -->
 <div class="form-group">
     <label class="control-label"><?= t('Default Color (used if no color define or if no color found)') ?></label><br>
     <?php
@@ -141,6 +129,7 @@ $c = Page::getCurrentPage();
         var expressColorsTopicsAttributeJSVar = '<?= $expressColorsTopicsAttribute?>';
         console.log('expressColorsTopicsAttributeJSVar ; ' + expressColorsTopicsAttributeJSVar)
 
+        //Set topic color menus
         if(!expressColorsVar.length == 0){
             $.concreteAjax({
                 url: $source.find('select[name=expressColors]').attr('data-action'),
@@ -152,7 +141,7 @@ $c = Page::getCurrentPage();
                 }
             });
         }
-
+        
         $source.find('select[name=expressColors]').on('change', function() {
             console.log('Executing the thing!')
             var exEntityID = $(this).val();
@@ -173,13 +162,38 @@ $c = Page::getCurrentPage();
             }
         });
 
-        $("input[name=externalTarget]").on('change', function() {
-            if ($(this).is(":checked")) {
+        //Redirect options set visibility based on existing choices
+        $('#ccm-search-block-external-target-page').hide();
+        $('#ccm-number-up-target-page').hide();
+        switch(<?= $iRedirectMethod ?>){
+            case 1:
                 $('#ccm-search-block-external-target-page').show();
+                $('#ccm-number-up-target-page').hide();
+                break;
+            case 2:
+                $('#ccm-search-block-external-target-page').hide();
+                $('#ccm-number-up-target-page').show();
+                break;
+            case 0:
+            default:
+                $('#ccm-search-block-external-target-page').hide();
+                $('#ccm-number-up-target-page').hide();
+                break;
+        }
+
+        //Redirect options listeners
+        $('[data-action=redirectMethodListener]').on('change', () => {
+            if($('#' + event.target.id).val() == 1){
+                $('#ccm-search-block-external-target-page').show();
+                $('#ccm-number-up-target-page').hide();
+            } else if($('#' + event.target.id).val() == 2) {
+                $('#ccm-search-block-external-target-page').hide();
+                $('#ccm-number-up-target-page').show()
             } else {
                 $('#ccm-search-block-external-target-page').hide();
+                $('#ccm-number-up-target-page').hide()
             }
-        }).trigger('change');
+        })
     });
 </script>
 
