@@ -40,14 +40,17 @@ class TSBlockAttributeTranslator {
         return;
     }
 
-    /** Function that finds the translation of a string in a specified language
+    /** Function that finds the translation of a string in a specified language (not needed)
+     * findTranslation('PDF Download', \Localization::activeLanguage())
      * @param string $text          the text to find a translation for
      * @param string $language      the language to find the translation in
      * @return string               the translation of the text, null if not found
+     * @deprecated just use t(), but adding translations is useful
      */
     public static function findTranslation($text, $language){
         //If params not of correct types, return
         if(!is_string($text) || !is_string($language)){
+            //throw new \Exception('Parameters should be strings!');
             return NULL;
         }
 
@@ -65,10 +68,15 @@ class TSBlockAttributeTranslator {
 
         //If no appropriate translation file was found, return
         if(!isset($tFile)){
+            throw new \Exception('No transaltion file found!');
             return NULL;
         }
 
         //Param checks complete & Po file loaded, can now find translation
-        return $tFile->getEntry($text)->getMsgStr();
+        if(null !== ($tFile->getEntry(strval($text)))){
+            return $tFile->getEntry(strval($text))->getMsgStr();
+        }
+        //throw new \Exception('Why here?');
+        return NULL;
     }
 }

@@ -17,7 +17,6 @@ use Concrete\Core\Attribute\Key\CollectionKey;
 use Concrete\Core\Tree\Node\Type\Topic;
 use Concrete\Package\TSTest\TSPageList\TSPageList;
 use ThinkStory\AttributeValidator\TSAttributeValidator;
-use ThinkStory\BlockAttributeTranslator\TSBlockAttributeTranslator AS BAT;
 
 class Controller extends BlockController
 {
