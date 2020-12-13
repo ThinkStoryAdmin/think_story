@@ -37,7 +37,7 @@ class Controller extends Package
 {
     protected $pkgHandle = 'think_story';
     protected $appVersionRequired = '8.0'; //SHOULD BE ABOVE 8, otherwise the attribute autoload stuff won't work!!!
-    protected $pkgVersion = '1.0.3.6';
+    protected $pkgVersion = '1.0.3.7';
     //protected $pkgAllowsFullContentSwap = true;   //CONSISTENTLY causes errors, don't bother using
 
     //Importing Custom Code namespaces with PSR-4 autoloader (to include REST routes & Timbre class for Timbre attribute type)
@@ -95,6 +95,7 @@ class Controller extends Package
         SinglePage::add('/dashboard/system/think_story/data_importer', $pkg);
         SinglePage::add('/dashboard/system/think_story/add_pages_multilingual', $pkg);
         SinglePage::add('/dashboard/system/think_story/export_pages', $pkg);
+        SinglePage::add('/dashboard/system/think_story/add_translation_text', $pkg);
 
         //Install Attribute Types
         $factory = $this->app->make('Concrete\Core\Attribute\TypeFactory');
@@ -156,6 +157,7 @@ class Controller extends Package
         SinglePage::add('/dashboard/system/think_story/data_importer', $pkg);
         SinglePage::add('/dashboard/system/think_story/add_pages_multilingual', $pkg);
         SinglePage::add('/dashboard/system/think_story/export_pages', $pkg);
+        SinglePage::add('/dashboard/system/think_story/add_translation_text', $pkg);
     }
 
     public function uninstall()
