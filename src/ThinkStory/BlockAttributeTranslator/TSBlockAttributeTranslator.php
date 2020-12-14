@@ -9,9 +9,15 @@ use Sepia\PoParser\Catalog\Catalog AS SepiaCatalog;
 use Sepia\PoParser\Catalog\Entry AS SepiaEntry;
 
 /**Small class that handles saving block attributes to translate & find the translations
- * 
+ * Currently all static
  */
 class TSBlockAttributeTranslator {
+    private static function saveFile($catalog, $translation){
+        $fileHandler = new SepiaFileSystem(dirname(__FILE__, 6) . '/application/languages/site/' . $translation);
+        $compiler = new SepiaPoCompiler();
+        $fileHandler->save($compiler->compile($catalog)); 
+    }
+
     /** Adds an entry to the po files to be translated by an Administrator on the Translate Site Interface page
      * @param string $attributeValue    the attribute to save to po files
      * @param string $oldValue          (optional) the old value to delete
@@ -29,15 +35,34 @@ class TSBlockAttributeTranslator {
                     $catalog->removeEntry($catalog->getEntry($oldValue)->getMsgId());   //TODO use ID if instead?
                 }
                 
-                $catalog->addEntry(new SepiaEntry(str_replace(' ', '.', \strtolower($attributeValue)), $attributeValue));     // Update entry
+                //$catalog->addEntry(new SepiaEntry(str_replace(' ', '.', \strtolower($attributeValue)), $attributeValue));     // Update entry
+                $catalog->addEntry(new SepiaEntry($attributeValue, null));     // Update entry with NULL, we don't want a value just yet!
 
-                //Save the file
-                $fileHandler = new SepiaFileSystem(dirname(__FILE__, 6) . '/application/languages/site/' . $translation);
-                $compiler = new SepiaPoCompiler();
-                $fileHandler->save($compiler->compile($catalog));       
+                self::saveFile($catalog, $translation);    //Save the file     
             }
         }
         return;
+    }
+
+    /** Function that finds & removes an entry
+     * @param string $attributeValue    the text to find & delete
+     */
+    public static function removeEntry($attributeValue){
+        $translations = scandir(dirname(__FILE__, 6) . '/application/languages/site/');
+        foreach($translations as $translation){
+            $extension = pathinfo($translation, PATHINFO_EXTENSION);
+		    if ($extension == 'po'){
+                $catalog = SepiaPoParser::parseFile(dirname(__FILE__, 6) . '/application/languages/site/' . $translation);  //Load the file
+
+                //Check if entry event exists
+                if($catalog->getEntry($attributeValue)){
+                    $catalog->removeEntry($catalog->getEntry($attributeValue)->getMsgId());
+                    self::saveFile($catalog, $translation);    //Save the file
+                    return;
+                }
+                throw new \Exception("No entry found");
+            }
+        }
     }
 
     /** Function that finds the translation of a string in a specified language (not needed)
@@ -68,7 +93,7 @@ class TSBlockAttributeTranslator {
 
         //If no appropriate translation file was found, return
         if(!isset($tFile)){
-            throw new \Exception('No transaltion file found!');
+            throw new \Exception('No translation file found!');
             return NULL;
         }
 
