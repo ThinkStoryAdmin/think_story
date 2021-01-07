@@ -9,7 +9,7 @@
 ]>
 <concrete5-cif version="1.0">
 	&baseEntities;
-		<trees>
+	<trees>
         <tree type="topic" name="Subjects">
             <topic name="HR Management"/>
             <topic name="Publication of pictures on Internet"/>
@@ -47,8 +47,13 @@
             <topic name="Personality Profile"/>
         </tree>
     </trees>
+	<!--<thumbnailtypes>
+    	<thumbnailtype name="Tiny Image" handle="tiny" width="390"/>
+        <thumbnailtype name="Small Image" handle="small" width="740"/>
+        <thumbnailtype name="Medium Image" handle="medium" width="940"/>
+        <thumbnailtype name="Large Image" handle="large" width="1140"/>
+    </thumbnailtypes>-->
 	<themes>
-		<theme handle="elemental" package="" activated="0"/>
 		<theme handle="t_s_theme_elemental" package="think_story" activated="1"/>
 	</themes>
 	<pages>

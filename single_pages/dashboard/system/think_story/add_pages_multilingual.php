@@ -39,6 +39,15 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                     <div id="ccm-tab-content-<?php echo $tab[0]?>" class="ccm-tab-content">
                         <div class="form-group">
                         <?php
+                        //Whether or not we want to create a page in this location
+                        $bCreatePageOrNoName = "rsvp-create-" . $counter;
+                        echo $form->label($bCreatePageOrNoName, t("Create page in this locale")) . "  ";
+                        //NOTE: putting the second 1 to 0 will make checkbox default to FALSE
+                        // DO NOT DO THIS, some other elements take time to load and will not be properly hidden at the start!
+                        echo $form->checkbox($bCreatePageOrNoName , 1, 1, array('style' => 'color: blue;', 'onchange' => 'onChangeCreate(this.id)'));
+
+                        ?><br><?php
+
                         //Built-in Attributes (location, name, description, page type)
                         //$locationName = $tab[0] . "-rsvp-location";
                         $locationName ="rsvp-location";
@@ -121,7 +130,7 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                             //$formElementName = $tab[0] . "-" . $key->getAttributeKeyHandle();
                             $formElementName = $key->getAttributeKeyHandle();
                             $typehandle = $key->getAttributeType()->getAttributeTypeHandle();
-                            echo $form->label($key->getAttributeKeyName(), t($key->getAttributeKeyName()));
+                            echo $form->label($key->getAttributeKeyName(), t($key->getAttributeKeyName()))  . "  ";
                             switch($typehandle){
                                 case('text'):
                                     echo $form->text($formElementName);
@@ -209,9 +218,47 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
 </div>
 
 <script>
+    function enableButtons(){
+        $('#qwop').attr('disabled', false);
+    }
+
+    function disableButtons(){
+        $('#qwop').attr('disabled', true);
+    }
+
+    function onChangeCreate(callerID) {
+        var parent = $("#" + callerID).parent();
+        console.log(parent)
+
+        //If is checked or unchecked
+        if($("#" + callerID).is(':checked')){
+            //Show all child elements
+            parent.children().show();
+        } else {
+            //Hide all child elements, except for the rsvp-create checkbox
+            parent.children().hide();
+            $("#" + callerID).show() //Show the checkbox
+            $("label[for^='rsvp-create-']").show() //$("label[for='rsvp-create*']").show() //Show the label
+        }
+    }
+    
+    //When first load, hide ALL things
+    /*$(document).ready(function(){
+        console.log($("input[id^='rsvp-create-']"))
+        $("input[id^='rsvp-create-']")each(function(index){
+            //onChangeCreate(this.id);
+        })
+        //onChangeCreate($("input[id^='rsvp-create-']"));
+    })*/
+
     //Script to run page addition
     $(function(){
+        console.log($("input[id^='rsvp-create-']"))
+        $("input[id^='rsvp-create-']").each(function(index){
+            onChangeCreate(this.id);
+        })
         $("#qwop").click(function(event){
+            disableButtons();
             event.preventDefault(); //prevent default action 
             var request_method = "POST"
             var dataLanguages = []
@@ -259,12 +306,14 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                     title: <?php echo json_encode(t('Pages Successfully created')); ?>,
                     message: <?php echo json_encode(t('The pages have been created. You can now see them in the sitemap!')); ?>
                 });
+                enableButtons()
             }).error(function(error){
                 console.log(error)
                 ConcreteAlert.dialog(
                     <?php echo json_encode(t('Error(s) creating pages!')); ?>,
                     error.responseText
                 );
+                enableButtons()
             });
         });
     });

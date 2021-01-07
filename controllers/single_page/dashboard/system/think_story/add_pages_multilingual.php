@@ -44,7 +44,7 @@ use ThinkStory\Attributes\Timbre as TimbreSimple;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use Concrete\Package\ThinkStory\AttributeValidator\TSAttributeValidator;
+use ThinkStory\AttributeValidator\TSAttributeValidator; //use Concrete\Package\ThinkStory\AttributeValidator\TSAttributeValidator;
 
 defined('C5_EXECUTE') or die("Access Denied.");
 
@@ -189,6 +189,7 @@ class AddPagesMultilingual extends DashboardSitePageController
             $pageType;// = \PageType::getByHandle('page');
             $template;// = \PageTemplate::getByHandle('full');
             $pageTitle;
+            $pageDescription;
 
             //First iterator to get the needed attributes (can )
             foreach($pagesattributes AS $pageattribute){
@@ -205,6 +206,7 @@ class AddPagesMultilingual extends DashboardSitePageController
                         //Does this need to be here?
                         //$pageTitle = $pageattribute['value'];
                         //array_push($messages, $name);
+                        $pageDescription = $pageattribute['value'][0];
                         break; 
                     case 'rsvp-ptid':
                         $pageType = \PageType::getByID($pageattribute['value'][0]);
@@ -216,6 +218,28 @@ class AddPagesMultilingual extends DashboardSitePageController
                     default:
                         break;
                 }
+            }
+
+            //if($pagesattributes['bCreatePageOrNo'])
+            //TODO find better way of doing this?
+            $bCanCreatePage = false;
+            foreach($pagesattributes AS $pageattribute){
+                /*switch($pageattribute['name']){
+                    case 'rsvp-create':
+                        if(filter_var($pageattribute['value'][0], FILTER_VALIDATE_BOOLEAN)){
+                            $bCanCreatePage = true;
+                        }
+                        
+                        break;
+                    default:
+                        break;
+                }*/
+                if(strpos($pageattribute['name'], 'rsvp-create') !== false){
+                    $bCanCreatePage = true;
+                }
+            }
+            if(!$bCanCreatePage){
+                $parentPage = null;
             }
             
             array_push($messages, $pagesattributes);
@@ -230,18 +254,21 @@ class AddPagesMultilingual extends DashboardSitePageController
                 if(isset($pageType)){
                     if(isset($template)){
                         $entry = $parentPage->add($pageType, array(
-                            'cName' => $pageTitle
+                            'cName' => $pageTitle,
+                            'cDescription' => $pageDescription
                         ), $template);
                         array_push($errors, "Setting to defined page type");
                     } else {
                         $entry = $parentPage->add($pageType, array(
-                            'cName' => $pageTitle
+                            'cName' => $pageTitle,
+                            'cDescription' => $pageDescription
                         ));
                         array_push($errors, "Setting to defined page type");
                     }
                 } else {
                     $entry = $parentPage->add( \PageType::getByHandle('page'), array(
-                        'cName' => $pageTitle
+                        'cName' => $pageTitle,
+                        'cDescription' => $pageDescription
                     ));
                     array_push($errors, "No page type defined! Setting to default page type");
                 }
@@ -272,6 +299,7 @@ class AddPagesMultilingual extends DashboardSitePageController
                             break;
                         case 'rsvp-description':
                             //array_push($messages, $name);
+                            //$entry->setAttribute("cDescription", strval($pageattribute['value'][0]));
                             break; 
                         case 'rsvp-ptid':
                             //array_push($messages, $name);

@@ -311,7 +311,7 @@ class Controller extends BlockController
         $temppages = $templist->getResults();
         $pagedata = [];
         foreach($temppages as $temppage){   //FOREACH PAGE : Get the colors & stuff for the page list items
-		  	$this->$LOGGER = [];                //Hold debug information for the current page
+		  	$this->LOGGER = [];                //Hold debug information for the current page
 		  	
             if ($temppage->getCollectionPointerExternalLink() != '') {
                 $url = $temppage->getCollectionPointerExternalLink();
@@ -323,7 +323,7 @@ class Controller extends BlockController
 
             if(!is_null($topics) && !empty(array_diff($topics, [-1]))){     //If there are topics defined, and if at least one does not equal -1
                 if(array_intersect($nums, TSTopicColorHelper::getPageTopics($temppage)) == $nums){ //if the current page has relevant topics
-				  	array_push($this->$LOGGER, 'if 1');
+				  	array_push($this->LOGGER, 'if 1');
                     $sortOrder = 1;
                     $correctTopic = array_intersect($nums, TSTopicColorHelper::getPageTopics($temppage))[0];
                     $found = false;
@@ -341,7 +341,7 @@ class Controller extends BlockController
                         $rightcolor = $this->getTopicColor2(TSTopicColorHelper::getThemeID($theme));
                     }
                 } else {    //Else no matching topics
-                    array_push($this->$LOGGER, 'if 2');
+                    array_push($this->LOGGER, 'if 2');
                     $sortOrder = 2;
                     $rightcolor = $this->defaultColor;
                     $themename = TSTopicColorHelper::getThemeName($theme);
@@ -349,7 +349,7 @@ class Controller extends BlockController
             } else {//THIS ELSE IS IF there are no topics to filter or sort by. If there are no topics / all -1, then default color (i.e. gray)
                 $sortOrder = 2;
                 if(!is_null($theme) && !empty($theme) && isset($theme)){
-                    array_push($this->$LOGGER, 'else 1');
+                    array_push($this->LOGGER, 'else 1');
                     $themename = TSTopicColorHelper::getThemeName($theme);
                     if(is_array($theme)){
                         $rightcolor = $this->getTopicColor2($theme[0]->getTreeNodeID());
@@ -373,7 +373,7 @@ class Controller extends BlockController
                 "url"=>$url,
                 "theme"=> tc('TopicName',$themename),
                 "color"=>$rightcolor,
-                "LOGGER"=> is_array($this->$LOGGER) ? implode('; ', $this->$LOGGER) : $this->$LOGGER,
+                "LOGGER"=> is_array($this->LOGGER) ? implode('; ', $this->LOGGER) : $this->LOGGER,
                 "sortOrder"=>$sortOrder
             );
 
