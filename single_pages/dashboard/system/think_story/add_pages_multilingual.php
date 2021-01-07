@@ -42,6 +42,8 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                         //Whether or not we want to create a page in this location
                         $bCreatePageOrNoName = "rsvp-create-" . $counter;
                         echo $form->label($bCreatePageOrNoName, t("Create page in this locale")) . "  ";
+                        //NOTE: putting the second 1 to 0 will make checkbox default to FALSE
+                        // DO NOT DO THIS, some other elements take time to load and will not be properly hidden at the start!
                         echo $form->checkbox($bCreatePageOrNoName , 1, 1, array('style' => 'color: blue;', 'onchange' => 'onChangeCreate(this.id)'));
 
                         ?><br><?php
@@ -240,31 +242,21 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
         }
     }
     
+    //When first load, hide ALL things
+    /*$(document).ready(function(){
+        console.log($("input[id^='rsvp-create-']"))
+        $("input[id^='rsvp-create-']")each(function(index){
+            //onChangeCreate(this.id);
+        })
+        //onChangeCreate($("input[id^='rsvp-create-']"));
+    })*/
+
     //Script to run page addition
     $(function(){
-        /*$("#rsvp-create").change(function(event){
-            var selectedQ = document.getElementById('rsvp-create')
-            /*while(selectedQ.nextElementSibling){
-                var sibling = selectedQ.nextElementSibling
-                //sibling.parentNode.removeChild(sibling)
-                //sibling.parentNode.style.visibility = "hidden" //Crashes page
-            }
-
-            //Get parent element
-            var parent = $(this).parent();
-            console.log(parent)
-
-            //If is checked or unchecked
-            if($(this).is(':checked')){
-                //Show all child elements
-                parent.children().show();
-            } else {
-                //Hide all child elements, except for the rsvp-create checkbox
-                parent.children().hide();
-                $(this).show() //Show the checkbox
-                $("label[for='rsvp-create']").show() //Show the label
-            }
-        })*/
+        console.log($("input[id^='rsvp-create-']"))
+        $("input[id^='rsvp-create-']").each(function(index){
+            onChangeCreate(this.id);
+        })
         $("#qwop").click(function(event){
             disableButtons();
             event.preventDefault(); //prevent default action 
