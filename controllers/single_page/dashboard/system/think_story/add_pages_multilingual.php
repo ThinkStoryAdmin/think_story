@@ -44,7 +44,7 @@ use ThinkStory\Attributes\Timbre as TimbreSimple;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use Concrete\Package\ThinkStory\AttributeValidator\TSAttributeValidator;
+use ThinkStory\AttributeValidator\TSAttributeValidator; //use Concrete\Package\ThinkStory\AttributeValidator\TSAttributeValidator;
 
 defined('C5_EXECUTE') or die("Access Denied.");
 

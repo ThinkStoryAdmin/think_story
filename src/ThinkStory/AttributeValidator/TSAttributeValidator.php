@@ -1,5 +1,5 @@
 <?php
-namespace Concrete\Package\ThinkStory\AttributeValidator;
+namespace ThinkStory\AttributeValidator; //namespace Concrete\Package\ThinkStory\AttributeValidator;
 use Concrete\Core\Attribute\Key\CollectionKey;
 class TSAttributeValidator {
     public static function checkCollectionAttributeHandleExists($attributeHandleToCheck){
