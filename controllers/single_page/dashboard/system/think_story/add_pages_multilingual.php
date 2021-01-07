@@ -189,6 +189,7 @@ class AddPagesMultilingual extends DashboardSitePageController
             $pageType;// = \PageType::getByHandle('page');
             $template;// = \PageTemplate::getByHandle('full');
             $pageTitle;
+            $pageDescription;
 
             //First iterator to get the needed attributes (can )
             foreach($pagesattributes AS $pageattribute){
@@ -205,6 +206,7 @@ class AddPagesMultilingual extends DashboardSitePageController
                         //Does this need to be here?
                         //$pageTitle = $pageattribute['value'];
                         //array_push($messages, $name);
+                        $pageDescription = $pageattribute['value'][0];
                         break; 
                     case 'rsvp-ptid':
                         $pageType = \PageType::getByID($pageattribute['value'][0]);
@@ -230,18 +232,21 @@ class AddPagesMultilingual extends DashboardSitePageController
                 if(isset($pageType)){
                     if(isset($template)){
                         $entry = $parentPage->add($pageType, array(
-                            'cName' => $pageTitle
+                            'cName' => $pageTitle,
+                            'cDescription' => $pageDescription
                         ), $template);
                         array_push($errors, "Setting to defined page type");
                     } else {
                         $entry = $parentPage->add($pageType, array(
-                            'cName' => $pageTitle
+                            'cName' => $pageTitle,
+                            'cDescription' => $pageDescription
                         ));
                         array_push($errors, "Setting to defined page type");
                     }
                 } else {
                     $entry = $parentPage->add( \PageType::getByHandle('page'), array(
-                        'cName' => $pageTitle
+                        'cName' => $pageTitle,
+                        'cDescription' => $pageDescription
                     ));
                     array_push($errors, "No page type defined! Setting to default page type");
                 }
@@ -272,6 +277,7 @@ class AddPagesMultilingual extends DashboardSitePageController
                             break;
                         case 'rsvp-description':
                             //array_push($messages, $name);
+                            //$entry->setAttribute("cDescription", strval($pageattribute['value'][0]));
                             break; 
                         case 'rsvp-ptid':
                             //array_push($messages, $name);
