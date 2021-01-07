@@ -39,6 +39,13 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                     <div id="ccm-tab-content-<?php echo $tab[0]?>" class="ccm-tab-content">
                         <div class="form-group">
                         <?php
+                        //Whether or not we want to create a page in this location
+                        $bCreatePageOrNoName = "rsvp-create-" . $counter;
+                        echo $form->label($bCreatePageOrNoName, t("Create page in this locale")) . "  ";
+                        echo $form->checkbox($bCreatePageOrNoName , 1, 1, array('style' => 'color: blue;', 'onchange' => 'onChangeCreate(this.id)'));
+
+                        ?><br><?php
+
                         //Built-in Attributes (location, name, description, page type)
                         //$locationName = $tab[0] . "-rsvp-location";
                         $locationName ="rsvp-location";
@@ -121,7 +128,7 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                             //$formElementName = $tab[0] . "-" . $key->getAttributeKeyHandle();
                             $formElementName = $key->getAttributeKeyHandle();
                             $typehandle = $key->getAttributeType()->getAttributeTypeHandle();
-                            echo $form->label($key->getAttributeKeyName(), t($key->getAttributeKeyName()));
+                            echo $form->label($key->getAttributeKeyName(), t($key->getAttributeKeyName()))  . "  ";
                             switch($typehandle){
                                 case('text'):
                                     echo $form->text($formElementName);
@@ -209,9 +216,57 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
 </div>
 
 <script>
+    function enableButtons(){
+        $('#qwop').attr('disabled', false);
+    }
+
+    function disableButtons(){
+        $('#qwop').attr('disabled', true);
+    }
+
+    function onChangeCreate(callerID) {
+        var parent = $("#" + callerID).parent();
+        console.log(parent)
+
+        //If is checked or unchecked
+        if($("#" + callerID).is(':checked')){
+            //Show all child elements
+            parent.children().show();
+        } else {
+            //Hide all child elements, except for the rsvp-create checkbox
+            parent.children().hide();
+            $("#" + callerID).show() //Show the checkbox
+            $("label[for^='rsvp-create-']").show() //$("label[for='rsvp-create*']").show() //Show the label
+        }
+    }
+    
     //Script to run page addition
     $(function(){
+        /*$("#rsvp-create").change(function(event){
+            var selectedQ = document.getElementById('rsvp-create')
+            /*while(selectedQ.nextElementSibling){
+                var sibling = selectedQ.nextElementSibling
+                //sibling.parentNode.removeChild(sibling)
+                //sibling.parentNode.style.visibility = "hidden" //Crashes page
+            }
+
+            //Get parent element
+            var parent = $(this).parent();
+            console.log(parent)
+
+            //If is checked or unchecked
+            if($(this).is(':checked')){
+                //Show all child elements
+                parent.children().show();
+            } else {
+                //Hide all child elements, except for the rsvp-create checkbox
+                parent.children().hide();
+                $(this).show() //Show the checkbox
+                $("label[for='rsvp-create']").show() //Show the label
+            }
+        })*/
         $("#qwop").click(function(event){
+            disableButtons();
             event.preventDefault(); //prevent default action 
             var request_method = "POST"
             var dataLanguages = []
@@ -259,12 +314,14 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                     title: <?php echo json_encode(t('Pages Successfully created')); ?>,
                     message: <?php echo json_encode(t('The pages have been created. You can now see them in the sitemap!')); ?>
                 });
+                enableButtons()
             }).error(function(error){
                 console.log(error)
                 ConcreteAlert.dialog(
                     <?php echo json_encode(t('Error(s) creating pages!')); ?>,
                     error.responseText
                 );
+                enableButtons()
             });
         });
     });

@@ -219,6 +219,28 @@ class AddPagesMultilingual extends DashboardSitePageController
                         break;
                 }
             }
+
+            //if($pagesattributes['bCreatePageOrNo'])
+            //TODO find better way of doing this?
+            $bCanCreatePage = false;
+            foreach($pagesattributes AS $pageattribute){
+                /*switch($pageattribute['name']){
+                    case 'rsvp-create':
+                        if(filter_var($pageattribute['value'][0], FILTER_VALIDATE_BOOLEAN)){
+                            $bCanCreatePage = true;
+                        }
+                        
+                        break;
+                    default:
+                        break;
+                }*/
+                if(strpos($pageattribute['name'], 'rsvp-create') !== false){
+                    $bCanCreatePage = true;
+                }
+            }
+            if(!$bCanCreatePage){
+                $parentPage = null;
+            }
             
             array_push($messages, $pagesattributes);
             
