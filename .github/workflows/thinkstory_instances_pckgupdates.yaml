@@ -1,0 +1,30 @@
+name: thinkstory2infomaniak
+
+on:
+  # To add once do regular releases
+  #release:
+  #  branches:
+  #    - master
+  # For now do manually
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      
+      - name: FTP Deploy Think Ethical AI
+        uses: SamKirkland/FTP-Deploy-Action@3.0.0
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USER }}
+          ftp-password: ${{ secrets.FTP_PSWRD }}
+          local-dir: /web/packages/think_story
+
+#      - name: FTP Deploy Think Data / Contributive Sciences
+#        uses: SamKirkland/FTP-Deploy-Action@3.0.0
+#        with:
+#          ftp-server: ${{ secrets.FTP_SERVER }}
+#          ftp-username: ${{ secrets.FTP_USER }}
+#          ftp-password: ${{ secrets.FTP_PASSWORD }}
+#          local-dir: public/
