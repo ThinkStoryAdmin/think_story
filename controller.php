@@ -140,10 +140,11 @@ class Controller extends Package
          */
         //Install sample content
         if ($r->request->get('installSampleContent')) {
-            //$this->installContentFile('/install/content.xml');
+            $this->installContentFile('/install/content.xml');
         } else {
             //Install the base content (express objects & attributes) needed for the package to work
-            $this->installContentFile('/install/export-beutify-cleaned.xml');
+            //$this->installContentFile('/install/export-beutify-cleaned.xml'); //still need to install topic trees! there are dependents!
+            //$this->installContentFile('/install/content.xml');
         }
     }
 
