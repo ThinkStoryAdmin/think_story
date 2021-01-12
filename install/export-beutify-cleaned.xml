@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE doc [
+	<!ENTITY sampleTopics SYSTEM "export-topics.xml">
+]>
 <concrete5-cif version="1.0">
+	&sampleTopics;
 	<pagetemplates>
 		<pagetemplate icon="full.png" name="Page Home" handle="page_home" package="think_story" internal=""/>
 		<pagetemplate icon="full.png" name="Page Mon Scenario" handle="page_mon_scenario" package="think_story" internal=""/>

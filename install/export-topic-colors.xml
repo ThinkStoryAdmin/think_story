@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concrete5-cif version="1.0">
+    <expressentries>
+		<entry id="a1bcec002d77" label="" entity="tstopiccolor" display-order="1">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/HR Management]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#1d96b4]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<!--<entry id="4644436ac864" label="" entity="tstopiccolor" display-order="2">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Publication of pictures on Internet]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#a8d025]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="28c1fc5ed957" label="" entity="tstopiccolor" display-order="3">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Transparency]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#be8ecd]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="890ec52a4b00" label="" entity="tstopiccolor" display-order="4">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Geolocation]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#786a21]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="ebab25b6c051" label="" entity="tstopiccolor" display-order="5">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Use of video Surveillance]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#e65c21]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>-->
+		<entry id="f545c5db3896" label="" entity="tstopiccolor" display-order="6">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Professional emails]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#ffaed5]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1722f0b25ef5" label="" entity="tstopiccolor" display-order="7">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Biometrics]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#b41d2f]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="9dc2852f78e7" label="" entity="tstopiccolor" display-order="8">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Data Access]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#ecc128]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<!--<entry id="1f64b316b05b" label="" entity="tstopiccolor" display-order="9">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Personal File]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#7673d9]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1c29e1ed7226" label="" entity="tstopiccolor" display-order="10">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Surveillance (extensive)]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#6b1f6b]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="9a45fde789f0" label="" entity="tstopiccolor" display-order="11">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/School Environment]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#1f5e1e]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="f343808c7ed1" label="" entity="tstopiccolor" display-order="12">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/GDPR Application]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#4d484d]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="93873a104ec4" label="" entity="tstopiccolor" display-order="13">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic>
+							<![CDATA[/Connected Items]]>
+						</topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value>
+						<![CDATA[#1d0d59]]>
+					</value>
+				</attributekey>
+			</attributes>
+		</entry>-->
+	</expressentries>
+</concrete5-cif>
