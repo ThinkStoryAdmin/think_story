@@ -8,9 +8,11 @@
 	<!ENTITY baseEntities SYSTEM "export-beutify-cleaned.xml">
 	<!ENTITY samplePages SYSTEM "export-pages-sample.xml">
 	<!ENTITY topicColors SYSTEM "export-topic-colors.xml">
+	<!ENTITY sampleTopics SYSTEM "export-topics.xml">
 ]>
 <concrete5-cif version="1.0">
 	&baseEntities;
+	&sampleTopics;
 	<!--<thumbnailtypes>
     	<thumbnailtype name="Tiny Image" handle="tiny" width="390"/>
         <thumbnailtype name="Small Image" handle="small" width="740"/>
