@@ -87,9 +87,16 @@ class Controller extends Package
 
     public function install()
     {
-        $pkg = parent::install();
         $r = \Request::getInstance();
 
+        //Do initial checks
+        /*if( ! in_array($r->request->get('installContentLevel'), ["none", "basic", "full"]) ) {
+            throw new Exception(t('You must select which level of sample content you want to install!'));
+        }*/
+
+        //If there are no errors, can now install!        
+        $pkg = parent::install();
+        
         SinglePage::add('/dashboard/system/think_story', $pkg);
         SinglePage::add('/dashboard/system/think_story/page_report', $pkg);
         SinglePage::add('/dashboard/system/think_story/data_importer', $pkg);
@@ -143,9 +150,16 @@ class Controller extends Package
             $this->installContentFile('/install/content.xml');
         } else {
             //Install the base content (express objects & attributes) needed for the package to work
-            //$this->installContentFile('/install/export-beutify-cleaned.xml'); //still need to install topic trees! there are dependents!
+            $this->installContentFile('/install/export-beutify-cleaned.xml'); //still need to install topic trees! there are dependents!
             //$this->installContentFile('/install/content.xml');
         }
+        /*switch($r->request->get('installContentLevel')) {
+            case "none":
+            case "basic":
+            case "full":
+            default:
+                throw new Exception(t('You must set DB_TYPE to mysqlt in site.php.'));
+        }*/
     }
 
     public function upgrade()
