@@ -1,0 +1,1223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	THIS IS FOR FULL CONTENT SWAP
+	NEED TO FIRST INSTALL CONTENT FROM export-beutify.
+	This XML only contains stacks and pages, none of the page types / express objects!
+-->
+<concrete5-cif version="1.0">
+	<themes>
+		<theme handle="t_s_theme_elemental" package="think_story" activated="1"/>
+	</themes>
+	<trees>
+        <tree type="topic" name="Subjects">
+            <topic name="HR Management"/>
+            <topic name="Professional emails"/>
+            <topic name="Biometrics"/>
+            <topic name="Data Access"/>
+        </tree>
+        <tree type="topic" name="Jobs">
+            <topic name="Human Resources Department (HRD)"/>
+            <topic name="Information Systems Manager"/>
+        </tree>
+        <tree type="topic" name="Data types">
+            <topic name="Biometrics"/>
+            <topic name="Medical"/>
+            <topic name="Private"/>
+            <topic name="Professionnals"/>
+        </tree>
+    </trees>
+
+	
+
+	<pagetemplates>
+		<pagetemplate icon="full.png" name="Page Home" handle="page_home" package="think_story" internal=""/>
+		<pagetemplate icon="full.png" name="Page Mon Scenario" handle="page_mon_scenario" package="think_story" internal=""/>
+		<pagetemplate icon="full.png" name="Page Scenario" handle="page_scenario" package="think_story" internal=""/>
+		<pagetemplate icon="full.png" name="Page Scenarios" handle="page_scenarios" package="think_story" internal=""/>
+	</pagetemplates>
+	<pagetypes>
+	<pagetype name="Page" handle="page" package="" launch-in-composer="0" is-frequently-added="1">
+			<pagetemplates type="all" default="full"/>
+			<target handle="all" package="" form-factor=""/>
+			<composer>
+				<formlayout>
+					<set name="Basics" description="">
+						<control custom-template="" required="1" custom-label="Page Name" description="" type="core_page_property" handle="name"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="url_slug"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="page_template"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="publish_target"/>
+					</set>
+					<set name="Content" description="">
+						<control custom-template="" custom-label="Body" description="" output-control-id="080137fe" type="block" handle="content"/>
+					</set>
+				</formlayout>
+				<output>
+					<pagetemplate handle="blank">
+						<page name="" path="" filename="" pagetype="page" template="blank" user="admin" description="" package=""/>
+					</pagetemplate>
+					<pagetemplate handle="full">
+						<page name="" path="" filename="" pagetype="page" template="full" user="admin" description="" package="">
+							<area name="Main">
+								<blocks>
+									<block type="core_page_type_composer_control_output" name="" mc-block-id="a38bc9e8">
+										<control output-control-id="080137fe"/>
+									</block>
+								</blocks>
+							</area>
+						</page>
+					</pagetemplate>
+					<pagetemplate handle="page_home">
+						<page name="" path="" filename="" pagetype="page" template="page_home" user="admin" description="" package=""/>
+					</pagetemplate>
+					<pagetemplate handle="page_mon_scenario">
+						<page name="" path="" filename="" pagetype="page" template="page_mon_scenario" user="admin" description="" package=""/>
+					</pagetemplate>
+					<pagetemplate handle="page_scenario">
+						<page name="" path="" filename="" pagetype="page" template="page_scenario" user="admin" description="" package=""/>
+					</pagetemplate>
+					<pagetemplate handle="page_scenarios">
+						<page name="" path="" filename="" pagetype="page" template="page_scenarios" user="admin" description="" package=""/>
+					</pagetemplate>
+				</output>
+			</composer>
+		</pagetype>
+		<pagetype name="Scenario" handle="scenario_page_type" package="think_story" launch-in-composer="1" is-frequently-added="1">
+			<pagetemplates type="custom" default="page_scenario">
+				<pagetemplate handle="page_scenario"/>
+			</pagetemplates>
+			<target handle="all" package="" form-factor=""/>
+			<composer>
+				<formlayout>
+					<set name="Details" description="Ce set contient les détails de votre scénario.">
+						<control custom-template="" required="1" custom-label="" description="" type="core_page_property" handle="name"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="description"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="url_slug"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="page_template"/>
+						<control custom-template="" custom-label="" description="" type="core_page_property" handle="publish_target"/>
+					</set>
+					<set name="Scenario Form Set Content" description="Ce set contient le contenu de votre scénario.">
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_introduction"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_declencheur"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_peripetie"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_resolution"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_conclusion"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_recommendations"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_principes_de_base"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_ressources"/>
+					</set>
+					<set name="Scenario Form Set Details" description="Ce set contient les détails spécifique à ThinkStory de votre scénario.">
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_number_views"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_timbre"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_topic_theme"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_topic_metier"/>
+						<control custom-template="" custom-label="" description="" type="collection_attribute" handle="ts_pattr_topic_type_donne"/>
+					</set>
+				</formlayout>
+				<output>
+					<pagetemplate handle="page_scenario">
+						<page name="" path="" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="" package="">
+							<area name="Recommendations">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_top_bar" mc-block-id="cbde54cb">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_recommendations]]></attributeHandle>
+												<attributeTitleText><![CDATA[Recommendations]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Principes de base">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_top_bar" mc-block-id="6547e0c2">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_principes_de_base]]></attributeHandle>
+												<attributeTitleText><![CDATA[Principles de base]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Ressources">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_top_bar" mc-block-id="d7c2277e">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_ressources]]></attributeHandle>
+												<attributeTitleText><![CDATA[Ressources]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Introduction">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="537c085c">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_introduction]]></attributeHandle>
+												<attributeTitleText><![CDATA[Introduction]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Declencheur">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="26fc46a8">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_declencheur]]></attributeHandle>
+												<attributeTitleText><![CDATA[Déclencheur]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Peripetie">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="d9061a13">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_peripetie]]></attributeHandle>
+												<attributeTitleText><![CDATA[Péripétie]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Resolution">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="01274722">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_resolution]]></attributeHandle>
+												<attributeTitleText><![CDATA[Résolution]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Conclusion">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="2942cb02">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_conclusion]]></attributeHandle>
+												<attributeTitleText><![CDATA[Conclusion]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Timbre">
+								<blocks>
+									<block type="page_attribute_display" name="" mc-block-id="6b2ef34f">
+										<style>
+											<backgroundColor/>
+											<backgroundRepeat>no-repeat</backgroundRepeat>
+											<backgroundSize>auto</backgroundSize>
+											<backgroundPosition>0% 0%</backgroundPosition>
+											<borderWidth/>
+											<borderColor/>
+											<borderStyle/>
+											<borderRadius/>
+											<baseFontSize/>
+											<alignment>center</alignment>
+											<textColor/>
+											<linkColor/>
+											<paddingTop/>
+											<paddingBottom/>
+											<paddingLeft/>
+											<paddingRight/>
+											<marginTop/>
+											<marginBottom/>
+											<marginLeft/>
+											<marginRight/>
+											<rotate/>
+											<boxShadowHorizontal/>
+											<boxShadowVertical/>
+											<boxShadowBlur/>
+											<boxShadowSpread/>
+											<boxShadowColor/>
+											<customClass/>
+											<customID/>
+											<customElementAttribute/>
+											<hideOnExtraSmallDevice/>
+											<hideOnSmallDevice/>
+											<hideOnMediumDevice/>
+											<hideOnLargeDevice/>
+										</style>
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_timbre]]></attributeHandle>
+												<attributeTitleText><![CDATA[]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Theme Print">
+								<blocks>
+									<block type="t_s_page_theme_display" name="" mc-block-id="3fca6853">
+										<data table="btTSPageThemeDisplay">
+											<record>
+												<topic><![CDATA[ts_pattr_topic_theme]]></topic>
+												<expressColors><![CDATA[dfa3cff9-9122-11ea-b285-000c29c61046]]></expressColors>
+												<expressColorsTopicsAttribute><![CDATA[ts_topic_color_topic]]></expressColorsTopicsAttribute>
+												<expressColorsColorsAttribute><![CDATA[ts_topic_color_color]]></expressColorsColorsAttribute>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Nav Next and Back">
+								<blocks>
+									<block type="next_previous" name="" custom-template="think_story_np_template" mc-block-id="2978f879">
+										<data table="btNextPrevious">
+											<record>
+												<nextLabel><![CDATA[NEXT]]></nextLabel>
+												<previousLabel><![CDATA[PREVIOUS]]></previousLabel>
+												<parentLabel><![CDATA[Up]]></parentLabel>
+												<loopSequence><![CDATA[1]]></loopSequence>
+												<orderBy><![CDATA[display_asc]]></orderBy>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Back Button">
+								<blocks>
+									<block type="t_s_back_button" name="" mc-block-id="1a523646">
+										<data table="btTSBackButton">
+											<record>
+												<bLabel><![CDATA[Back to the results]]></bLabel>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Print to PDF">
+								<blocks>
+									<block type="t_s_print_page_to_pdf" name="" mc-block-id="a0e824ce">
+										<data table="btTSPrintPageToPdf">
+											<record>
+												<attributesToPrint><![CDATA[N;]]></attributesToPrint>
+												<attributeTimbre><![CDATA[ts_pattr_timbre]]></attributeTimbre>
+												<attributesTopics><![CDATA[a:3:{i:0;s:20:"ts_pattr_topic_theme";i:1;s:21:"ts_pattr_topic_metier";i:2;s:25:"ts_pattr_topic_type_donne";}]]></attributesTopics>
+												<attributesContent><![CDATA[a:8:{i:0;s:21:"ts_pattr_introduction";i:1;s:20:"ts_pattr_declencheur";i:2;s:18:"ts_pattr_peripetie";i:3;s:19:"ts_pattr_resolution";i:4;s:19:"ts_pattr_conclusion";i:5;s:24:"ts_pattr_recommendations";i:6;s:26:"ts_pattr_principes_de_base";i:7;s:19:"ts_pattr_ressources";}]]></attributesContent>
+												<attributesFooterURL><![CDATA[thinkdata.ch]]></attributesFooterURL>
+												<attributesHeaderIcon><![CDATA[3]]></attributesHeaderIcon>
+												<label><![CDATA[PDF Downloadem]]></label>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Titre">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_title" mc-block-id="a55631a6">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+												<attributeTitleText><![CDATA[]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Topic Filter">
+								<blocks>
+									<block type="t_s_page_list2" name="" mc-block-id="753fb4c6">
+										<data table="btTSPageList2">
+											<record>
+												<pageListTitle><![CDATA[]]></pageListTitle>
+												<orderBy><![CDATA[display_most_recent]]></orderBy>
+												<sortType><![CDATA[1]]></sortType>
+												<cParentID>{ccm:export:page:/fr/scenarios}</cParentID>
+												<ptID>{ccm:export:pagetype:scenario_page_type}</ptID>
+												<defaultColor><![CDATA[rgb(130, 130, 130)]]></defaultColor>
+												<viewCountAttribute><![CDATA[ts_pattr_number_views]]></viewCountAttribute>
+												<topics><![CDATA[a:3:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"6";}]]></topics>
+												<pageTopicColors><![CDATA[ts_pattr_topic_theme]]></pageTopicColors>
+												<expressColors><![CDATA[dfa3cff9-9122-11ea-b285-000c29c61046]]></expressColors>
+												<expressColorsTopicsAttribute><![CDATA[ts_topic_color_color]]></expressColorsTopicsAttribute>
+												<expressColorsColorsAttribute><![CDATA[ts_topic_color_topic]]></expressColorsColorsAttribute>
+												<bPostToAnotherPage><![CDATA[1]]></bPostToAnotherPage>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Filter Result">
+								<blocks>
+									<block type="t_s_page_list_result" name="" mc-block-id="35d611e1">
+										<data table="btTSPageListResult">
+											<record/>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="Title">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_title" mc-block-id="b593ef1d">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[rpv_pageName]]></attributeHandle>
+												<attributeTitleText><![CDATA[]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+							<area name="IDPRC Content">
+								<blocks>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="53d30aab">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_introduction]]></attributeHandle>
+												<attributeTitleText><![CDATA[]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="953f9a6f">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_declencheur]]></attributeHandle>
+												<attributeTitleText><![CDATA[]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="98040f95">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_peripetie]]></attributeHandle>
+												<attributeTitleText><![CDATA[]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="d0107bc1">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_resolution]]></attributeHandle>
+												<attributeTitleText><![CDATA[]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="1b6ca5bb">
+										<data table="btPageAttributeDisplay">
+											<record>
+												<attributeHandle><![CDATA[ts_pattr_conclusion]]></attributeHandle>
+												<attributeTitleText><![CDATA[]]></attributeTitleText>
+												<displayTag><![CDATA[]]></displayTag>
+												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
+												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
+												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
+												<delimiter><![CDATA[]]></delimiter>
+											</record>
+										</data>
+									</block>
+								</blocks>
+							</area>
+						</page>
+					</pagetemplate>
+				</output>
+			</composer>
+		</pagetype>
+	</pagetypes>
+	<stacks>
+		<stack name="Footer Legal" type="global_area" package="">
+			<area name="Main">
+				<blocks>
+					<block type="image" name="">
+						<data table="btContentImage">
+							<record>
+								<fID>{ccm:export:file:761593528515:cc.png}</fID>
+								<fOnstateID/>
+								<cropImage><![CDATA[0]]]]></cropImage>
+								<maxWidth><![CDATA[0]]]]></maxWidth>
+								<maxHeight><![CDATA[0]]]]></maxHeight>
+								<externalLink><![CDATA[http://creativecommons.org/licenses/by-nc-sa/3.0]]]]></externalLink>
+								<internalLinkCID/>
+								<fileLinkID/>
+								<openLinkInNewWindow><![CDATA[1]]></openLinkInNewWindow>
+								<altText><![CDATA[CC]]></altText>
+								<title><![CDATA[]]></title>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Footer Navigation Primary" type="global_area" package="">
+			<area name="Main">
+				<blocks>
+					<block type="autonav" name="" custom-template="think_story_footer_nav">
+						<data table="btNavigation">
+							<record>
+								<orderBy><![CDATA[display_asc]]></orderBy>
+								<displayPages><![CDATA[top]]></displayPages>
+								<displayPagesCID/>
+								<displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+								<displaySubPages><![CDATA[none]]></displaySubPages>
+								<displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+								<displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+								<displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Footer Navigation Secondary" type="global_area" package="">
+			<area name="Main">
+				<blocks>
+					<block type="autonav" name="" custom-template="think_story_footer_nav">
+						<data table="btNavigation">
+							<record>
+								<orderBy><![CDATA[display_asc]]></orderBy>
+								<displayPages><![CDATA[custom]]></displayPages>
+								<displayPagesCID>{ccm:export:page:/extrasen}</displayPagesCID>
+								<displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+								<displaySubPages><![CDATA[none]]></displaySubPages>
+								<displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+								<displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+								<displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Header Navigation" type="global_area" package="">
+			<area name="Main">
+				<blocks>
+					<block type="switch_language" name="" custom-template="t_s_template">
+						<style>
+							<backgroundColor/>
+							<backgroundRepeat>no-repeat</backgroundRepeat>
+							<backgroundSize>auto</backgroundSize>
+							<backgroundPosition>0% 0%</backgroundPosition>
+							<borderWidth/>
+							<borderColor/>
+							<borderStyle/>
+							<borderRadius/>
+							<baseFontSize/>
+							<alignment>right</alignment>
+							<textColor/>
+							<linkColor/>
+							<paddingTop/>
+							<paddingBottom/>
+							<paddingLeft/>
+							<paddingRight/>
+							<marginTop/>
+							<marginBottom/>
+							<marginLeft/>
+							<marginRight/>
+							<rotate/>
+							<boxShadowHorizontal/>
+							<boxShadowVertical/>
+							<boxShadowBlur/>
+							<boxShadowSpread/>
+							<boxShadowColor/>
+							<customClass/>
+							<customID/>
+							<customElementAttribute/>
+							<hideOnExtraSmallDevice/>
+							<hideOnSmallDevice/>
+							<hideOnMediumDevice/>
+							<hideOnLargeDevice/>
+						</style>
+						<data table="btSwitchLanguage">
+							<record>
+								<label><![CDATA[]]></label>
+							</record>
+						</data>
+					</block>
+					<block type="autonav" name="" custom-template="think_story_secondary_nav">
+						<style>
+							<backgroundColor/>
+							<backgroundRepeat>no-repeat</backgroundRepeat>
+							<backgroundSize>auto</backgroundSize>
+							<backgroundPosition>0% 0%</backgroundPosition>
+							<borderWidth/>
+							<borderColor/>
+							<borderStyle/>
+							<borderRadius/>
+							<baseFontSize/>
+							<alignment>right</alignment>
+							<textColor/>
+							<linkColor/>
+							<paddingTop/>
+							<paddingBottom/>
+							<paddingLeft/>
+							<paddingRight/>
+							<marginTop/>
+							<marginBottom/>
+							<marginLeft/>
+							<marginRight/>
+							<rotate/>
+							<boxShadowHorizontal/>
+							<boxShadowVertical/>
+							<boxShadowBlur/>
+							<boxShadowSpread/>
+							<boxShadowColor/>
+							<customClass/>
+							<customID/>
+							<customElementAttribute/>
+							<hideOnExtraSmallDevice/>
+							<hideOnSmallDevice/>
+							<hideOnMediumDevice/>
+							<hideOnLargeDevice/>
+						</style>
+						<data table="btNavigation">
+							<record>
+								<orderBy><![CDATA[display_asc]]></orderBy>
+								<displayPages><![CDATA[custom]]></displayPages>
+								<displayPagesCID>{ccm:export:page:/extrasen}</displayPagesCID>
+								<displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+								<displaySubPages><![CDATA[none]]></displaySubPages>
+								<displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+								<displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+								<displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Header Site Title" type="global_area" package="">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<data table="btContentLocal">
+							<record>
+								<content><![CDATA[<p>Put your site header here!</p>]]></content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Primary Navigation" type="global_area" package="">
+			<area name="Main">
+				<blocks>
+					<block type="autonav" name="" custom-template="think_story_primary_nav">
+						<data table="btNavigation">
+							<record>
+								<orderBy><![CDATA[display_asc]]></orderBy>
+								<displayPages><![CDATA[top]]></displayPages>
+								<displayPagesCID/>
+								<displayPagesIncludeSelf><![CDATA[0]]></displayPagesIncludeSelf>
+								<displaySubPages><![CDATA[none]]></displaySubPages>
+								<displaySubPageLevels><![CDATA[enough]]></displaySubPageLevels>
+								<displaySubPageLevelsNum><![CDATA[0]]></displaySubPageLevelsNum>
+								<displayUnavailablePages><![CDATA[0]]></displayUnavailablePages>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+		<stack name="Souteneurs" type="global_area" package="">
+			<area name="Main">
+				<blocks>
+					<block type="content" name="">
+						<style>
+							<backgroundColor/>
+							<backgroundRepeat>no-repeat</backgroundRepeat>
+							<backgroundSize>auto</backgroundSize>
+							<backgroundPosition>0% 0%</backgroundPosition>
+							<borderWidth/>
+							<borderColor/>
+							<borderStyle/>
+							<borderRadius/>
+							<baseFontSize/>
+							<alignment>center</alignment>
+							<textColor/>
+							<linkColor/>
+							<paddingTop/>
+							<paddingBottom/>
+							<paddingLeft/>
+							<paddingRight/>
+							<marginTop/>
+							<marginBottom/>
+							<marginLeft/>
+							<marginRight/>
+							<rotate/>
+							<boxShadowHorizontal/>
+							<boxShadowVertical/>
+							<boxShadowBlur/>
+							<boxShadowSpread/>
+							<boxShadowColor/>
+							<customClass/>
+							<customID/>
+							<customElementAttribute/>
+							<hideOnExtraSmallDevice/>
+							<hideOnSmallDevice/>
+							<hideOnMediumDevice/>
+							<hideOnLargeDevice/>
+						</style>
+						<data table="btContentLocal">
+							<record>
+								<content><![CDATA[<div>You should mention the organisations that helped you make your project happen!</div>]]></content>
+							</record>
+						</data>
+					</block>
+				</blocks>
+			</area>
+		</stack>
+	</stacks>
+	<attributekeys>
+		<attributekey handle="ts_pattr_topic_theme" name="Themes" package="think_story" searchable="1" indexed="1" type="topics" category="collection">
+			<tree name="Subjects" path="/" allow-multiple-values="1"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_topic_metier" name="Jobs" package="think_story" searchable="1" indexed="1" type="topics" category="collection">
+			<tree name="Jobs" path="/" allow-multiple-values="1"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_topic_type_donne" name="Data Types" package="think_story" searchable="1" indexed="1" type="topics" category="collection">
+			<tree name="Data types" path="/" allow-multiple-values="1"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_number_views" name="TS View Count" package="think_story" searchable="1" indexed="1" type="number" category="collection"/>
+		<attributekey handle="ts_pattr_timbre" name="TS Scenario Validation Stamp" package="think_story" searchable="1" indexed="1" type="timbre" category="collection"/>
+		<attributekey handle="ts_pattr_introduction" name="Introduction" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_declencheur" name="Trigger" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_peripetie" name="Incident" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_resolution" name="Resolution" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_conclusion" name="Conclusion" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_recommendations" name="Recommendations" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_principes_de_base" name="Basic Principles" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+		<attributekey handle="ts_pattr_ressources" name="Resources" package="think_story" searchable="1" indexed="1" type="textarea" category="collection">
+			<type mode="rich_text"/>
+		</attributekey>
+	</attributekeys>
+	<attributesets>
+		<attributeset handle="seo" name="SEO" package="" locked="0" category="collection">
+			<attributekey handle="meta_title"/>
+			<attributekey handle="meta_description"/>
+			<attributekey handle="header_extra_content"/>
+			<attributekey handle="exclude_sitemapxml"/>
+	    </attributeset>
+	    <attributeset handle="navigation" name="Navigation and Indexing" package="" locked="0" category="collection">
+			<attributekey handle="is_featured"/>
+			<attributekey handle="exclude_nav"/>
+			<attributekey handle="exclude_page_list"/>
+			<attributekey handle="exclude_search_index"/>
+			<attributekey handle="tags"/>
+			<attributekey handle="thumbnail"/>
+			<attributekey handle="exclude_subpages_from_nav"/>
+	    </attributeset>
+		<attributeset name="Think Story Attribute Set" package="" category="collection">
+			<attributekey handle="ts_pattr_topic_theme"/>
+			<attributekey handle="ts_pattr_topic_metier"/>
+			<attributekey handle="ts_pattr_topic_type_donne"/>
+			<attributekey handle="ts_pattr_number_views"/>
+			<attributekey handle="ts_pattr_timbre"/>
+			<attributekey handle="ts_pattr_introduction"/>
+			<attributekey handle="ts_pattr_declencheur"/>
+			<attributekey handle="ts_pattr_peripetie"/>
+			<attributekey handle="ts_pattr_resolution"/>
+			<attributekey handle="ts_pattr_conclusion"/>
+			<attributekey handle="ts_pattr_recommendations"/>
+			<attributekey handle="ts_pattr_principes_de_base"/>
+			<attributekey handle="ts_pattr_ressources"/>
+		</attributeset>
+	</attributesets>
+	<expressentities>
+		<entity id="282fbc2b-b404-11ea-913b-de3f9e5efbce" handle="ts_mon_scenario" plural_handle="" name="Mon Scenario" supports_custom_display_order="" include_in_public_list="1" description="" default_view_form="35160245-b404-11ea-913b-de3f9e5efbce" default_edit_form="35160245-b404-11ea-913b-de3f9e5efbce" results-folder="/">
+			<attributekeys>
+				<attributekey handle="ts_ms_email" name="Email" package="" searchable="1" indexed="1" type="email" category=""/>
+				<attributekey handle="ts_ms_nom" name="Name" package="" searchable="1" indexed="1" type="text" category="">
+					<type placeholder=""/>
+				</attributekey>
+				<attributekey handle="ts_ms_votre_scenario" name="Your Scenario" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="rich_text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_intro" name="Introduction" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_decl" name="Trigger" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_peripet" name="Incident" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_resol" name="Resolution" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_concl" name="Conclusion" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+			</attributekeys>
+			<forms>
+				<form id="282fce0b-b404-11ea-913b-de3f9e5efbce" name="Form"/>
+				<form id="35160245-b404-11ea-913b-de3f9e5efbce" name="ts_mon_scenario_user_form">
+					<fieldsets>
+						<fieldset title="Votre Scénario" description="">
+							<controls>
+								<control id="e8e5a97b-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_ms_nom"/>
+								</control>
+								<control id="eb5b9165-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_ms_email"/>
+								</control>
+								<control id="ed5dfb42-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_ms_votre_scenario"/>
+								</control>
+								<control id="ef2fd8e4-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_intro"/>
+								</control>
+								<control id="f120f8cd-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_decl"/>
+								</control>
+								<control id="f33b868d-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_peripet"/>
+								</control>
+								<control id="f580770d-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_resol"/>
+								</control>
+								<control id="f7c3774c-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_concl"/>
+								</control>
+							</controls>
+						</fieldset>
+					</fieldsets>
+				</form>
+			</forms>
+		</entity>
+		<entity id="dfa3cff9-9122-11ea-b285-000c29c61046" handle="tstopiccolor" plural_handle="" name="Topic Color" supports_custom_display_order="1" include_in_public_list="1" description="" default_view_form="f1751715-9762-11ea-ad00-000c29c61046" default_edit_form="f1751715-9762-11ea-ad00-000c29c61046" results-folder="/">
+			<attributekeys>
+				<attributekey handle="ts_topic_color_topic" name="Topic Color Topic" package="" searchable="1" indexed="1" type="topics" category="">
+					<tree name="Subjects" path="/" allow-multiple-values="1"/>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color" name="Topic Color Color" package="" searchable="1" indexed="1" type="t_s_color" category="">
+					<type placeholder=""/>
+				</attributekey>
+			</attributekeys>
+			<forms>
+				<form id="dfa3e38c-9122-11ea-b285-000c29c61046" name="Form"/>
+				<form id="f1751715-9762-11ea-ad00-000c29c61046" name="t_s_topic_color_form">
+					<fieldsets>
+						<fieldset title="Details" description="">
+							<controls>
+								<control id="f837d1a3-9762-11ea-ad00-000c29c61046" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_topic_color_topic"/>
+								</control>
+								<control id="f9e49f65-9762-11ea-ad00-000c29c61046" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_topic_color_color"/>
+								</control>
+							</controls>
+						</fieldset>
+					</fieldsets>
+				</form>
+			</forms>
+		</entity>
+	</expressentities>
+	<expressentries>
+		<entry id="a1bcec002d77" label="" entity="tstopiccolor" display-order="1">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/HR Management]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#1d96b4]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="f545c5db3896" label="" entity="tstopiccolor" display-order="6">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Professional emails]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#ffaed5]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1722f0b25ef5" label="" entity="tstopiccolor" display-order="7">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Biometrics]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#b41d2f]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="9dc2852f78e7" label="" entity="tstopiccolor" display-order="8">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Data Access]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#ecc128]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+	</expressentries>
+	<pages>
+		<page name="Home TS" path="" filename="" pagetype="page" template="page_home" user="admin" description="" package="">
+		</page>
+		<page name="Scenarios" path="/scenarios" filename="" pagetype="page" template="page_scenarios" user="admin" description="" package=""/>
+		<page name="Glossary" path="/glossary" filename="" pagetype="page" template="full" user="admin" description="" package="">
+		</page>
+		<page name="My Scenario" path="/my-scenario" filename="" pagetype="page" template="full" user="admin" description="" package="">
+		</page>
+		<page name="EXTRASen" path="/extrasen" filename="" pagetype="page" template="full" user="admin" description="" package="">
+			<attributes>
+				<attributekey handle="exclude_nav">
+					<value>1</value>
+				</attributekey>
+				<attributekey handle="exclude_page_list">
+					<value>1</value>
+				</attributekey>
+				<attributekey handle="exclude_search_index">
+					<value>1</value>
+				</attributekey>
+			</attributes>
+		</page>
+		<page name="About" path="/extrasen/history" filename="" pagetype="page" template="full" user="admin" description="" package="">
+		</page>
+		<page name="About" path="/extrasen/history" filename="" pagetype="page" template="full" user="admin" description="" package="">
+		</page>
+		<page name="FAQ" path="/extrasen/faq" filename="" pagetype="page" template="full" user="admin" description="" package="">
+		</page>
+		<page name="Data Protection" path="/extrasen/data-protection" filename="" pagetype="page" template="full" user="admin" description="" package="">
+		</page>
+		<page name="Contact" path="/extrasen/contact" filename="" pagetype="page" template="full" user="admin" description="" package="">
+		</page>
+		<!--<page name="Does the biometric control respect the privacy of the employees when accessing the premises?" path="/scenarios/does-biometric-control-respect-privacy-employees-when-accessing-premises" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="" package="">
+			<attributes>
+				<attributekey handle="ts_pattr_topic_theme">
+					<topics>
+						<topic><![CDATA[/Biometrics]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_metier">
+					<topics>
+						<topic><![CDATA[/Human Resources Department (HRD)]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_type_donne">
+					<topics>
+						<topic><![CDATA[/Biometrics]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_number_views">
+					<value><![CDATA[]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_timbre">
+					<value><![CDATA[a:2:{i:0;i:1;i:1;N;}]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_introduction">
+					<value><![CDATA[<p>The general management decided to change the magnetic access control by a biometric control (iris scanner or hand geometry and fingerprints). The personnel were informed of this change. The staff committee held a meeting. </p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_declencheur">
+					<value><![CDATA[<p>After a lively discussion, the staff committee decided to obstruct the managements' project.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_peripetie">
+					<value><![CDATA[<p>The Human Resources Department (HRD) was caught in the middle. On the one hand, the general management, convinced of the benefits of the device did not want to reverse their decision. On the other hand, the staff committee strongly supports that the use of such a device could affect the individuality of the employees. The HRD organized a joint meeting with the Information Systems Manager (ISD), the management and the consultant (or the person in charge) for the protection of data to evaluate possible solutions.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_resolution">
+					<value><![CDATA[<p>At the end of the session, they accepted that the proposed data collection was not in proportion to the actual aim and it would therefore be necessary to obtain the consent of each employee. Given the costs and complications that would result from having two parallel devices (magnetic and biometric), the general management postponed the project and asked the ISD to find a less intrusive solution.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_conclusion">
+					<value><![CDATA[<p>The data collected to allow for a biometric check can be used for purposes unrelated to the stated goal. The HRD is pleased to have contributed to the search for a solution that respects the individuality of the employees.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_recommendations">
+					<value><![CDATA[<p>The biometric data usually includes some sensitive data (particularly health). When this is the case, a formal legal basis is required and the persons concerned must be clearly informed and must consent to the processing of this data. The goal must be clear, and the most adequate and less intrusive measures must be chosen. These measures must be adequately communicated. In addition to this, the employer must also consult the employees or their representatives and, in the absence of a formal legal basis, obtain their free and informed consent prior to the introduction of an automated system for the processing of personal data.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_principes_de_base">
+					<value><![CDATA[<p><a href="http://www.ge.ch/legislation/rsg/f/s/rsg_a2_08.html" target="_blank">LIPAD 38 and 42</a> ; <a href="http://www.admin.ch/ch/f/rs/822_11/a6.html" target="_blank">LT 6</a> ; <a href="http://www.admin.ch/ch/f/rs/822_113/a26.html" target="_blank">OLT3 26</a> ; <a href="http://www.admin.ch/ch/e/rs/220/a328.html" target="_blank">CO 328</a> and <a href="http://www.admin.ch/ch/e/rs/220/a328b.html" target="_blank">328b</a> ; <a href="http://www.admin.ch/ch/e/rs/235_1/a4.html">DPA 4 al. 4</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a12.html">12</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a13.html">13</a></p><p>Protection of privacy, protection of workers, the principle of proportionality: these measures must be necessary and the least intrusive possible.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_ressources">
+					<value><![CDATA[<p>The private bank Pictet & Cie in Geneva have been using 3D facial recognition to secure the access to its buildings since 2006. How did they overcome the fears of its 2,000 employees? Through communication. This technology does not monitor the health of an individual or violate their privacy. "The employees feared that their facial scan could affect their health, which is not the case because the machine simply films," says Jean-Pierre Therre, in charge of the security of the private bank. The database bank does not contain any photos of the employees either, but analyses the scans of their skulls according to the 40,000 reference points, and from which nothing can be drawn from. : <a href="http://www.1234economy.com/biometrie-et-reconnaissan%20ce-faciale-en-3d-comment-la-banque-privee-genevoise-pictet-a-gere-les-resistances%20/" target="_blank">http://www.1234economy.com/biometrie-et-reconnaissan ce-faciale-en-3d-comment-la-banque-privee-genevoise-pictet-a-gere-les-resistances / </a></p>]]></value>
+				</attributekey>
+			</attributes>
+		</page>
+		<page name="Can I access the mailbox of an employee?" path="/scenarios/can-i-access-mailbox-employee" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="" package="">
+			<attributes>
+				<attributekey handle="ts_pattr_topic_theme">
+					<topics>
+						<topic><![CDATA[/Professional emails]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_metier">
+					<topics>
+						<topic><![CDATA[/Human Resources Department (HRD)]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_type_donne">
+					<topics>
+						<topic><![CDATA[/Professionnals]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_timbre">
+					<value><![CDATA[a:2:{i:0;i:1;i:1;s:4:"none";}]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_introduction">
+					<value><![CDATA[<p>To perform a task, a department head needed to refer to an email that was sent by an employee. He was absent and did not taken any steps to make his professional messages accessible, even though according to the internal working procedures, the information processed by an employee should be available in the shared folders.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_declencheur">
+					<value><![CDATA[<p>The head of service asks the Human Resources Department (HRD) for the password of the employee. The HRD refuses to comply with his request.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_peripetie">
+					<value><![CDATA[<p>The department head then tries to join the employee through an email that goes unanswered, and by telephone. The wife of the employee tells him that her husband is having an operation and that his condition is serious.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_resolution">
+					<value><![CDATA[<p>The head of service returns to the HRD explaining the situation as it is he is not able to do his job without this piece of information. The HRD maintains their refusal and told the head of service to await the return of his employee or to send a message to the addressee of the message.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_conclusion">
+					<value><![CDATA[<p>Without the consent of its employees, the department head cannot have access to their email.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_recommendations">
+					<value><![CDATA[<p>Guidelines must be developed for the use of the email. In the absence of clear rules, access to the mailbox of an employee is only possible for serious and objective reasons.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_principes_de_base">
+					<value><![CDATA[<p><a href="http://www.admin.ch/ch/e/rs/101/a13.html" target="_blank">Cst. 13 al. 1</a> ; <a href="http://www.admin.ch/ch/e/rs/311_0/a143.html" target="_blank">CP 143</a>, <a href="http://www.admin.ch/ch/e/rs/311_0/a179novies.html" target="_blank">179</a><sup>novies</sup> et<a href="http://www.admin.ch/ch/e/rs/311_0/a321ter.html" target="_blank"> 321<sup>ter</sup></a> ; <a href="http://www.admin.ch/ch/e/rs/220/a328.html" target="_blank">CO 328</a> and <a href="http://www.admin.ch/ch/e/rs/220/a328b.html" target="_blank">328b </a></p>&#13;<p>The right to respect privacy including correspondence, worker protection.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_ressources">
+					<value><![CDATA[]]></value>
+				</attributekey>
+			</attributes>
+		</page>
+		<page name="Can I get the private telephone number of an employee?" path="/scenarios/can-i-get-private-telephone-number-employee" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="" package="">
+			<attributes>
+				<attributekey handle="ts_pattr_topic_theme">
+					<topics>
+						<topic><![CDATA[/Data Access]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_metier">
+					<topics>
+						<topic><![CDATA[/Human Resources Department (HRD)]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_type_donne">
+					<topics>
+						<topic><![CDATA[/Private]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_timbre">
+					<value><![CDATA[a:2:{i:0;i:1;i:1;s:4:"none";}]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_introduction">
+					<value><![CDATA[<p>Despite considerable efforts and help from his employees, a department head could not lay his hands on a litigation file, into which he wanted to place a photocopy of the case law.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_declencheur">
+					<value><![CDATA[<p>The employee in charge of the case, who has no supervisory responsibilities or decision-making skills, was on vacation.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_peripetie">
+					<value><![CDATA[<p>The head of department asked the Human Resources Department (HRD) to give him the private telephone number of the employee, which was in his personnel file.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_resolution">
+					<value><![CDATA[<p>The HRD refused because they did not have the employees consent.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_conclusion">
+					<value><![CDATA[<p>Personal details may be communicated only with prior consent of the data subject or, failing this for imperative reasons or a serious motive on behalf of department.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_recommendations">
+					<value><![CDATA[<p>Work procedures should be developed in such a way so as to allow the continuation of the activity in the absence of an employee.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_principes_de_base">
+					<value><![CDATA[<p><a href="http://www.admin.ch/ch/e/rs/101/a13.html" target="_blank">Cst. 13 al. 1</a> ;<a href="http://www.admin.ch/ch/e/rs/311_0/a143.html" target="_blank"> CP 143</a>, <a href="http://www.admin.ch/ch/e/rs/311_0/a179novies.html" target="_blank">179</a><sup>novies</sup> and <a href="http://www.admin.ch/ch/e/rs/311_0/a321ter.html" target="_blank">321<sup>ter</sup></a> ; <a href="http://www.admin.ch/ch/e/rs/220/a328.html" target="_blank">CO 328</a><a href="http://www.admin.ch/ch/e/rs/220/a328b.html" target="_blank"> and 328b </a></p>&#13;<p>The right to respect privacy including correspondence, worker protection, transparency of data collection (recognisable purpose and to be used for this purpose only), confidentiality (data security).</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_ressources">
+					<value><![CDATA[]]></value>
+				</attributekey>
+			</attributes>
+		</page>
+		<page name="What information should I keep in the personal file of an employee?" path="/scenarios/what-information-should-i-keep-personal-file-employee" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="" package="">
+			<attributes>
+				<attributekey handle="ts_pattr_topic_theme">
+					<topics>
+						<topic><![CDATA[/HR Management]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_metier">
+					<topics>
+						<topic><![CDATA[/Human Resources Department (HRD)]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_type_donne">
+					<topics>
+						<topic><![CDATA[/Professionnals]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_timbre">
+					<value><![CDATA[a:2:{i:0;i:1;i:1;s:4:"none";}]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_introduction">
+					<value><![CDATA[<p>During the annual assessment interviews, an employee complained consistently about a colleague using an appendix sheet.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_declencheur">
+					<value><![CDATA[<p>The Human Resources Department (HRD) placed the evaluation document in the employees file, but each time removed the appendix sheet.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_peripetie">
+					<value><![CDATA[<p>The employee requested a transfer to another service. During the interview that took place with regards to this subject, the HRD had no record of these complaints that justified the employees request for a transfer.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_resolution">
+					<value><![CDATA[<p>If the employee had copies of his comments, the HRD could have taken them into consideration. Otherwise, they cannot give credence to the employee.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_conclusion">
+					<value><![CDATA[<p>The employees comments during an evaluation are part of the relevant information that the HRD must keep in the employees file.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_recommendations">
+					<value><![CDATA[<p>An employee has the right to have access to his file, which must be complete. Access to the personal files must be defined and kept up to date.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_principes_de_base">
+					<value><![CDATA[<p><a href="http://www.ge.ch/legislation/rsg/f/s/rsg_a2_08.html" target="_blank">LIPAD 37 al. 1 and 2</a> ; <a href="http://www.admin.ch/ch/e/rs/235_1/a4.html" target="_blank">LPD 4</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a5.html" target="_blank">5</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a7.html" target="_blank">7</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a8.html" target="_blank">8</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a14.html" target="_blank">14</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a15.html" target="_blank">15</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a18a.html" target="_blank">18a</a> and <a href="http://www.admin.ch/ch/e/rs/235_1/a25.html" target="_blank">25</a> ; <a href="http://www.admin.ch/ch/e/rs/235_11/a8.html" target="_blank">OLPD 8ss </a></p>&#13;<p>Principles of good faith, transparency, accuracy and security data; the right to access and to rectify</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_ressources">
+					<value><![CDATA[]]></value>
+				</attributekey>
+			</attributes>
+		</page>
+		<page name="How to process medical information?" path="/scenarios/how-process-medical-information" filename="" pagetype="scenario_page_type" template="page_scenario" user="admin" description="" package="">
+			<attributes>
+				<attributekey handle="ts_pattr_topic_theme">
+					<topics>
+						<topic><![CDATA[/HR Management]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_metier">
+					<topics>
+						<topic><![CDATA[/Human Resources Department (HRD)]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_topic_type_donne">
+					<topics>
+						<topic><![CDATA[/Medical]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_pattr_timbre">
+					<value><![CDATA[a:2:{i:0;i:1;i:1;s:4:"none";}]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_introduction">
+					<value><![CDATA[<p> A state employee is sent to the doctor by his superiors for a consultation for significant back pain.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_declencheur">
+					<value><![CDATA[<p>The doctor made his report on the ability of the employee's work, in which he advised ergonomic measures. In the same document, he expressed his personal impressions: the problems of the employee are primarily psychological.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_peripetie">
+					<value><![CDATA[<p>The file manager put the entire document into the file. The employee realizes this when he was transferred to a new service, and his boss spoke to him about these elements, and he complained.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_resolution">
+					<value><![CDATA[<p>The file manager then deleted the sensitive data in the document by censoring the document and by destroying the problematic appendix.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_conclusion">
+					<value><![CDATA[<p>A doctor's personal comments should not be included in personal files, anymore than the personal comments of the medical advisor, which includes diagnosis, impressions etc...</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_recommendations">
+					<value><![CDATA[<p>Only the data required to determine an aptitude to work may be kept by the employer. Medical data, and in particular diagnoses, should in principle be processed only by persons subjected to medical confidentiality.</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_principes_de_base">
+					<value><![CDATA[<p><a href="http://www.ge.ch/legislation/rsg/f/s/rsg_a2_08.html" target="_blank">LIPAD 37 al. 1 and 2</a> ;<a href="http://www.admin.ch/ch/e/rs/235_1/a4.html" target="_blank"> LPD 4</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a7.html" target="_blank">7</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a12.html" target="_blank">12</a>, <a href="http://www.admin.ch/ch/e/rs/235_1/a13.html" target="_blank">13</a> and <a href="http://www.admin.ch/ch/e/rs/235_1/a17.html" target="_blank">17</a> ; <a href="http://www.admin.ch/ch/e/rs/235_11/a8.html" target="_blank">OLPD 8ss</a> ; <a href="http://www.admin.ch/ch/e/rs/311_0/a321.html" target="_blank">CP 321</a> ;<a href="http://www.admin.ch/ch/e/rs/220/a328.html" target="_blank"> CO 328</a> and <a href="http://www.admin.ch/ch/e/rs/220/a328b.html" target="_blank">328b </a></p>&#13;<br><p>Principle of legality, proportionality and data security (privacy); medical secrets</p>]]></value>
+				</attributekey>
+				<attributekey handle="ts_pattr_ressources">
+					<value><![CDATA[]]></value>
+				</attributekey>
+			</attributes>
+		</page>-->
+	</pages>
+</concrete5-cif>
