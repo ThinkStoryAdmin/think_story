@@ -60,6 +60,8 @@
 </script>
 <div>
     <form id="TSExportForm" onsubmit="submitFormExport()">
+        <label>NOTE THIS CURRENTLY DOES NOTHING</label><br>
+        <label>JUST USE THE MIGRATION TOOL PACKAGE</label><br>
         <label><?= t('Be sure to increase the PHP script execution time if you have many pages to export!')?></label><br>
         <label class="control-label"><?= t('Page Type') ?></label>
         <?php
