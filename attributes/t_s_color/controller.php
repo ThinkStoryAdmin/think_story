@@ -35,6 +35,7 @@ class Controller extends \Concrete\Attribute\Text\Controller
                 return $value;
             }
         }
+        return NULL; //Use?
         /*
         $value = $this->attributeValue->getValueObject();
         if ($value) {
@@ -44,5 +45,25 @@ class Controller extends \Concrete\Attribute\Text\Controller
 
 	public function saveForm($data) {
 		$this->saveValue($data['value']);
-	}
+    }
+    
+    //NOT NEEDED. C5 handles this manually, as the data is very simple.
+    public function importValue(\SimpleXMLElement $akv)
+    {
+        if (isset($akv->value)) {
+            return $akv->value;
+        }
+    }
+
+    public function exportValue(\SimpleXMLElement $akn)
+    {
+        //if (is_object($this->attributeValue)) {
+        //if (is_object($this->getAttributeValue()->getValue()->getValue()) && $this->getAttributeValue()->getValue() instanceof Concrete/Core/Entity/Attribute/Value/Value/TextValue) {
+        //if (is_object($this->getAttributeValue()->getValue()->getValue()) && get_class($this->getAttributeValue()->getValue()) === 'TextValue') {
+        if (is_object($this->getAttributeValue()->getValue()) && get_class($this->getAttributeValue()->getValue()) === 'Concrete\Core\Entity\Attribute\Value\Value\TextValue') {
+            $avn = $akn->addChild('value', $this->getAttributeValue()->getValue()->getValue());
+        } else {
+            $akn->addChild('value', get_class($this->getAttributeValue()->getValue()));
+        }
+    }
 }
