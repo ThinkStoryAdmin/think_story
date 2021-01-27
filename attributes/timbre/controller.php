@@ -349,22 +349,6 @@ class Controller extends AttributeController
             $av->addChild('customLabel', var_export('', true));
             $av->addChild('valid', var_export(false, true));
         }
-
-        /*$customLabel = $this->getAttributeValue()->getValue()->getCustomLabel();
-        if (is_object($customLabel)) {
-            $customLabel = 'wowzers';
-            $av->addChild('customLabel', var_export($customLabel));
-        } else {
-            //$av->addChild('customLabel', var_export('EMPTY TEST EXP'));
-            $av->addChild('customLabel', var_export($fo, true));
-        }
-
-        $valid = $this->getAttributeValue()->getValue()->getValid();
-        if (is_object($valid)) {
-            $av->addChild('valid', var_export($valid));
-        } else {
-            $av->addChild('valid', var_export(false, true));
-        }*/
     }
 
     public function importKey(\SimpleXMLElement $akey)
