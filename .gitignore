@@ -1,3 +1,4 @@
 think_story/.scannerwork/*
 /vendor/* 
 #*/t_s_print_page_to_pdf/cache/*
+.vscode
