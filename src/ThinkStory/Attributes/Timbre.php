@@ -5,11 +5,30 @@ class Timbre
     protected $customLabel;
     protected $valid;
 
+    //TODO check if passing params to the constructor causes issues!
     function __construct($customLabel, $valid)
+    {
+        /*$this->customLabel = $customLabel;
+        $this->valid = $valid;*/
+        
+        if($customLabel){
+            $this->customLabel = $customLabel;
+        } else {
+            $this->customLabel = '';
+        }
+
+        if($valid){
+            $this->valid = $valid;
+        } else {
+            $this->valid = false;
+        }
+    }
+
+    /*function __construct()
     {
         $this->customLabel = $customLabel;
         $this->valid=$valid;
-    }
+    }*/
 
     public function getValid()
     {

@@ -53,6 +53,9 @@ class TimbreValue extends AbstractValue
         $this->customLabel = $customLabel;
     }
 
+    public function getValue(){
+        return array($this->valid, $this->customLabel);
+    }
     
     public function __toString(){
         return serialize(array($this->valid, $this->customLabel));

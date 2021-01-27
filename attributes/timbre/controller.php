@@ -7,6 +7,25 @@ use Concrete\Package\ThinkStory\Entity\Attribute\Key\Settings\TimbreSettings;
 use Concrete\Package\ThinkStory\Entity\Attribute\Value\Value\TimbreValue;
 
 use Concrete\Core\Attribute\Controller as AttributeController; 
+
+//For import / export
+//use Concrete\Core\Attribute\Controller as AttributeTypeController;
+//use Concrete\Core\Attribute\FontAwesomeIconFormatter;
+use Concrete\Core\Attribute\SimpleTextExportableAttributeInterface;
+use Concrete\Core\Backup\ContentExporter;
+use Concrete\Core\Entity\Attribute\Key\Settings\ImageFileSettings;
+use Concrete\Core\Entity\Attribute\Value\Value\ImageFileValue;
+use Concrete\Core\Entity\File\File as FileEntity;
+use Concrete\Core\Error\ErrorList\Error\CustomFieldNotPresentError;
+use Concrete\Core\Error\ErrorList\Error\Error;
+use Concrete\Core\Error\ErrorList\Error\FieldNotPresentError;
+use Concrete\Core\Error\ErrorList\ErrorList;
+use Concrete\Core\Error\ErrorList\Field\AttributeField;
+use Concrete\Core\File\Importer;
+use Core;
+//use File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 class Controller extends AttributeController
 {
     
@@ -290,5 +309,98 @@ class Controller extends AttributeController
                 }
             }
         }
+    }
+
+    //Stuff to export / import
+    public function exportKey($akey)
+    {
+        //Export TimbreSettings
+        $av = $akey->addChild('file');
+        $fo = $this->getAttributeKeySettings()->getValue();
+        if (is_object($fo)) {
+            $av->addChild('fID', ContentExporter::replaceFileWithPlaceHolder($fo->getFileID()));
+        } else {
+            $av->addChild('fID', 0);
+        }
+
+        return $akey;
+    }
+
+    public function exportValue(\SimpleXMLElement $akn)
+    {
+        $av = $akn->addChild('value');
+        $val = $this->getAttributeValue()->getValue();
+
+        $av->addChild('ALL', var_export($val, true));
+
+        if(is_array($val)){
+            if(isset($val[1]) && is_string($val[1])){
+                $av->addChild('customLabel', var_export($val[1], true));
+            } else {
+                $av->addChild('customLabel');
+            }
+
+            if(isset($val[0]) && is_bool($val[0])){
+                $av->addChild('valid', var_export($val[0], true));
+            } else {
+                $av->addChild('valid');
+            }
+        } else {
+            $av->addChild('customLabel', var_export('', true));
+            $av->addChild('valid', var_export(false, true));
+        }
+
+        /*$customLabel = $this->getAttributeValue()->getValue()->getCustomLabel();
+        if (is_object($customLabel)) {
+            $customLabel = 'wowzers';
+            $av->addChild('customLabel', var_export($customLabel));
+        } else {
+            //$av->addChild('customLabel', var_export('EMPTY TEST EXP'));
+            $av->addChild('customLabel', var_export($fo, true));
+        }
+
+        $valid = $this->getAttributeValue()->getValue()->getValid();
+        if (is_object($valid)) {
+            $av->addChild('valid', var_export($valid));
+        } else {
+            $av->addChild('valid', var_export(false, true));
+        }*/
+    }
+
+    public function importKey(\SimpleXMLElement $akey)
+    {
+        $type = $this->getAttributeKeySettings();
+
+        if (isset($akey->fID)) {
+            $fIDVal = (string) $akv->value->fID;
+            $inspector = \Core::make('import/value_inspector');
+            $result = $inspector->inspect($fIDVal);
+            $fID = $result->getReplacedValue();
+            if ($fID) {
+                $f = File::getByID($fID);
+                if (is_object($f)) {
+                    $type->setFileObject($f);
+                }
+            }
+        }
+
+        return $type;
+    }
+
+    public function importValue(\SimpleXMLElement $akv)
+    {
+        if (isset($akv->value->customLabel)) {
+            $customLabel = (string) $akv->value->customLabel;
+        } else {
+            $customLabel = '';
+        }
+
+        if (isset($akv->value->valid)) {
+            $valid = $akv->value->valid;
+        } else {
+            $valid = false;
+        }
+
+        return new Timbre($customLabel, $valid);
     }
 }
