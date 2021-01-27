@@ -29,9 +29,7 @@ class Controller extends \Concrete\Attribute\Text\Controller
         if(!is_null($value)){
             $value = $this->attributeValue->getValueObject();
             if ($value) {
-                //return new Color($value->getValue());
                 //return new TSColor($value->getValue());
-                //return '#791818';
                 return $value;
             }
         }
@@ -57,9 +55,6 @@ class Controller extends \Concrete\Attribute\Text\Controller
 
     public function exportValue(\SimpleXMLElement $akn)
     {
-        //if (is_object($this->attributeValue)) {
-        //if (is_object($this->getAttributeValue()->getValue()->getValue()) && $this->getAttributeValue()->getValue() instanceof Concrete/Core/Entity/Attribute/Value/Value/TextValue) {
-        //if (is_object($this->getAttributeValue()->getValue()->getValue()) && get_class($this->getAttributeValue()->getValue()) === 'TextValue') {
         if (is_object($this->getAttributeValue()->getValue()) && get_class($this->getAttributeValue()->getValue()) === 'Concrete\Core\Entity\Attribute\Value\Value\TextValue') {
             $avn = $akn->addChild('value', $this->getAttributeValue()->getValue()->getValue());
         } else {
