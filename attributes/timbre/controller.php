@@ -355,7 +355,7 @@ class Controller extends AttributeController
     {
         $type = $this->getAttributeKeySettings();
 
-        if (isset($akey->fID)) {
+        if (isset($akey->value->fID)) {
             $fIDVal = (string) $akv->value->fID;
             $inspector = \Core::make('import/value_inspector');
             $result = $inspector->inspect($fIDVal);
