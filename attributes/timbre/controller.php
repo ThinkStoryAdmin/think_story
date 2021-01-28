@@ -331,7 +331,7 @@ class Controller extends AttributeController
         $av = $akn->addChild('value');
         $val = $this->getAttributeValue()->getValue();
 
-        $av->addChild('ALL', var_export($val, true));
+        //$av->addChild('ALL', var_export($val, true));
 
         if(is_array($val)){
             if(isset($val[1]) && is_string($val[1])){
@@ -340,7 +340,7 @@ class Controller extends AttributeController
                 $av->addChild('customLabel');
             }
 
-            if(isset($val[0]) && is_bool($val[0])){
+            if(isset($val[0])){
                 $av->addChild('valid', var_export($val[0], true));
             } else {
                 $av->addChild('valid');
@@ -380,7 +380,11 @@ class Controller extends AttributeController
         }
 
         if (isset($akv->value->valid)) {
-            $valid = $akv->value->valid;
+            if($akv->value->valid){
+                $valid = true;
+            } else {
+                $valid = false;
+            }
         } else {
             $valid = false;
         }
