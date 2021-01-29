@@ -147,6 +147,8 @@ class Controller extends Package
         PageTheme::add('t_s_theme_elemental', $pkg);    //Theme::add('urbanic', $pkg); ???
 
         ///Add Express Topic Color & Sample Objects
+        //https://documentation.concrete5.org/developers/express/programmatically-creating-express-objects
+        //https://documentation.concrete5.org/developers/express/creating-reading-searching-updating-and-deleting-express-entries
         //Need to first add topic tree
         //Adding topic trees taken from concrete/controllers/single_page/system/attributes/topics/add.php
         $tree = TopicTree::add('Subjects');
