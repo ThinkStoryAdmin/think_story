@@ -1,6 +1,4 @@
 # Think Story (EN)
-NOTE: DO NOT USE CURRENTLY. Ongoing work may break your site! A working version will be available by 2020.12.12.
-
 A Concrete5 package that allows the rapid creation of a Story Telling website.
 
 The wiki of this repo contains information on how to use this package.
@@ -8,8 +6,11 @@ The wiki of this repo contains information on how to use this package.
 ## Installation
 1. Download the package
 2. Put the package in the `public/package` folder of your site installation
-3. Install the composer dependancies with `composerpkg install` (more details on [this page](https://documentation.concrete5.org/developers/packages/advanced-including-third-party-libraries-in-a-package))
+3. Install the composer dependancies with `composer install`
 4. In your navigator, go to your site's Dashboard -> Extend Functionalities, find the Think Story package, and click "Install"
+5. To finish the setup of the Page Filter block, go to the /scenarios page, and the Scenario page type, edit the Page Filter block, and choose 'Subjects', 'Jobs', and 'Data Types' (with CONTROL + CLICK) Topics as topics to filter by!
+6. ?
+7. Profit!
 
 # Think Story (FR)
 Le package Concrete5 qui permet la création rapide d'un site de style Story Telling.
@@ -19,9 +20,8 @@ Le wiki fournit des informations supplémentaires sur l'utilisation de ce packag
 ## Installation
 1. Télécharger le package
 2. Mettez-le dans le dossier `public/package` de votre installation Concrete5
-3. Installer les dépendences composer avec la commande `composerpkg install` (plus de détails sur [cette page](https://documentation.concrete5.org/developers/packages/advanced-including-third-party-libraries-in-a-package))
+3. Installer les dépendences composer avec la commande `composer install`
 4. Dans votre navigateur web, allez sur le Dashboard de votre site -> Extend Functionalities, trouver le package Think Story, et cliquer sur "Install"
-
-Si vous ne voulez pas de contenu ou des formats de pages d'exemple, installez simplement le package.
-
-Si vous voulez aussi des templates de pages multilingues, regardez la documentation "Migration" dans le wiki pour voir comment importer un BD. Note: il est actuellement impossible de faire cela en gardant le contenu existant d'un site. Il est mieux de faire un un autre ou un sous-site.
+5. Pour finaliser la configuration du block 'Page Filter', naviguer vers la page /scenarios, et le type de page Scenario, et editer les blocks 'Page Filter', en choississant les sujets de filtrage 'Sujets' ('Subjects'), 'Jobs', and 'Types de donnees'('Data Types') (avec CONTROL + CLICK)!
+6. ?
+7. Profit!
