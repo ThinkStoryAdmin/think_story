@@ -24,6 +24,11 @@ use PageType;
 use PageTemplate;
 use \Concrete\Core\Page\Type\PublishTarget\Type\Type as PublishTargetType;
 
+use Express;    //For installing sample Topic Colors, as using CIF doesn't seem to work
+use \Concrete\Core\Tree\Type\Topic as TopicTree; //for express stuff, to find topic tree
+use \Concrete\Core\Tree\Node\Node as TreeNode;
+use \Concrete\Core\Tree\Node\Type\Topic as TopicTreeNode;
+
 //Import all custom code namespaces
 use ThinkStory\REST\RouteList;
 use ThinkStory\REST\Timbre;
@@ -32,13 +37,13 @@ defined('C5_EXECUTE') or die('Access Denied.');
 //require_once __DIR__ . '/vendor/autoload.php'; belongs in on_start()
 //Look at C5 Documentation : https://documentation.concrete5.org/developers/packages/overview
 //And : https://github.com/cryophallion/C5-BoilerplatePackageController/blob/master/packageName/controller.php
-
+ini_set("memory_limit","256M");
 class Controller extends Package
 {
     protected $pkgHandle = 'think_story';
     protected $appVersionRequired = '8.0'; //SHOULD BE ABOVE 8, otherwise the attribute autoload stuff won't work!!!
     protected $pkgVersion = '1.0.3.7';
-    //protected $pkgAllowsFullContentSwap = true;   //CONSISTENTLY causes errors, don't bother using
+    protected $pkgAllowsFullContentSwap = true;   //CONSISTENTLY causes errors, don't bother using
 
     //Importing Custom Code namespaces with PSR-4 autoloader (to include REST routes & Timbre class for Timbre attribute type)
     protected $pkgAutoloaderRegistries = [
@@ -69,7 +74,7 @@ class Controller extends Package
 
     public function on_start(){
         $this->setupAutoloader();   //Load necessary Composer packages
-        
+        ini_set("memory_limit","256M");
         /*  Router for API Extensions, look for src/ThinkStory/REST/RouteList.php in this package...
         $router = $this->app->make('router');
         $list = new RouteList();
@@ -89,7 +94,7 @@ class Controller extends Package
     {
         $r = \Request::getInstance();
 
-        //Do initial checks
+        //Do initial checks (https://documentation.concrete5.org/developers/packages/installation/overview)
         /*if( ! in_array($r->request->get('installContentLevel'), ["none", "basic", "full"]) ) {
             throw new Exception(t('You must select which level of sample content you want to install!'));
         }*/
@@ -101,7 +106,7 @@ class Controller extends Package
         SinglePage::add('/dashboard/system/think_story/page_report', $pkg);
         SinglePage::add('/dashboard/system/think_story/data_importer', $pkg);
         SinglePage::add('/dashboard/system/think_story/add_pages_multilingual', $pkg);
-        SinglePage::add('/dashboard/system/think_story/export_pages', $pkg);
+        //SinglePage::add('/dashboard/system/think_story/export_pages', $pkg);
         SinglePage::add('/dashboard/system/think_story/add_translation_text', $pkg);
 
         //Install Attribute Types
@@ -140,19 +145,79 @@ class Controller extends Package
 
         //Add theme
         PageTheme::add('t_s_theme_elemental', $pkg);    //Theme::add('urbanic', $pkg); ???
+
+        ///Add Express Topic Color & Sample Objects
+        //Need to first add topic tree
+        //Adding topic trees taken from concrete/controllers/single_page/system/attributes/topics/add.php
+        $tree = TopicTree::add('Subjects');
+
+        $topicTree = TopicTree::getByName('Subjects');
+        $topicCategory = TreeNode::getByID($topicTree->getRootTreeNodeObject()->treeNodeID);
+
+        $topic1 = TopicTreeNode::add('HR Management', $topicCategory);
+        $topic2 = TopicTreeNode::add('Professional emails', $topicCategory);
+        $topic3 = TopicTreeNode::add('Biometrics', $topicCategory);
+        $topic4 = TopicTreeNode::add('Data Access', $topicCategory);
+        
+        /*TopicTree::create(TopicTreeNode::add('Subjects', $topicCategory));
+
+        $topicTree = TopicTree::getByName('Subjects');
+        $topicCategory = TreeNode::getByID($topicTree->getRootTreeNodeObject()->treeNodeID);*/
+        
+        //Create object
+        $settings = new \Concrete\Core\Entity\Attribute\Key\Settings\TopicsSettings();
+        $settings->setAllowMultipleValues(true);
+        $settings->setTopicTreeID($topicTree->getRootTreeNodeObject()->treeNodeID);
+
+        $object = Express::buildObject('tstopiccolor', 'tstopiccolors', 'Topic Color', $pkg);
+        $object->addAttribute('topics', 'Topic', 'ts_topic_color_topic', $settings);
+        $object->addAttribute('t_s_color', 'Color', 'ts_topic_color_color');
+        $objectEntity = $object->save();
+
+        //Create object form
+        $form = $object->buildForm('Form');
+        $form->addFieldset('Basics')
+            ->addAttributeKeyControl('ts_topic_color_topic')
+            ->addAttributeKeyControl('ts_topic_color_color');
+        $form = $form->save();
+
+        //May not be needed, see very bottom of https://documentation.concrete5.org/developers/express/programmatically-creating-express-objects
+        $entityManager = $object->getEntityManager();
+        $objectEntity->setDefaultViewForm($form);
+        $objectEntity->setDefaultEditForm($form);
+        $entityManager->persist($objectEntity);
+        $entityManager->flush();
+        
+
+        //Create entities
+        $entry1 = Express::buildEntry('tstopiccolor')
+        ->setTsTopicColorTopic(TopicTreeNode::getNodeByName('HR Management'))
+        ->setTsTopicColorColor('#1d96b4')
+        ->save();
+        $entry2 = Express::buildEntry('tstopiccolor')
+        ->setTsTopicColorTopic(TopicTreeNode::getNodeByName('Professional emails'))
+        ->setTsTopicColorColor('#e1e03c')
+        ->save();
+        $entry3 = Express::buildEntry('tstopiccolor')
+        ->setTsTopicColorTopic(TopicTreeNode::getNodeByName('Biometrics'))
+        ->setTsTopicColorColor('#beccd0')
+        ->save();
+        
+
+        ///Do same for My Scenario form?
         
         /** NOTE: Installing the page type controller cannot be directly done
          * Page types are installed here, and once the page type is linked to the package, 
          * then Concrete5 will look into the package directory for the controller
          */
         //Install sample content
-        if ($r->request->get('installSampleContent')) {
+        /*if ($r->request->get('installSampleContent')) {
             $this->installContentFile('/install/content.xml');
         } else {
             //Install the base content (express objects & attributes) needed for the package to work
-            $this->installContentFile('/install/export-beutify-cleaned.xml'); //still need to install topic trees! there are dependents!
-            //$this->installContentFile('/install/content.xml');
-        }
+            //$this->installContentFile('/install/export-beutify-cleaned.xml'); //still need to install topic trees! there are dependents!
+            $this->installContentFile('/install/content.xml');
+        }*/
         /*switch($r->request->get('installContentLevel')) {
             case "none":
             case "basic":
@@ -171,7 +236,7 @@ class Controller extends Package
         SinglePage::add('/dashboard/system/think_story/page_report', $pkg);
         SinglePage::add('/dashboard/system/think_story/data_importer', $pkg);
         SinglePage::add('/dashboard/system/think_story/add_pages_multilingual', $pkg);
-        SinglePage::add('/dashboard/system/think_story/export_pages', $pkg);
+        //SinglePage::add('/dashboard/system/think_story/export_pages', $pkg);
         SinglePage::add('/dashboard/system/think_story/add_translation_text', $pkg);
     }
 
