@@ -1,0 +1,203 @@
+<expressentities>
+		<!--<entity id="282fbc2b-b404-11ea-913b-de3f9e5efbce" handle="ts_mon_scenario" plural_handle="" name="Mon Scenario" supports_custom_display_order="" include_in_public_list="1" description="" default_view_form="35160245-b404-11ea-913b-de3f9e5efbce" default_edit_form="35160245-b404-11ea-913b-de3f9e5efbce" results-folder="/">
+			<attributekeys>
+				<attributekey handle="ts_ms_email" name="Email" package="" searchable="1" indexed="1" type="email" category=""/>
+				<attributekey handle="ts_ms_nom" name="Name" package="" searchable="1" indexed="1" type="text" category="">
+					<type placeholder=""/>
+				</attributekey>
+				<attributekey handle="ts_ms_votre_scenario" name="Your Scenario" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="rich_text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_intro" name="Introduction" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_decl" name="Trigger" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_peripet" name="Incident" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_resol" name="Resolution" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+				<attributekey handle="ts_ms_concl" name="Conclusion" package="" searchable="1" indexed="1" type="textarea" category="">
+					<type mode="text"/>
+				</attributekey>
+			</attributekeys>
+			<forms>
+				<form id="282fce0b-b404-11ea-913b-de3f9e5efbce" name="Form"/>
+				<form id="35160245-b404-11ea-913b-de3f9e5efbce" name="ts_mon_scenario_user_form">
+					<fieldsets>
+						<fieldset title="Votre Scénario" description="">
+							<controls>
+								<control id="e8e5a97b-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_ms_nom"/>
+								</control>
+								<control id="eb5b9165-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_ms_email"/>
+								</control>
+								<control id="ed5dfb42-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_ms_votre_scenario"/>
+								</control>
+								<control id="ef2fd8e4-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_intro"/>
+								</control>
+								<control id="f120f8cd-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_decl"/>
+								</control>
+								<control id="f33b868d-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_peripet"/>
+								</control>
+								<control id="f580770d-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_resol"/>
+								</control>
+								<control id="f7c3774c-b404-11ea-913b-de3f9e5efbce" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_ms_concl"/>
+								</control>
+							</controls>
+						</fieldset>
+					</fieldsets>
+				</form>
+			</forms>
+		</entity>-->
+		<entity id="dfa3cff9-9122-11ea-b285-000c29c61046" handle="tstopiccolor" plural_handle="" name="Topic Color" supports_custom_display_order="1" include_in_public_list="1" description="" default_view_form="dfa3e38c-9122-11ea-b285-000c29c61046" default_edit_form="dfa3e38c-9122-11ea-b285-000c29c61046" results-folder="/">
+			<attributekeys>
+				<attributekey handle="ts_topic_color_topic" name="Topic Color Topic" package="" searchable="1" indexed="1" type="topics" category="">
+					<tree name="Subjects" path="/" allow-multiple-values="1"/>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color" name="Topic Color Color" package="" searchable="1" indexed="1" type="t_s_color" category="">
+					<type placeholder=""/>
+				</attributekey>
+			</attributekeys>
+			<forms>
+				<form id="dfa3e38c-9122-11ea-b285-000c29c61046" name="Form">
+					<fieldsets>
+						<fieldset title="Details" description="">
+							<controls>
+								<control id="f837d1a3-9762-11ea-ad00-000c29c61046" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_topic_color_topic"/>
+								</control>
+								<control id="f9e49f65-9762-11ea-ad00-000c29c61046" type="attribute_key" required="1" custom-label="">
+									<attributekey handle="ts_topic_color_color"/>
+								</control>
+							</controls>
+						</fieldset>
+					</fieldsets>
+				</form>
+				<!--<form id="f1751715-9762-11ea-ad00-000c29c61046" name="t_s_topic_color_form">
+					<fieldsets>
+						<fieldset title="Details" description="">
+							<controls>
+								<control id="f837d1a3-9762-11ea-ad00-000c29c61046" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_topic_color_topic"/>
+								</control>
+								<control id="f9e49f65-9762-11ea-ad00-000c29c61046" type="attribute_key" required="" custom-label="">
+									<attributekey handle="ts_topic_color_color"/>
+								</control>
+							</controls>
+						</fieldset>
+					</fieldsets>
+				</form>-->
+			</forms>
+		</entity>
+	</expressentities>
+	<expressentries>
+		<entry id="a1bcec002d77" label="" entity="tstopiccolor" display-order="1">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/HR Management]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#1d96b4]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="f545c5db3896" label="" entity="tstopiccolor" display-order="6">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Professional emails]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#ffaed5]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1722f0b25ef5" label="" entity="tstopiccolor" display-order="7">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Biometrics]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#b41d2f]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="9dc2852f78e7" label="" entity="tstopiccolor" display-order="8">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Data Access]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#ecc128]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+	</expressentries>
+    <expressentries>
+		<entry id="a1bcec002d77" label="" entity="tstopiccolor" display-order="1">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/HR Management]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#1d96b4]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="f545c5db3896" label="" entity="tstopiccolor" display-order="6">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Professional emails]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#ffaed5]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="1722f0b25ef5" label="" entity="tstopiccolor" display-order="7">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Biometrics]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#b41d2f]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+		<entry id="9dc2852f78e7" label="" entity="tstopiccolor" display-order="8">
+			<attributes>
+				<attributekey handle="ts_topic_color_topic">
+					<topics>
+						<topic><![CDATA[/Data Access]]></topic>
+					</topics>
+				</attributekey>
+				<attributekey handle="ts_topic_color_color">
+					<value><![CDATA[#ecc128]]></value>
+				</attributekey>
+			</attributes>
+		</entry>
+	</expressentries>
