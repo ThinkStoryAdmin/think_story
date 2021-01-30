@@ -161,11 +161,6 @@ class Controller extends Package
         $topic3 = TopicTreeNode::add('Biometrics', $topicCategory);
         $topic4 = TopicTreeNode::add('Data Access', $topicCategory);
         
-        /*TopicTree::create(TopicTreeNode::add('Subjects', $topicCategory));
-
-        $topicTree = TopicTree::getByName('Subjects');
-        $topicCategory = TreeNode::getByID($topicTree->getRootTreeNodeObject()->treeNodeID);*/
-        
         //Create object
         $settings = new \Concrete\Core\Entity\Attribute\Key\Settings\TopicsSettings();
         $settings->setAllowMultipleValues(true);
@@ -212,21 +207,6 @@ class Controller extends Package
          * Page types are installed here, and once the page type is linked to the package, 
          * then Concrete5 will look into the package directory for the controller
          */
-        //Install sample content
-        /*if ($r->request->get('installSampleContent')) {
-            $this->installContentFile('/install/content.xml');
-        } else {
-            //Install the base content (express objects & attributes) needed for the package to work
-            //$this->installContentFile('/install/export-beutify-cleaned.xml'); //still need to install topic trees! there are dependents!
-            $this->installContentFile('/install/content.xml');
-        }*/
-        /*switch($r->request->get('installContentLevel')) {
-            case "none":
-            case "basic":
-            case "full":
-            default:
-                throw new Exception(t('You must set DB_TYPE to mysqlt in site.php.'));
-        }*/
     }
 
     public function upgrade()
