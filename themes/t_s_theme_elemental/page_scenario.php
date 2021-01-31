@@ -56,6 +56,12 @@
                 $a->display();
                 ?>
             </div>
+            <div class="cts-theme-pscen-attr-1 cts-text-breaker">
+                <?php
+                $a = new Area('Timbre');
+                $a->display();
+                ?>
+            </div>
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 col-xs-6 cts-theme-pscen-attr-2 cts-theme-pscen-attr-3 cts-text-breaker">
