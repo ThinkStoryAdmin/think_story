@@ -89,14 +89,6 @@ class Controller extends AttributeController
     }
 
     public function getValidity(){
-        /*$value = $this->getAttributeValue();
-        if (is_object($value)) {
-            $value = $this->getAttributeValue()->getValue();
-            if (is_object($value)) {
-                return $value->getValid();
-            }
-        }
-        return 'HOW';*/
         $timbreValue = $this->attributeValue->getValueObject();
         return $timbreValue->getValid();
     }
