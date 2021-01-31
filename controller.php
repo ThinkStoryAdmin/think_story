@@ -151,6 +151,13 @@ class Controller extends Package
         //https://documentation.concrete5.org/developers/express/creating-reading-searching-updating-and-deleting-express-entries
         //Need to first add topic tree
         //Adding topic trees taken from concrete/controllers/single_page/system/attributes/topics/add.php
+
+        //Delete old subjects
+        $treeOld = TopicTree::getByName('Subjects');
+        if($treeOld){
+            $treeOld->delete();
+        }
+
         $tree = TopicTree::add('Subjects');
 
         $topicTree = TopicTree::getByName('Subjects');
