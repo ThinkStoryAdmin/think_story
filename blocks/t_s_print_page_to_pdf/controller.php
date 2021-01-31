@@ -63,16 +63,24 @@ class Controller extends BlockController
     public function validate($data)
     {
         $e = Core::make('error');
-        if(!$data['attributesHeaderIcon']){
+        /*if(!$data['attributesHeaderIcon']){
             $e->add('NEED HEADER FILE ICON');
-        }
+        }*/
         return $e;
     }
 
     public function save($data){
-        $data['attributesToPrint'] = serialize($data['attributesToPrint']);
-        $data['attributesTopics'] = serialize($data['attributesTopics']);
-        $data['attributesContent'] = serialize($data['attributesContent']);
+        //$data['attributesTopics'] = serialize($data['attributesTopics']);
+        //$data['attributesContent'] = serialize($data['attributesContent']);
+
+        if(is_array($data['attributesTopics'])){ //Is string when importing swap content!
+            $data['attributesTopics'] = implode((($data['attributesTopics'])), ',');
+        }
+
+        if(is_array($data['attributesContent'])){
+            $data['attributesContent'] = implode((($data['attributesContent'])), ',');
+        }
+
         parent::save($data);
     }
 
@@ -123,10 +131,17 @@ class Controller extends BlockController
         $this->set('attributes', $attributeKeys);
         $this->set('attributesTopicsK', $attributeTopicKeys);
         $this->set('attributesTimbres', $attributeTimbreKeys);
-        $this->set('chosen', unserialize($this->attributesToPrint));
         $this->set('chosenTimbre', $this->attributeTimbre);
-        $this->set('chosenTopics', unserialize($this->attributesTopics));
-        $this->set('chosenContent', unserialize($this->attributesContent));
+
+
+        //$this->set('chosen', unserialize($this->attributesToPrint));
+        //$this->set('chosenTopics', unserialize($this->attributesTopics));
+        //$this->set('chosenContent', unserialize($this->attributesContent));
+
+        //$this->set('chosen', explode($this->attributesToPrint, ','));
+        $this->set('chosenTopics', explode(',', $this->attributesTopics));
+        $this->set('chosenContent', explode(',', $this->attributesContent));
+
 
         $chosenHeaderIcon = \File::getByID($this->attributesHeaderIcon);
         $this->set('chosenHeaderIcon', $chosenHeaderIcon);
@@ -156,26 +171,48 @@ class Controller extends BlockController
 
         $footerUrl = is_null($this->attributesFooterURL) ? '' : $this->attributesFooterURL;
         $footerStyle = '';
-        if(!is_null($c->getAttributeValue($this->attributeTimbre)) && $c->getAttributeValue($this->attributeTimbre)->getController()->getValidity()){
-            $newSrc = $c->getAttributeValue($this->attributeTimbre)->getController()->getFileID()->getRelativePath();
-            $htmlTmbr = "<img src=" . $newSrc . " alt='Timbre' style='width:60px;height:60px;text-align:right;'>";
 
+        if(\File::getByID($this->attributesHeaderIcon)){
             $headerIconFile = \File::getByID($this->attributesHeaderIcon)->getRelativePath();
             $htmlHeaderIcon = "<img src=" . $headerIconFile . " alt='Header Icon' style='height:60px;text-align:right;'>";
-
-            //No more need for an <hr> block now that the header margins work!
-            $mpdf->setheader(" <div style='text-align:right;'>". $htmlHeaderIcon ."</div> |  | <div style='text-align:right;'>". $htmlTmbr ."</div>");
-            $mpdf->setFooter(' Page {PAGENO} | | ' . $footerUrl);
         } else {
-            $headerIconFile = \File::getByID($this->attributesHeaderIcon)->getRelativePath();
+            //$mpdf->setheader(" <div style='text-align:right;'>". $c->getCollectionName() ."</div>");
+            $htmlHeaderIcon = $c->getSite()->getSiteName();
+        }
+
+        if(!is_null($c->getAttributeValue($this->attributeTimbre)) && $c->getAttributeValue($this->attributeTimbre)->getController()->getValidity()){
+            if($c->getAttributeValue($this->attributeTimbre)->getController()->getFileID()){
+                $newSrc = $c->getAttributeValue($this->attributeTimbre)->getController()->getFileID()->getRelativePath();
+                $htmlTmbr = "<img src=" . $newSrc . " alt='Timbre' style='width:60px;height:60px;text-align:right;'>";
+    
+                //$headerIconFile = \File::getByID($this->attributesHeaderIcon)->getRelativePath();
+                //$htmlHeaderIcon = "<img src=" . $headerIconFile . " alt='Header Icon' style='height:60px;text-align:right;'>";
+    
+                //No more need for an <hr> block now that the header margins work!
+                $mpdf->setheader(" <div style='text-align:left;'>". $htmlHeaderIcon ."</div> |  | <div style='text-align:right;'>". $htmlTmbr ."</div>");
+            }
+            
+        } else {
+            $mpdf->setheader(" <div style='text-align:left;'>". $htmlHeaderIcon ."</div>");
+            /*if(\File::getByID($this->attributesHeaderIcon)){
+                $headerIconFile = \File::getByID($this->attributesHeaderIcon)->getRelativePath();
+                $htmlHeaderIcon = "<img src=" . $headerIconFile . " alt='Header Icon' style='height:60px;text-align:right;'>";
+                $mpdf->setheader(" <div style='text-align:left;'>". $htmlHeaderIcon ."</div> |  | <div style='text-align:right;'>". $htmlTmbr ."</div>");
+            } else {
+                //$mpdf->setheader(" <div style='text-align:right;'>". $c->getCollectionName() ."</div>");
+                $mpdf->setheader(" <div style='text-align:right;'>". $c->getSite()->getSiteName() ."</div>");
+            }*/
+            /*$headerIconFile = \File::getByID($this->attributesHeaderIcon)->getRelativePath();
             $htmlHeaderIcon = "<img src=" . $headerIconFile . " alt='Header Icon' style='height:60px;text-align:right;'>";
             $mpdf->setheader(" <div style='text-align:right;'>". $htmlHeaderIcon ."</div> |  | <div style='text-align:right;'>". $htmlTmbr ."</div>");
-            $mpdf->setFooter(' Page {PAGENO} | | ' . $footerUrl);
+            $mpdf->setFooter(' Page {PAGENO} | | ' . $footerUrl);*/
         }
+
+        $mpdf->setFooter(' Page {PAGENO} | | ' . $footerUrl);
 
         ///Proc Methods
         //Themes
-        $chTopics = unserialize($this->attributesTopics);
+        $chTopics = explode(',', $this->attributesTopics);
         if(is_array($chTopics)){
             foreach($chTopics as $topicName){
                 $topic = $c->getAttribute($topicName);
@@ -195,17 +232,22 @@ class Controller extends BlockController
         $mpdf->writeHTML("<div style='font-size:20px;font-weight: bold;padding: 25px 0px;'>". $c->getCollectionName() . "</div>");
 
         //Content
-        $chContent = unserialize($this->attributesContent);
-        foreach($chContent as $content){
-            if(is_object( $c->getAttribute($content, 'display') ) && method_exists( $c->getAttribute($content, 'display'), '__toString' )){
-                $mpdf->WriteHTML($c->getAttribute($content, 'display'));
+        $chContent = explode(',', $this->attributesContent);
+        if(is_array($chContent)){
+            foreach($chContent as $content){
+                if(is_object( $c->getAttribute($content, 'display') ) && method_exists( $c->getAttribute($content, 'display'), '__toString' )){
+                    $mpdf->WriteHTML($c->getAttribute($content, 'display'));
+                }
+                if(null !== $c->getAttribute($content, 'display')){
+                    $mpdf->WriteHTML($c->getAttribute($content, 'display'));
+                } else {
+                    $mpdf->WriteHTML($content);
+                }
             }
-            if(null !== $c->getAttribute($content, 'display')){
-                $mpdf->WriteHTML($c->getAttribute($content, 'display'));
-            } else {
-                $mpdf->WriteHTML($content);
-            }
+        } else {
+            $mpdf->WriteHTML('Define what content you want to appear!');
         }
+        
         
         $mpdf->Output();
         exit;

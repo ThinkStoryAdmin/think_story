@@ -104,7 +104,10 @@ class Controller extends BlockController
     }
 
     public function save($data){
-        $data['topics'] = serialize($data['topics']);
+        if(is_array($data['topics'])){
+            $data['topics'] = implode((($data['topics'])), ',');
+        }
+        //$data['topics'] = serialize($data['topics']);
         if(!isset($data['expressColors'])){
             $data['expressColors'] = 'WHA?';   //This souldn't be called anymore due to validate($data)
         } else {
@@ -146,12 +149,25 @@ class Controller extends BlockController
         $this->set('cParentIDURL', \Page::getByID($this->cParentID)->getCollectionLink());
 
         $trees = [];
-        $bruh = unserialize($this->topics);
+        //$bruh = unserialize($this->topics);
+        $bruh = explode(',', $this->topics);
         
-        if(is_array($bruh)){
+        /*if(is_array($bruh)){
             foreach($bruh as $topic_loc_i){
                 $tt     = TopicTree::getByID($topic_loc_i);
                 array_push($trees, $tt);
+            }
+        }*/
+        if(is_array($bruh)){
+            foreach($bruh as $topic_loc_i){
+                //$tt     = TopicTree::getByID($topic_loc_i);
+                //array_push($trees, $tt);
+                //$tt = TopicTree::getByID(CollectionKey::getByHandle($topic_loc_i));
+                if(CollectionKey::getByHandle($topic_loc_i)){
+                    $tt = TopicTree::getByID(CollectionKey::getByHandle($topic_loc_i)->getAttributeKeySettings()->getTopicTreeID());
+
+                    array_push($trees, $tt);
+                }
             }
         }
 
@@ -203,13 +219,15 @@ class Controller extends BlockController
         $keys = CollectionKey::getList();
         foreach ($keys as $ak) {
             if ($ak->getAttributeTypeHandle() == 'topics') {
-                $attributeKeysTopics[$ak->getController()->getTopicTreeID()] = $ak->getAttributeKeyDisplayName();
+                //$attributeKeysTopics[$ak->getController()->getTopicTreeID()] = $ak->getAttributeKeyDisplayName();
+                $attributeKeysTopics[$ak->getAttributeKeyHandle()] = $ak->getAttributeKeyDisplayName();
                 $attributeKeysTopicLinkedColor[$ak->getAttributeKeyHandle()] = $ak->getAttributeKeyDisplayName();
             }
         }
         $this->set('keyers', $keys);
         $this->set('attributeKeysTopics', $attributeKeysTopics);
-        $this->set('chosenTopics', unserialize($this->topics));
+        //$this->set('chosenTopics', unserialize($this->topics));
+        $this->set('chosenTopics', explode(',', $this->topics));
         $this->set('attributeKeysTopicLinkedColor', $attributeKeysTopicLinkedColor);
 
         //For View Counter

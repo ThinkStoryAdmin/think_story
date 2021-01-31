@@ -11,7 +11,7 @@
         <field name="label" type="text"/>
         <field name="attributesFooterURL" type="text"/>
         <field name="attributesHeaderIcon" type="integer"/>
-        <field name="attributesToPrint" type="text"/>
+        <!--<field name="attributesToPrint" type="text"/>-->
         <field name="attributeTimbre" type="text"/>
         <field name="attributesTopics" type="text"/>
         <field name="attributesContent" type="text"/>
