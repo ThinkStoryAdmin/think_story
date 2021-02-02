@@ -154,91 +154,6 @@
 									</block>
 								</blocks>
 							</area>
-							<!--<area name="Introduction">
-								<blocks>
-									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="537c085c">
-										<data table="btPageAttributeDisplay">
-											<record>
-												<attributeHandle><![CDATA[ts_pattr_introduction]]></attributeHandle>
-												<attributeTitleText><![CDATA[Introduction]]></attributeTitleText>
-												<displayTag><![CDATA[]]></displayTag>
-												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
-												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
-												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
-												<delimiter><![CDATA[]]></delimiter>
-											</record>
-										</data>
-									</block>
-								</blocks>
-							</area>
-							<area name="Declencheur">
-								<blocks>
-									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="26fc46a8">
-										<data table="btPageAttributeDisplay">
-											<record>
-												<attributeHandle><![CDATA[ts_pattr_declencheur]]></attributeHandle>
-												<attributeTitleText><![CDATA[Déclencheur]]></attributeTitleText>
-												<displayTag><![CDATA[]]></displayTag>
-												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
-												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
-												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
-												<delimiter><![CDATA[]]></delimiter>
-											</record>
-										</data>
-									</block>
-								</blocks>
-							</area>
-							<area name="Peripetie">
-								<blocks>
-									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="d9061a13">
-										<data table="btPageAttributeDisplay">
-											<record>
-												<attributeHandle><![CDATA[ts_pattr_peripetie]]></attributeHandle>
-												<attributeTitleText><![CDATA[Péripétie]]></attributeTitleText>
-												<displayTag><![CDATA[]]></displayTag>
-												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
-												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
-												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
-												<delimiter><![CDATA[]]></delimiter>
-											</record>
-										</data>
-									</block>
-								</blocks>
-							</area>
-							<area name="Resolution">
-								<blocks>
-									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="01274722">
-										<data table="btPageAttributeDisplay">
-											<record>
-												<attributeHandle><![CDATA[ts_pattr_resolution]]></attributeHandle>
-												<attributeTitleText><![CDATA[Résolution]]></attributeTitleText>
-												<displayTag><![CDATA[]]></displayTag>
-												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
-												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
-												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
-												<delimiter><![CDATA[]]></delimiter>
-											</record>
-										</data>
-									</block>
-								</blocks>
-							</area>
-							<area name="Conclusion">
-								<blocks>
-									<block type="page_attribute_display" name="" custom-template="think_story_left_bar" mc-block-id="2942cb02">
-										<data table="btPageAttributeDisplay">
-											<record>
-												<attributeHandle><![CDATA[ts_pattr_conclusion]]></attributeHandle>
-												<attributeTitleText><![CDATA[Conclusion]]></attributeTitleText>
-												<displayTag><![CDATA[]]></displayTag>
-												<dateFormat><![CDATA[n/j/y, g:i A]]></dateFormat>
-												<thumbnailHeight><![CDATA[250]]></thumbnailHeight>
-												<thumbnailWidth><![CDATA[250]]></thumbnailWidth>
-												<delimiter><![CDATA[]]></delimiter>
-											</record>
-										</data>
-									</block>
-								</blocks>
-							</area>-->
 							<area name="Timbre">
 								<blocks>
 									<block type="page_attribute_display" name="" mc-block-id="6b2ef34f">
@@ -336,14 +251,10 @@
 									<block type="t_s_print_page_to_pdf" name="" mc-block-id="a0e824ce">
 										<data table="btTSPrintPageToPdf">
 											<record>
-												<!--<attributesToPrint><![CDATA[N;]]></attributesToPrint>-->
 												<attributeTimbre><![CDATA[ts_pattr_timbre]]></attributeTimbre>
-												<!--<attributesTopics><![CDATA[a:3:{i:0;s:20:"ts_pattr_topic_theme";i:1;s:21:"ts_pattr_topic_metier";i:2;s:25:"ts_pattr_topic_type_donne";}]]></attributesTopics>
-												<attributesContent><![CDATA[a:8:{i:0;s:21:"ts_pattr_introduction";i:1;s:20:"ts_pattr_declencheur";i:2;s:18:"ts_pattr_peripetie";i:3;s:19:"ts_pattr_resolution";i:4;s:19:"ts_pattr_conclusion";i:5;s:24:"ts_pattr_recommendations";i:6;s:26:"ts_pattr_principes_de_base";i:7;s:19:"ts_pattr_ressources";}]]></attributesContent>-->
 												<attributesTopics><![CDATA[ts_pattr_topic_theme,ts_pattr_topic_metier,ts_pattr_topic_type_donne]]></attributesTopics>
 												<attributesContent><![CDATA[ts_pattr_introduction,ts_pattr_declencheur,ts_pattr_peripetie,ts_pattr_resolution,ts_pattr_conclusion,ts_pattr_recommendations,ts_pattr_principes_de_base,ts_pattr_ressources]]></attributesContent>
 												<attributesFooterURL><![CDATA[https://github.com/ThinkStoryAdmin/think_story]]></attributesFooterURL>
-												<!--<attributesHeaderIcon><![CDATA[2]]></attributesHeaderIcon>-->
 												<attributesHeaderIcon>{ccm:export:file:351595353667:think_story.png}</attributesHeaderIcon>
 												<label><![CDATA[PDF Download]]></label>
 											</record>
@@ -380,7 +291,6 @@
 												<ptID>{ccm:export:pagetype:scenario_page_type}</ptID>
 												<defaultColor><![CDATA[rgb(130, 130, 130)]]></defaultColor>
 												<viewCountAttribute><![CDATA[ts_pattr_number_views]]></viewCountAttribute>
-												<!--<topics><![CDATA[a:3:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"6";}]]></topics>-->
 												<topics><![CDATA[ts_pattr_topic_theme,ts_pattr_topic_metier,ts_pattr_topic_type_donne]]></topics>
 												<pageTopicColors><![CDATA[ts_pattr_topic_theme]]></pageTopicColors>
 												<expressColors><![CDATA[tstopiccolor]]></expressColors>
@@ -493,11 +403,6 @@
 			</composer>
 		</pagetype>
 	</pagetypes>
-	<!-- STACKS IS WHAT IS CAUSING THE ISSUE WHAT -->
-	<!-- 
-		IF ADDING BLOCKS TO PAGES ALSO CAUSES ISSUES, THEN IT IS PROBLEM WITH BLOCK EXPORT (maybe that there is no ID?)
-		NOPE!! :) Adding blocks to pages (at least content blocks) hasnt broken pages!
-	-->
 	<stacks>
 		<stack name="Footer Legal" type="global_area">
 			<area name="Main">
@@ -535,7 +440,6 @@
 								<ptID>{ccm:export:pagetype:scenario_page_type}</ptID>
 								<defaultColor><![CDATA[rgb(148, 148, 148)]]></defaultColor>
 								<viewCountAttribute><![CDATA[ts_pattr_number_views]]></viewCountAttribute>
-								<!--<topics><![CDATA[a:3:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"6";}]]></topics>-->
 								<topics><![CDATA[ts_pattr_topic_theme,ts_pattr_topic_metier,ts_pattr_topic_type_donne]]></topics>
 								<pageTopicColors><![CDATA[ts_pattr_topic_theme]]></pageTopicColors>
 								<expressColors><![CDATA[tstopiccolor]]></expressColors>
@@ -846,7 +750,6 @@
 								<ptID>{ccm:export:pagetype:scenario_page_type}</ptID>
 								<defaultColor><![CDATA[rgb(148, 148, 148)]]></defaultColor>
 								<viewCountAttribute><![CDATA[ts_pattr_number_views]]></viewCountAttribute>
-								<!--<topics><![CDATA[a:3:{i:0;s:1:"4";i:1;s:1:"5";i:2;s:1:"6";}]]></topics>-->
 								<topics><![CDATA[ts_pattr_topic_theme,ts_pattr_topic_metier,ts_pattr_topic_type_donne]]></topics>
 								<pageTopicColors><![CDATA[ts_pattr_topic_theme]]></pageTopicColors>
 								<expressColors><![CDATA[tstopiccolor]]></expressColors>
@@ -1010,15 +913,10 @@
 			<area name="Print to PDF"><blocks><block mc-block-id="a0e824ce"/></blocks></area>
 			<area name="Title"><blocks><block mc-block-id="b593ef1d"/></blocks></area>
 			<area name="IDPRC Content"><blocks><block mc-block-id="53d30aab"/><block mc-block-id="953f9a6f"/><block mc-block-id="98040f95"/><block mc-block-id="d0107bc1"/><block mc-block-id="1b6ca5bb"/><block mc-block-id="1b6ca5aa"/></blocks></area> <!-- Last one is random, could cause problems? -->
-			<area name="Recommendations"><blocks><block mc-block-id="cbde54cb"/></blocks></area> <!-- TODO remove the individual areas for recommendations etc, all in IDPRC area!-->
+			<area name="Recommendations"><blocks><block mc-block-id="cbde54cb"/></blocks></area>
 			<area name="Principes de base"><blocks><block mc-block-id="6547e0c2"/></blocks></area>
 			<area name="Ressources"><blocks><block mc-block-id="d7c2277e"/></blocks></area>
 			<area name="Filter Result"><blocks><block mc-block-id="35d611e1"/></blocks></area>
-			<!--<area name="Introduction"><blocks><block mc-block-id="537c085c"/></blocks></area>
-			<area name="Declencheur"><blocks><block mc-block-id="26fc46a8"/></blocks></area>
-			<area name="Peripetie"><blocks><block mc-block-id="d9061a13"/></blocks></area>
-			<area name="Resolution"><blocks><block mc-block-id="01274722"/></blocks></area>
-			<area name="Conclusion"><blocks><block mc-block-id="2942cb02"/></blocks></area>-->
 			<area name="Timbre"><blocks><block mc-block-id="6b2ef34f"/></blocks></area>
 			<area name="Titre"><blocks><block mc-block-id="a55631a6"/></blocks></area>
 		</page>
@@ -1056,11 +954,6 @@
 			<area name="Principes de base"><blocks><block mc-block-id="6547e0c2"/></blocks></area>
 			<area name="Ressources"><blocks><block mc-block-id="d7c2277e"/></blocks></area>
 			<area name="Filter Result"><blocks><block mc-block-id="35d611e1"/></blocks></area>
-			<!--<area name="Introduction"><blocks><block mc-block-id="537c085c"/></blocks></area>
-			<area name="Declencheur"><blocks><block mc-block-id="26fc46a8"/></blocks></area>
-			<area name="Peripetie"><blocks><block mc-block-id="d9061a13"/></blocks></area>
-			<area name="Resolution"><blocks><block mc-block-id="01274722"/></blocks></area>
-			<area name="Conclusion"><blocks><block mc-block-id="2942cb02"/></blocks></area>-->
 			<area name="Timbre"><blocks><block mc-block-id="6b2ef34f"/></blocks></area>
 			<area name="Titre"><blocks><block mc-block-id="a55631a6"/></blocks></area>
 		</page>
@@ -1131,11 +1024,6 @@
 			<area name="Principes de base"><blocks><block mc-block-id="6547e0c2"/></blocks></area>
 			<area name="Ressources"><blocks><block mc-block-id="d7c2277e"/></blocks></area>
 			<area name="Filter Result"><blocks><block mc-block-id="35d611e1"/></blocks></area>
-			<!--<area name="Introduction"><blocks><block mc-block-id="537c085c"/></blocks></area>
-			<area name="Declencheur"><blocks><block mc-block-id="26fc46a8"/></blocks></area>
-			<area name="Peripetie"><blocks><block mc-block-id="d9061a13"/></blocks></area>
-			<area name="Resolution"><blocks><block mc-block-id="01274722"/></blocks></area>
-			<area name="Conclusion"><blocks><block mc-block-id="2942cb02"/></blocks></area>-->
 			<area name="Timbre"><blocks><block mc-block-id="6b2ef34f"/></blocks></area>
 			<area name="Titre"><blocks><block mc-block-id="a55631a6"/></blocks></area>
 		</page>
@@ -1206,11 +1094,6 @@
 			<area name="Principes de base"><blocks><block mc-block-id="6547e0c2"/></blocks></area>
 			<area name="Ressources"><blocks><block mc-block-id="d7c2277e"/></blocks></area>
 			<area name="Filter Result"><blocks><block mc-block-id="35d611e1"/></blocks></area>
-			<!--<area name="Introduction"><blocks><block mc-block-id="537c085c"/></blocks></area>
-			<area name="Declencheur"><blocks><block mc-block-id="26fc46a8"/></blocks></area>
-			<area name="Peripetie"><blocks><block mc-block-id="d9061a13"/></blocks></area>
-			<area name="Resolution"><blocks><block mc-block-id="01274722"/></blocks></area>
-			<area name="Conclusion"><blocks><block mc-block-id="2942cb02"/></blocks></area>-->
 			<area name="Timbre"><blocks><block mc-block-id="6b2ef34f"/></blocks></area>
 			<area name="Titre"><blocks><block mc-block-id="a55631a6"/></blocks></area>
 		</page>
@@ -1281,11 +1164,6 @@
 			<area name="Principes de base"><blocks><block mc-block-id="6547e0c2"/></blocks></area>
 			<area name="Ressources"><blocks><block mc-block-id="d7c2277e"/></blocks></area>
 			<area name="Filter Result"><blocks><block mc-block-id="35d611e1"/></blocks></area>
-			<!--<area name="Introduction"><blocks><block mc-block-id="537c085c"/></blocks></area>
-			<area name="Declencheur"><blocks><block mc-block-id="26fc46a8"/></blocks></area>
-			<area name="Peripetie"><blocks><block mc-block-id="d9061a13"/></blocks></area>
-			<area name="Resolution"><blocks><block mc-block-id="01274722"/></blocks></area>
-			<area name="Conclusion"><blocks><block mc-block-id="2942cb02"/></blocks></area>-->
 			<area name="Timbre"><blocks><block mc-block-id="6b2ef34f"/></blocks></area>
 			<area name="Titre"><blocks><block mc-block-id="a55631a6"/></blocks></area>
 		</page>
