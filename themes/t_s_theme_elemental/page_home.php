@@ -12,7 +12,7 @@ $this->inc('elements/header.php');
         ?>
     </div>
     <div class="container">
-        <div class="row" style="height:375px;">
+        <div class="row">
             <div class="col-sm-4 col-xs-6" style="border-left: 1px dotted green; border-right: 1px dotted green; height:100%; overflow:auto;">
                 <?php
                 $a = new Area('Sujet 1');
