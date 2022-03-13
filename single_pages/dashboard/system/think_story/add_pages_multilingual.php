@@ -6,6 +6,12 @@ use \Concrete\Core\Tree\Node\Type\Topic as TopicTreeNode;
 use Concrete\Core\Attribute\Key\Category;
 use Concrete\Core\Multilingual\Page\Section\Section as MultilingualSection;
 
+use Concrete\Core\Attribute\Context\FrontendFormContext;
+use Concrete\Core\Attribute\Form\Renderer;
+use Concrete\Core\Attribute\Category\CategoryService;
+use Concrete\Core\Support\Facade\Application;
+use Concrete\Core\Page\Page;
+
 defined('C5_EXECUTE') or die("Access Denied.");
 
 $nav = Loader::helper('navigation');
@@ -46,7 +52,7 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                         // DO NOT DO THIS, some other elements take time to load and will not be properly hidden at the start!
                         echo $form->checkbox($bCreatePageOrNoName , 1, 1, array('style' => 'color: blue;', 'onchange' => 'onChangeCreate(this.id)'));
 
-                        ?><br><?php
+                        echo "<br/><br/>";
 
                         //Built-in Attributes (location, name, description, page type)
                         //$locationName = $tab[0] . "-rsvp-location";
@@ -64,15 +70,18 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                         $defaultPage = $sections3[$tab[1]]->getSiteHomePageID();
                         echo $app->make('helper/form/page_selector')->selectPage($locationName, $defaultPage); //name, then default value. Default should be the root of the language site
 
+                        echo "<br/>";
                         //$nameName = $tab[0] . "-rsvp-name";
                         $nameName = "rsvp-name";
                         echo $form->label($nameName, t("Page Name"));
                         echo $form->text($nameName);
+                        echo "<br/>";
 
                         //$desciptionName = $tab[0] . "-rsvp-description";
                         $desciptionName = "rsvp-description";
                         echo $form->label($desciptionName, t("Page Description"));
                         echo $form->text($desciptionName);
+                        echo "<br/>";
 
                         //Page Type Selector
                         ?><label class="control-label"><?= t('Page Type') ?></label>
@@ -87,8 +96,8 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                                 foreach ($ctArray as $ct) {
                                     ?>
                                     <option
-                                        value="<?= $ct->getPageTypeID() ?>" <?php if ($ptID == $ct->getPageTypeID()) {
-                                        ?> selected <?php
+                                        value="<?= $ct->getPageTypeID() ?>" <?php if ("scenario_page_type" == $ct->getPageTypeHandle()) {
+                                        ?>  selected <?php
                                     }
                                     ?>>
                                         <?= $ct->getPageTypeDisplayName() ?>
@@ -99,9 +108,10 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                             </select>
                             <?php
                         }
+                        echo "<br/>";
 
                         //Page Template Selector
-                        ?><label class="control-label"><?= t('Page Template (WARNING: MAKE SURE THE PAGE TEMPLATE ZOU CHOOSE IS ASSOCIATED WITH THE PAGE TYPE)') ?></label>
+                        ?><label class="control-label"><?= t('Page Template (WARNING: MAKE SURE THE PAGE TEMPLATE YOU CHOOSE IS ASSOCIATED WITH THE PAGE TYPE)') ?></label>
                         <?php
                         $ptemplatesArray = PageTemplate::getList();
                         if (is_array($ptemplatesArray)) {
@@ -112,7 +122,10 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                                 foreach ($ptemplatesArray as $pt) {
                                     ?>
                                     <option
-                                        value="<?= $pt->getPageTemplateHandle() ?>">
+                                        value="<?= $pt->getPageTemplateHandle() ?>"
+                                        <?php if ("page_scenario" == $pt->getPageTemplateHandle()) {
+                                            ?> selected <?php
+                                        }?>>
                                         <?= $pt->getPageTemplateName() ?>
                                     </option>
                                     <?php
@@ -121,15 +134,27 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                             </select>
                             <?php
                         }
+                        echo "<br/>";
+
+                        //Upgraded version : only show needed attributes :
+                        //Simple configurable thing here, we pass a list of the attribute handles we want to be able to edit in the form
+                        //Then we can just use the stuff from below!
+
+                        $attribute_handles_to_address = ['ts_pattr_topic_theme', 'ts_pattr_topic_metier', 'ts_pattr_topic_type_donne', 'ts_pattr_timbre', 'ts_pattr_introduction', 'ts_pattr_declencheur', 'ts_pattr_peripetie', 'ts_pattr_resolution', 'ts_pattr_conclusion', 'ts_pattr_recommendations', 'ts_pattr_principes_de_base', 'ts_pattr_ressources'];
 
                         //Custom Attribute Forms
                         $keyslist = CollectionKey::getList('Collection');
                         $available_aks=array(''=>'(none)');
 
-                        foreach($keyslist AS $key){                            
+                        foreach($keyslist AS $key){
                             //$formElementName = $tab[0] . "-" . $key->getAttributeKeyHandle();
                             $formElementName = $key->getAttributeKeyHandle();
                             $typehandle = $key->getAttributeType()->getAttributeTypeHandle();
+
+                            if(!in_array($formElementName, $attribute_handles_to_address)){
+                                continue;
+                            }
+
                             echo $form->label($key->getAttributeKeyName(), t($key->getAttributeKeyName()))  . "  ";
                             switch($typehandle){
                                 case('text'):
@@ -193,14 +218,28 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                                     echo $form->number($formElementName);
                                     break;
                                 case('timbre'):
-                                    echo $form->checkbox($formElementName . "-valid" , 1);
+                                    echo "<br/>";
+                                    $im = \Core::make('helper/image');
+                                    $f = $key->getAttributeKeySettings()->getFileObject();
+                                    $thumb = $im->getThumbnail(
+                                        $f,
+                                        75,
+                                        75,
+                                        true
+                                    ); //<-- set these 2 numbers to max width and height of thumbnails
+                                    //Taken from Concrete\Package\ThinkStory\Attribute\Timbre Controller
+                                    echo "<img src=\"{$f->getRelativePath() }\" width=\"{$thumb->width}\" height=\"{$thumb->height}\" alt=\"\" />";
+
+                                    echo '<p>Validate : </p>';
+                                    //echo $form->checkbox($formElementName . "-valid" , 1);
+                                    echo $form->checkbox($formElementName, 1);
                                     break;
                                 case(''):
                                     break;
                                 default:
                                     break;
                             }
-                            echo "<br/>";
+                            echo "<br/><br/>";
                         }
                         ?></div>
                     </div>
@@ -226,7 +265,7 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
         $('#qwop').attr('disabled', true);
     }
 
-    function onChangeCreate(callerID) {
+    function onChangeCreate(callerID, again) {
         var parent = $("#" + callerID).parent();
         console.log(parent)
 
@@ -240,6 +279,10 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
             $("#" + callerID).show() //Show the checkbox
             $("label[for^='rsvp-create-']").show() //$("label[for='rsvp-create*']").show() //Show the label
         }
+
+        //Call again in case...
+        if(again)
+            setTimeout(onChangeCreate(callerID, !again),5000);
     }
     
     //When first load, hide ALL things
@@ -296,11 +339,13 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
             console.log("Data: ")
             console.log(form_data)
             console.log("URL : " + url)
+            
             $.ajax({
                 url: url ,
                 type: request_method,
                 data : form_data
             }).done(function(response){
+                console.log('Done')
                 console.log(response)
                 ConcreteAlert.notify({
                     title: <?php echo json_encode(t('Pages Successfully created')); ?>,
@@ -308,6 +353,7 @@ print Core::make('helper/concrete/ui')->tabs($tabs);
                 });
                 enableButtons()
             }).error(function(error){
+                console.log('There was an error')
                 console.log(error)
                 ConcreteAlert.dialog(
                     <?php echo json_encode(t('Error(s) creating pages!')); ?>,

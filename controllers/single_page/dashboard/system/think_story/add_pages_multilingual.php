@@ -234,6 +234,7 @@ class AddPagesMultilingual extends DashboardSitePageController
                     default:
                         break;
                 }*/
+                //NOTE: This works perfectly fine, don't need to keep testing it...
                 if(strpos($pageattribute['name'], 'rsvp-create') !== false){
                     $bCanCreatePage = true;
                 }
